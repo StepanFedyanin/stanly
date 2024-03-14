@@ -1,0 +1,50 @@
+---
+title: "Нормальность распределения"
+output:
+  html_fragment
+params:
+  json_file:
+    value: x
+  html_format:
+    value: x
+  desc_file:
+    value: x
+---
+
+
+```{r all, echo=FALSE, cashe=TRUE, results='hide', warning=FALSE, error=FALSE}
+
+  if(!exists("include_libraries", mode="function")) source("../functions.R")
+  if(0) source("calc_functions.R")
+  if(!exists("calc_prepare_data", mode="function")) source("../w_z.R")
+
+  include_libraries()
+  library(nortest)
+
+  data <- rjson::fromJSON(file = params$json_file)
+  HTML_FORMAT <- params$html_format
+  desc_file <- ifelse(params$desc_file == 'None', F, params$desc_file)
+
+  # for test 
+  # HTML_FORMAT <- 'short'
+  # data <- rjson::fromJSON('{"group_name_1":"g1","group_count_1":3,"group_data_1":{"Шкала 1":{"1":76,"2":87,"3":786},"Шкала 2":{"1":76,"2":6,"3":876}}}')
+  # data <- rjson::fromJSON('{"group_name_1":"g1","group_count_1":4,"group_data_1":{"Шкала 1":{"1":0,"2":0,"3":0,"4":0},"Шкала 2":{"1":0,"2":0,"3":0,"4":0}}}')
+  # desc_file <- F
+  # /for test 
+
+  GROUP_VAR <- 'Группа'
+
+  #выбор нужно метода корреляции
+  METHOD_NAME <- "w"
+  # METHOD_NAME <- "z"
+
+  #определяю что за критерий будет использовать и сохраняю его название и букву обозначения
+  stat_name <- "Шапиро-Уилка"
+  stat_sumbol <- "W"
+
+  MAIN_DF <- calc_prepare_data(data, GROUP_VAR)
+
+```
+
+```{r child='../w_z.Rmd'}
+```

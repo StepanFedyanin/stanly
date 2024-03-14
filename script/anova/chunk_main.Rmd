@@ -1,0 +1,62 @@
+```{r main, echo=FALSE, cashe=TRUE, results='hide', warning=FALSE, error=FALSE}
+  GROUP_VAR <- names(MAIN_DF[,1])
+  GROUP_VAR_LEVELS <- levels(MAIN_DF[[GROUP_VAR]])
+
+  #формирую правильные названия для итоговой таблицы с учетом подстановки текст "Среднее значение в группе ..."
+  names_mean_group_df <- NULL
+  for(sn in GROUP_VAR_LEVELS){
+    names_mean_group_df[sn] <- paste("Среднее значение в группе «",sn,"»", 
+                                     sep = "")
+  }
+
+  psy_table_names <- FALSE
+  if(desc_file){
+    psy_table_names <- read_excel(paste("../../tmp/desc/", desc_file, sep=''))
+  }
+
+  all_table <- calc_anova(MAIN_DF, psy_table_names)
+  names(all_table) <- c("Названия шкал", 
+                         names_mean_group_df,
+                         "Эмпирическое значение F критерия",
+                         "Уровень значимости БЕЗ ЗВЕЗДОЧЕК",
+                         "Уровень значимости",
+                         "Вывод про уровень значимости",
+                         "Вывод про больше-меньше",
+                         "Психологический вывод")
+```
+Для сравнения групп `r GROUP_VAR_LEVELS` между собой был использован однофакторный дисперсионный анализ (ANOVA). Данные представлены в таблице.
+`r cat("\n", sep = "\n")`
+##Таблица. Эмпирические значения однофакторного дисперсионного анализа (ANOVA).
+```{r table, echo=FALSE, results='asis', warning=FALSE, error=FALSE}
+exclude_scale <- c(ncol(all_table), ncol(all_table)-1, ncol(all_table)-2, ncol(all_table)-4)
+knitr::kable(all_table[,-exclude_scale])
+```
+
+### * - p<0,05
+### ** - p<0,01
+### *** - p<0,001
+
+```{r condition, echo=FALSE, comment="", fig.keep='all', fig.show='all', fig.align='center', results='asis', warning=FALSE, error=FALSE}
+if (HTML_FORMAT == 'full' || HTML_FORMAT == 'docx')
+{
+  ## Текстовые вводы с графиками
+  condition_itog <- for (vr in 1:length(all_table[["Названия шкал"]]))
+      if(all_table[["Уровень значимости БЕЗ ЗВЕЗДОЧЕК"]][vr] <= 0.05){
+          cat(paste(all_table[["Вывод про уровень значимости"]][vr],
+                    " ",all_table[["Вывод про больше-меньше"]][vr],
+                    " ",all_table[["Психологический вывод"]][vr]))
+          cat("\n", sep="\n")
+          scale_name <- as.character(all_table[["Названия шкал"]][vr])
+          boxplot(MAIN_DF[[scale_name]] ~ MAIN_DF[[GROUP_VAR]], 
+                  xlab=GROUP_VAR, 
+                  ylab=scale_name, 
+                  names=GROUP_VAR_LEVELS,
+                  cex.lab=0.7,
+                  cex.axis = 0.4,
+                  sep = "")
+          cat("\n", sep="\n")
+    } else {
+      NULL
+    }
+}
+```

@@ -1,0 +1,75 @@
+{% extends 'layout/popup_auth.html' %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+
+{% block form %}
+
+{% get_providers as socialaccount_providers %}
+
+<div class="popup-form__header">
+  <div class="popup-form__header-button is-active">Вход</div>
+  <div class="popup-form__header-button js-signup">Регистрация</div>
+</div>
+
+<div class="popup-form__content">
+  <form class="form-login login js-login-form js-ym-autorization" onsubmit="typeof ga !== 'undefined' &&  ga('send', 'event', 'account', 'autorization');typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'autorization');" method="POST" action="/all/accounts/login_ajax/">
+
+    {% if next_step %}
+        <input id="login_redirect" type="hidden" name="next" value="/all/" />
+    {% endif %}
+
+    {% csrf_token %}
+
+    <div class="js-error"></div>
+
+    <fieldset class="popup-form__fieldset js-fieldset">
+
+      {% for field in form %}
+
+        {% if field.name == 'remember' %}
+
+            <div class="popup-form__remember">
+
+              {{ field }}
+
+              <label class="popup-form__label" for="{{ field.auto_id }}">{{ field.label }}</label>
+              <a class="popup-form__link m--right js-password-reset" href="/all/accounts/reset_password_ajax/">{% trans "Forgot Password?" %}</a>
+
+            </div>
+
+        {% else %}
+
+            {{ field }}
+
+          {% if field.name == 'password' %}
+              <span class="js-show-password"></span>
+          {% endif %}
+
+        {% endif %}
+
+
+      {% endfor %}
+    </fieldset>
+
+    <input class="button button-red popup-form__submit" type="submit" value="{% trans "Sign In" %}">
+
+  </form>
+</div><!--popup-form__content-->
+
+{% if socialaccount_providers %}
+
+  <div class="popup-form__footer">
+
+    <div class="popup-form__or">или</div>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+    {% include "socialaccount/snippets/provider_list_block.html" with process="login" %}
+
+  </div><!--popup-form__footer-->
+
+{% endif %}
+
+{% endblock form %}

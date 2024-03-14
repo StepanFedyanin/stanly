@@ -1,0 +1,52 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% load calc_tags %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+
+{% block header %}
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-12 mb-3">
+                <h1 class="h3">Факторный анализ</h1>
+            </div>
+            <div>Критерий служит для <b>ОДНОЙ</b> группы</div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <style>
+            .scale__steps-one:nth-child({% block css-step %}{% endblock %}) a{
+                color: #007bff;
+            }
+        </style>
+        {# table>thead>tr>(th.scale__steps-one)*7^^tbody>tr>(td.scale__steps-one)*7 #}
+        {% get_session_step as session_step %}
+        <div class="scale__steps scale__steps-title">
+            {% for i in i|rjust:7 %}
+                {#<div class="scale__steps-one">{% if step >= forloop.counter %}<a href="/all/{{ calc_name }}/steps/{{ forloop.counter }}/">Шаг {{ forloop.counter }}</a>{% else %}Шаг {{ forloop.counter }}{% endif %}</div>#}
+            {% endfor %}
+            <div class="scale__steps-one">{% if step >= 1 %}<a href="/all/{{ calc_name }}/steps/1/">Шаг 1</a>{% else %}Шаг 1{% endif %}</div>
+            <div class="scale__steps-one">{% if step >= 2 %}<a href="/all/{{ calc_name }}/steps/2/">Шаг 2</a>{% else %}Шаг 2{% endif %}</div>
+            <div class="scale__steps-one">{% if step >= 3 %}<a href="/all/{{ calc_name }}/steps/3/">Шаг 3</a>{% else %}Шаг 3{% endif %}</div>
+            <div class="scale__steps-one">{% if step >= 4 %}<a href="/all/{{ calc_name }}/steps/4/">Шаг 4</a>{% else %}Шаг 4{% endif %}</div>
+            <div class="scale__steps-one">{% if step >= 5 %}<a href="/all/{{ calc_name }}/steps/5/">Шаг 5</a>{% else %}Шаг 5{% endif %}</div>
+            {# <div class="scale__steps-one">{% if step >= 6 %}<a href="/all/{{ calc_name }}/steps/6/">Шаг 6</a>{% else %}Шаг 6{% endif %}</div> #}
+        </div>
+        <hr class="scale__hr">
+        <div class="scale__steps scale__steps-subtitle">
+            <div class="scale__steps-one">{% if step >= 1 %}<a href="/all/{{ calc_name }}/steps/1/">Названия шкал</a>{% else %}Названия шкал{% endif %}</div>
+            <div class="scale__steps-one">{% if step >= 2 %}<a href="/all/{{ calc_name }}/steps/2/">Данные группы</a>{% else %}Данные группы{% endif %}</div>
+            <div class="scale__steps-one">{% if step >= 3 %}<a href="/all/{{ calc_name }}/steps/3/">Проверка данных</a>{% else %}Проверка данных{% endif %}</div>
+            <div class="scale__steps-one">{% if step >= 4 %}<a href="/all/{{ calc_name }}/steps/4/">Результаты</a>{% else %}Результаты{% endif %}</div>
+            <div class="scale__steps-one">{% if step >= 5 %}<a href="/all/{{ calc_name }}/steps/5/">Полный результат</a>{% else %}Полный результат{% endif %}</div>
+            {# <div class="scale__steps-one">{% if step >= 6 %}<a href="/all/{{ calc_name }}/steps/6/">Полный результат</a>{% else %}Полный результат{% endif %}</div> #}
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'factor_analytic'|add:'/js/main.js' %}{% get_static_version %}"></script>
+{% endblock %}

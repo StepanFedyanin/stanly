@@ -1,0 +1,129 @@
+.achievement__wrapper {
+    margin: 40px auto;
+    padding: 0;
+}
+
+.achievement__block {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.achievement__block-close {
+    position: absolute;
+    top: -25px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-image: url('../i/icons/close_gray.svg');
+}
+
+.achievement__wrapper.m--red .achievement__block-close {
+    display: none;
+}
+
+.achievement {
+    max-width: 240px;
+    margin-left: 63px;
+    margin-right: 30px;
+    position: relative;
+}
+
+.achievement::before {
+    content: '';
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    left: -63px;
+    top: 3px;
+    background-color: #E4EEF5;
+    border-radius: 100%;
+}
+
+.achievement::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: -55px;
+    top: 10px;
+}
+
+.achievement.m--adventure_line::after {
+    background-image: url('../i/icons/adventure_line.svg');
+}
+
+.achievement.m--rocket::after {
+    background-image: url('../i/icons/rocket.svg');
+}
+
+.achievement.m--data_analysis::after {
+    background-image: url('../i/icons/data_analysis.svg');
+}
+
+.achievement.m--24hours_7days::after {
+    background-image: url('../i/icons/24hours_7days.svg');
+}
+
+.achievement__title {
+    font-size: 16px;
+    font-family: 'Proxima Nova Bl';
+    font-weight: 900;
+    margin-bottom: 5px;
+    line-height: 17px;
+}
+
+.achievement__text {
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.achievement__wrapper.m--red {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.achievement__wrapper.m--red .achievement {
+    margin: 0 20px;
+}
+
+.achievement__wrapper.m--red .achievement::before {
+    display: block;
+    position: static;
+    margin: 0 auto 10px;
+    background-color: #A0001F;
+}
+
+.achievement__wrapper.m--red .achievement::after {
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.achievement__wrapper.m--red .achievement__title {
+    color: #fff;
+    text-align: center;
+}
+
+.achievement__wrapper.m--red .achievement__text {
+    color: #fff;
+    text-align: center;
+}
+
+.achievement__wrapper.m--red .achievement.m--adventure_line::after {
+    background-image: url('../i/icons/adventure_line_white.svg');
+}
+
+.achievement__wrapper.m--red .achievement.m--rocket::after {
+    background-image: url('../i/icons/rocket_white.svg');
+}
+
+.achievement__wrapper.m--red .achievement.m--data_analysis::after {
+    background-image: url('../i/icons/data_analysis_white.svg');
+}
+
+.achievement__wrapper.m--red .achievement.m--24hours_7days::after {
+    background-image: url('../i/icons/24hours_7days_white.svg');
+}

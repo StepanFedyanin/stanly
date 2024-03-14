@@ -1,0 +1,31 @@
+---
+title: "Факторный анализ"
+output:
+  html_fragment
+params:
+  json_file:
+    value: x
+  html_format:
+    value: x
+  desc_file:
+    value: x
+---
+
+
+```{r all, results='hide', echo=FALSE, cashe=TRUE, warning=FALSE, error=FALSE}
+
+  if(!exists("include_libraries", mode="function")) source("../functions.R")
+  if(!exists("calc_prepare_data", mode="function")) source("calc_functions.R")
+  include_libraries()
+
+  data <- rjson::fromJSON(file = params$json_file)
+  HTML_FORMAT <- params$html_format
+  desc_file <- ifelse(params$desc_file == 'None', F, params$desc_file)
+
+  GROUP_VAR <- 'Группа'
+
+  MAIN_DF <- calc_prepare_data(data, GROUP_VAR)
+```
+
+```{r child='chunk_main.Rmd'}
+```

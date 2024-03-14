@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<p><b>Оплата прошла успешно!</b> Сейчас вы будете перенаправлены...</p>
+<p>
+	Есил этого не произошло, нажмите <a href="{{ redirect }}">сюда</a>
+</p>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		window.location.href = '{{ redirect }}';
+	});
+</script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'factor_analytic/layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block step %}prepare{% endblock step %}
+
+{% block content %}
+     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form class="js-form" action="/all/{{ calc_name }}/set_json/" method="post">
+                    <fieldset class="js-fieldset">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="next_step" value="/all/{{ calc_name }}/steps/{{ next_step }}/">
+                        <input type="hidden" name="group_count" value="{{ group_count }}">
+                        <input type="hidden" name="json" value="">
+                        <input type="hidden" name="calc_name" value="{{ calc_name }}">
+
+                        {% include "block/prev_and_next_page.html" with submit=True %}
+
+                        <div class="h1 mb-2">Проверка данных</div>
+                        {% for i in group_count_range %}
+                            <div class="js-groups-prepare">
+                                <span class="scale__subtitle scale__check-group">
+                                        Группа {{ i }}:
+                                    <span class="js-group-name"></span>
+                                    (<span class="js-group-count"></span> чел.)
+                                </span>
+                                <a class="scale__link js-group-link" href="#">изменить</a>
+                            </div>
+                        {% endfor %}
+
+                        <div class="row my-5">
+                            <div class="col-12">
+                                <div class="table-wrap">
+                                    <table class="js-table table mb-0">
+                                      <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Группа / Номер испытуемого</th>
+                                            {% for scale in scales %}
+                                                <th scope="col">{{ scale }}</th>
+                                            {% endfor %}
+                                        </tr>
+                                      </thead>
+                                      <tbody class=""></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% include "block/prev_and_next_page.html" with submit=True %}
+                        
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+{#    <script type="text/javascript" src="{% static 'js/step_prepare.js' %}{% get_static_version %}"></script>#}
+{% endblock %}

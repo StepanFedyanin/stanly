@@ -1,0 +1,305 @@
+```{r main, echo=FALSE, cashe=TRUE, results='hide', warning=FALSE, error=FALSE}
+  
+  psy_table_names <- FALSE
+
+  if(desc_file){
+    psy_table_names <- read_excel(paste("../../tmp/desc/", desc_file, sep=''))
+  }
+
+  MAIN_DF_NAMES <- names(MAIN_DF)
+
+  #нужны все данные или только значимые (если F - то только значимые взаимосвязи)?
+  need_all_data <- T
+
+  ###############################
+  ####создают пустую матрицу и записываю в нее значения криетрия
+  t_stat <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      cor_test <- cor.test(MAIN_DF[[i]], MAIN_DF[[j]], method = METHOD_NAME)
+      t_stat[i,j] <- round(cor_test$estimate,3)
+    }
+  }
+  t_stat[row(t_stat) == col(t_stat)] <- NA
+  lower.tri(t_stat)
+  t_stat[lower.tri(t_stat)] <- NA
+
+  ####создают пустую матрицу и записываю в нее уровень значимости критерия
+  t_p_val <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      cor_test <- cor.test(MAIN_DF[[i]], MAIN_DF[[j]], method = METHOD_NAME)
+      t_p_val[i,j] <- cor_test$p.value
+    }
+  }
+  t_p_val[row(t_p_val) == col(t_p_val)] <- NA
+  lower.tri(t_p_val)
+  t_p_val[lower.tri(t_p_val)] <- NA
+
+  ####создают пустую матрицу и записываю в нее ТОKЬКО ЗНАЧИМЫЙ уровень значимости критерия
+  t_stat_sign <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      if(is.na(t_p_val[i,j])){
+        NA
+      }else if(t_p_val[i,j] < 0.05 & t_p_val[i,j] > 0){
+        t_stat_sign[i,j] <- t_stat[i,j]
+      } else {
+        NA
+      }
+    }
+  }
+  ####создают пустую матрицу и записываю в нее ТОKЬКО ЗНАЧИМЫЙ уровень значимости критерия + ставлю звездочки
+  t_stat_sign_star <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      if(is.na(t_p_val[i,j])){
+        NA
+      } else if(t_p_val[i,j] <= 0.05 & t_p_val[i,j] > 0.01){
+        t_stat_sign_star[i,j] <- paste(round(t_stat[i,j],3),"*", sep = "")
+      } else if(t_p_val[i,j] <= 0.01 & t_p_val[i,j] > 0.001){
+        t_stat_sign_star[i,j] <- paste(round(t_stat[i,j],3),"**", sep = "")
+      } else if(t_p_val[i,j] <= 0.001 & t_p_val[i,j] > 0){
+        t_stat_sign_star[i,j] <- paste(round(t_stat[i,j],3),"***", sep = "")
+      } else {
+        NA
+      }
+    }
+  }
+
+  ####создают пустую матрицу и записываю в нее ВСЕ корреляции + ставлю звездочки
+  t_stat_all_data <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      if(is.na(t_p_val[i,j])){
+        NA
+      } else if(t_p_val[i,j] <= 0.05 & t_p_val[i,j] > 0.01){
+        t_stat_all_data[i,j] <- paste(round(t_stat[i,j],3),"*", sep = "")
+      } else if(t_p_val[i,j] <= 0.01 & t_p_val[i,j] > 0.001){
+        t_stat_all_data[i,j] <- paste(round(t_stat[i,j],3),"**", sep = "")
+      } else if(t_p_val[i,j] <= 0.001 & t_p_val[i,j] > 0){
+        t_stat_all_data[i,j] <- paste(round(t_stat[i,j],3),"***", sep = "")
+      } else {
+        t_stat_all_data[i,j] <- paste(round(t_stat[i,j],3), sep = "")
+      }
+    }
+  }
+
+  ####создаю пустую матрицу и записываю в нее уровень значимости в виде p<0,05
+  t_text_p_val <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      if(is.na(t_p_val[i,j])){
+        NA
+      } else if(t_p_val[i,j] <= 0.05 & t_p_val[i,j] > 0.01){
+        t_text_p_val[i,j] <- "p<0,05"
+      } else if(t_p_val[i,j] <= 0.01 & t_p_val[i,j] > 0.001){
+        t_text_p_val[i,j] <- "p<0,01"
+      } else if(t_p_val[i,j] <= 0.001 & t_p_val[i,j] > 0){
+        t_text_p_val[i,j] <- "p<0,001"
+      } else {
+        NA
+      }
+    }
+  }
+  ####создаю пустую матрицу и записываю в нее вывод о СИЛЕ и нАПРАВЛЕНИИ связи
+  t_text_strengh <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      if(is.na(t_stat_sign[i,j])){
+        NA
+      } else if(t_stat_sign[i,j] >= 0.7){
+        t_text_strengh[i,j] <- "сильные положительные"
+      } else if(t_stat_sign[i,j] < 0.7 & t_stat_sign[i,j] >= 0.5){
+        t_text_strengh[i,j] <- "средние положительные"
+      } else if(t_stat_sign[i,j] < 0.5 & t_stat_sign[i,j] >= 0.3){
+        t_text_strengh[i,j] <- "умеренные положительные"
+      } else if(t_stat_sign[i,j] < 0.3 & t_stat_sign[i,j] >= 0.2){
+        t_text_strengh[i,j] <- "слабые положительные"
+      } else if(t_stat_sign[i,j] < 0.2 & t_stat_sign[i,j] > 0){
+        t_text_strengh[i,j] <- "очень слабые положительные"
+      } else if(t_stat_sign[i,j] < 0 & t_stat_sign[i,j] >= -0.2){
+        t_text_strengh[i,j] <- "очень слабые отрицательные"
+      } else if(t_stat_sign[i,j] < -0.2 & t_stat_sign[i,j] >= -0.3){
+        t_text_strengh[i,j] <- "слабые отрицательные"
+      } else if(t_stat_sign[i,j] < -0.3 & t_stat_sign[i,j] >= -0.5){
+        t_text_strengh[i,j] <- "умеренные отрицательные"
+      } else if(t_stat_sign[i,j] < -0.5 & t_stat_sign[i,j] >= -0.7){
+        t_text_strengh[i,j] <- "средние отрицательные"
+      } else if(t_stat_sign[i,j] < -0.7){
+        t_text_strengh[i,j] <- "сильные отрицательные"
+      } else {
+        NA
+      }
+    }
+  }
+
+  # t_text_result <- get_text_result(MAIN_DF, MAIN_DF_NAMES, t_p_val)
+  ####создаю пустую матрицу и записываю в нее ИТОГОВЫЙ СТАТИСТИЧЕСКИЙ ВЫВОД
+  t_text_result <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      if(is.na(t_p_val[i,j])){
+        NA
+      } else if(t_p_val[i,j] <= 0.05){
+          t_result_1 <- paste("Между шкалой «",names(MAIN_DF[i]),
+                              "» и шкалой «",names(MAIN_DF[j]),
+                              "» существуют значимые ",t_text_strengh[i, j],
+                              " взаимосвязи (r=",t_stat_sign_star[i, j],
+                              ", ",t_text_p_val[i, j],").", sep = "")
+          t_result_2 <- paste("Были выявлены значимые ",t_text_strengh[i, j],
+                               " взаимосвязи между шкалой «",names(MAIN_DF[i]),
+                               "» и шкалой «",names(MAIN_DF[j]),
+                               "» (r=",t_stat_sign_star[i, j],
+                               ", ",t_text_p_val[i, j],").", sep = "")
+          t_result_3 <- paste("Существуют значимые ",t_text_strengh[i, j],
+                              " взаимосвязи между шкалой «",names(MAIN_DF[i]),
+                              "» и шкалой «",names(MAIN_DF[j]),
+                              "» (r=",t_stat_sign_star[i, j],
+                              ", ",t_text_p_val[i, j],").", sep = "")
+          t_text_result[i,j] <- text_rand(t_result_1, t_result_2, t_result_3)
+      } else{
+        NA
+      }
+    }
+  }
+
+  ####создаю пустую матрицу и записываю в нее ИТОГОВЫЙ СТАТИСТИЧЕСКИЙ ВЫВОД
+  t_text_trend <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      if(is.na(t_stat_sign[i,j])){
+        NA
+      } else if(t_stat_sign[i,j] > 0){
+        t_result_1 <- paste("С увеличением показателей по шкале «",names(MAIN_DF[i]),
+                            "» также увеличиваются показатели по шкале «",names(MAIN_DF[j]),
+                            "».", sep = "")
+        t_result_2 <- paste("Чем в большей степени выражены показатели по шкале  «",names(MAIN_DF[i]),
+                            "», тем больше выражены показатели по шкале «",names(MAIN_DF[j]),
+                            "».", sep = "")
+        t_result_3 <- paste("С возрастанием показателей по шкале «",names(MAIN_DF[i]),
+                            "» также возрастают показатели по шкале «",names(MAIN_DF[j]),
+                            "».", sep = "")
+        t_text_trend[i,j] <- text_rand(t_result_1, t_result_2, t_result_3)
+      } else{
+        t_result_1 <- paste("С увеличением показателей по шкале «",names(MAIN_DF[i]),
+                            "» уменьшаются показатели по шкале «",names(MAIN_DF[j]),
+                            "».", sep = "")
+        t_result_2 <- paste("Чем в большей степени выражены показатели по шкале  «",names(MAIN_DF[i]),
+                            "», тем меньше выражены показатели по шкале «",names(MAIN_DF[j]),
+                            "».", sep = "")
+        t_result_3 <- paste("С возрастанием показателей по шкале «",names(MAIN_DF[i]),
+                            "» снижаются показатели по шкале «",names(MAIN_DF[j]),
+                            "».", sep = "")
+        t_text_trend[i,j] <- text_rand(t_result_1, t_result_2, t_result_3)
+      }
+    }
+  }
+
+  ######ПСИХОЛОГИЧЕСКОЕ ОПИСАНИЕ######
+  t_text_psyresult <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = length(MAIN_DF_NAMES))
+  for (i in 1:ncol(MAIN_DF)){
+    for(j in 1:ncol(MAIN_DF)){
+      if(psy_table_names != FALSE){
+        if(is.na(t_p_val[i,j])){
+          NA
+        } else if(t_p_val[i,j] <= 0.05){
+            if(t_stat[i,j] >= 0){
+                t_result_1 <- paste("Такие характеристики как ",psy_table_names[["Описание"]][i],
+                                    " положительно коррелируют с ",psy_table_names[["Описание со склонением"]][j],".", sep = "")
+                t_result_2 <- paste("Это показывает наличие положительной взаимосвязи между такими показателями как 
+                                    ",psy_table_names[["Описание"]][i],
+                                    " и ",psy_table_names[["Описание со склонением"]][j],".", sep = "")
+                t_result_3 <- paste("Такие психологические признаки как ",psy_table_names[["Описание"]][i],
+                                    " положительно взаимосвязаны с ",psy_table_names[["Описание со склонением"]][j],".", sep = "")
+                t_text_psyresult[i,j] <- text_rand(t_result_1, t_result_2, t_result_3)
+            } else {
+                t_result_1 <- paste("Такие характеристики как ",psy_table_names[["Описание"]][i],
+                                    " отрицательно коррелируют с ",psy_table_names[["Описание со склонением"]][j],".", sep = "")
+                t_result_2 <- paste("Это показывает наличие отрицательной взаимосвязи между такими показателями как 
+                                    ",psy_table_names[["Описание"]][i],
+                                    " и ",psy_table_names[["Описание со склонением"]][j],".", sep = "")
+                t_result_3 <- paste("Такие психологические признаки как ",psy_table_names[["Описание"]][i],
+                                    " отрицательно взаимосвязаны с ",psy_table_names[["Описание со склонением"]][j],".", sep = "")
+                t_text_psyresult[i,j] <- text_rand(t_result_1, t_result_2, t_result_3)
+            }
+        } else{
+          NA
+        }
+      } else{
+      t_text_psyresult[i,j] <- paste("", sep = "")
+      }
+    }
+  }
+
+  #############ГОТОВИМ ИТОГОВЫЕ ВЫВОДЫ
+  ###фирмирую итоговую таблицу только со ЗНАЧИМЫМИ корреляциями
+  #t_need_data <- t_stat_sign_star
+  #t_need_data <- t_stat_sign_star[rowSums(is.na(t_stat_sign_star)) != ncol(t_stat_sign_star), 
+  #                            colSums(is.na(t_stat_sign_star)) != nrow(t_stat_sign_star)]
+  #colnames(t_need_data) <- MAIN_DF_NAMES[colSums(is.na(t_stat_sign_star)) != nrow(t_stat_sign_star)]
+  #rownames(t_need_data) <- MAIN_DF_NAMES[rowSums(is.na(t_stat_sign_star)) != ncol(t_stat_sign_star)]
+  #t_need_data <- round(t_need_data, 3)
+  #t_need_data[is.na(t_need_data)] <- ""
+
+  ###фирмирую итоговую таблицу со ВСЕМИ корреляциями + если только 2 шкалы свой вывод, если более шкал то свой
+  t_need_all_stat_data_length <- t_stat_all_data[!is.na(t_stat_all_data)]
+  if(length(t_need_all_stat_data_length) == 1){
+    print("1")
+    t_need_all_stat_data <- t_stat_all_data
+    colnames(t_need_all_stat_data) <- MAIN_DF_NAMES
+    rownames(t_need_all_stat_data) <- MAIN_DF_NAMES
+    t_need_all_stat_data[is.na(t_need_all_stat_data)] <- ""
+  } else {
+    print("2")
+    t_need_all_stat_data <- t_stat_all_data
+    t_need_all_stat_data <- t_need_all_stat_data[rowSums(is.na(t_need_all_stat_data)) != ncol(t_need_all_stat_data), 
+                                colSums(is.na(t_need_all_stat_data)) != nrow(t_need_all_stat_data)]
+    colnames(t_need_all_stat_data) <- MAIN_DF_NAMES[2:length(MAIN_DF_NAMES)]
+    rownames(t_need_all_stat_data) <- MAIN_DF_NAMES[-length(MAIN_DF_NAMES)]
+    #t_need_data <- round(t_need_data, 3)
+    t_need_all_stat_data[is.na(t_need_all_stat_data)] <- ""
+  }
+```
+
+Для анализа взаимосвязи между шкалами был использован корреляционный анализ. Использовался коэффициент корреляции `r stat_name`. Данные представлены в таблице.
+`r cat("\n", sep = "\n")`
+
+##Таблица. Эмпирические значения корреляционного анализа.
+```{r table, echo=FALSE, results='asis'}
+  if (HTML_FORMAT == 'short') {
+    knitr::kable(t_need_all_stat_data)
+  } else if (HTML_FORMAT == 'middle') {
+    knitr::kable(t_need_all_stat_data)
+  } else if (HTML_FORMAT == 'full') {
+      knitr::kable(t_need_all_stat_data)
+  } else {
+    knitr::kable(t_need_all_stat_data)
+  }
+```
+
+`r if(HTML_FORMAT == 'middle' || HTML_FORMAT == 'full'){"\n### * - p<0,05\n### ** - p<0,01\n### *** - p<0,001\n"}`
+
+```{r condition, echo=FALSE, comment="", fig.keep='all', fig.show='all', fig.align='center', results='asis', warning=FALSE, error=FALSE}
+  if (HTML_FORMAT == 'full' || HTML_FORMAT == 'docx' ) {
+    for (i in 1:ncol(MAIN_DF)){
+      for(j in 1:ncol(MAIN_DF)){
+        if(is.na(t_p_val[i,j])){
+          NULL
+        } else if(t_p_val[i,j] < 0.05){
+          cat(t_text_result[i,j], t_text_trend[i,j], t_text_psyresult[i,j])
+          cat("\n", sep="\n")
+          plot(x = as.numeric(MAIN_DF[[i]]), 
+               y = as.numeric(MAIN_DF[[j]]),
+               cex.lab = 0.7,
+               xlab = names(MAIN_DF[i]),
+               ylab = names(MAIN_DF[j])
+          )
+          cat("\n", sep="\n")
+        } else{
+          NULL
+        }
+      }
+    }
+  }
+```

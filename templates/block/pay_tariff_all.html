@@ -1,0 +1,34 @@
+<div class="pay__tariff-all">
+
+  <div class="pay__tariff-all-header">
+    <div class="pay__tariff-all-h1">Тарифы</div>
+  </div>
+
+  <div class="pay__tariff-all-content">
+
+    <div class="pay__tariff-all-price">
+      <div class="pay__tariff-all-price-new">{{ pay.price }}<span class="pay__tariff-all-rouble">₽</span></div>
+      {% if pay.price_old %}
+        <div class="pay__tariff-all-price-old">{{ pay.price_old }}<span class="pay__tariff-all-rouble">₽</span></div>
+      {% endif %}
+
+      <div class="pay__tariff-all-title">все критерии / сутки</div>
+
+    </div>
+
+
+    <fieldset class="fieldset js-fieldset">
+
+      {% csrf_token %}
+
+      <input type="hidden" value="{{ pay.price_type }}" name="price_type">
+
+      <input type="button" class="button button-red pay__tariff-button js-get-payment-methods" value="Выбрать вариант оплаты" data-calc-name="{{ pay.calc_name }}">
+
+    </fieldset>
+
+    <div class="pay__tariff-all-desc">✓ если результаты вас не устроят - мы бесплатно сделаем нужные вам рассчеты</div>
+
+  </div>
+
+</div>

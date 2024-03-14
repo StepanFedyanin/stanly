@@ -1,0 +1,12 @@
+{% extends 'layout/popup_blur.html' %}
+
+{% block content %}
+    <div class="popup__blur">
+        <div class="popup__blur-title">Пример расчетов критерия {{ calc_name }}</div>
+        <div class="popup__blur-frame">
+            {% autoescape off %}
+              {{ sample }}
+            {% endautoescape %}
+        </div>
+    </div>
+{% endblock content %}

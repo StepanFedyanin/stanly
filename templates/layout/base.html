@@ -1,0 +1,241 @@
+{% load i18n %}
+
+{% load static %}
+{% load calc_tags %}
+{% load sitetree %}
+
+{#% load cache %#}
+{#% load compress %#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=1920"/>
+    <title>{% block title %}Главная{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'fancybox/jquery.fancybox.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'dist.css' %}{% get_static_version %}"/>
+
+    <script type="text/javascript" src="{% static 'jquery/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fancybox/jquery.fancybox.min.js' %}"></script>
+
+    {% if request.META.HTTP_HOST == 'localhost' %}
+        <script src="http://localhost:35729/livereload.js"></script>
+    {% else %}
+        <script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
+
+        {% autoescape off %}
+            {% get_chunk name='yandex_counter' %}
+        {% endautoescape %}
+
+        {% autoescape off %}
+            {% get_chunk name='google_analytics' %}
+        {% endautoescape %}
+    {% endif %}
+
+    {#<link rel="prefetch" as="font" href="/static/fonts/ProximaNova-Regular.woff" type="font/woff" crossorigin="anonymous">#}
+    {#<link rel="prefetch" as="font" href="/static/fonts/ProximaNova-Bold.woff" type="font/woff" crossorigin>#}
+    {#<link rel="prefetch" as="font" href="/static/fonts/ProximaNova-Black.woff" type="font/woff" crossorigin>#}
+
+    {% block head %}
+    {% endblock %}
+
+</head>
+
+<body data-step="{% block step %}{% endblock step %}" data-calc-name="{% block calc_name %}{% endblock calc_name %}">
+
+{% block base %}
+<div class="body">
+
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo__title">
+                <a href="/all/">Stanly</a>
+            </div>
+            <div class="logo__desc">
+                <h1>сервис для автоматизированного расчета и описания статистики в социальных науках</h1>
+                <div class="logo__desc-about">
+                    <a class="logo__desc-link" href="/">О сервисе</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="calc-menu__wrapper">
+
+            <div class="calc-menu__title">
+                <span>Расчитываемые критерии</span>
+            </div>
+
+            {% sitetree_menu from "calcs" include "trunk" template "sitetree/calc_menu.html" %}
+
+        </div>
+
+        <div class="info">
+            <div class="info__title">СТЭН: бот-помощник</div>
+            <div class="info__text">Чат-бот ВКонтакте для помощи в подборе стат.критериев для расчетов</div>
+        </div>
+    </div><!--sidebar-->
+
+    <div class="main">
+
+        <div class="header">
+            <div class="header__left">
+                <div class="breadcrumbs">
+                    {% block breadcrumbs %}
+                        <div class="breadcrumbs__item">
+                            {% if request.path == "/all/" %}
+                                <span class="">Главная</span>
+                            {% else %}
+                                <a href="/all/" class="breadcrumbs__link">Главная</a>
+                            {% endif %}
+                        </div>
+                    {% endblock breadcrumbs %}
+                </div>
+            </div>
+
+            <div class="header__right">
+                <div class="header__help">
+                    <div class="header__help-link">
+                        Помощь
+                        <div class="header__help-popup">
+                            В случае возникновения проблем с работой сервиса обращайтесь на почту <a href="mailto:info@statpsy.ru">info@statpsy.ru</a> или в нашу группу ВКонтакте: <a target="_blank" href="https://vk.com/psychologstat">https://vk.com/psychologstat</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="header__profile">
+
+                    {% if user.is_authenticated %}
+
+                        {# <span class="header__profile-link">{{ user }}</span> #}
+                        <a href="/all/accounts/profile/" class="header__profile-link">
+                            {{ user }}
+
+                            {% get_profile_pay_status as paid_order %}
+                            <span class="header__profile-status">
+                                {% if paid_order %}
+                                    <div class="calculation__status m--full">Full</div>
+                                {% else %}
+                                    <div class="calculation__status m--free">Free</div>
+                                {% endif %}
+                            </span>
+
+                        </a>
+
+                        {% sitetree_menu from "profile" include "trunk" template "sitetree/profile.html" %}
+
+                    {% else %}
+
+                        <div class="profile__signin js-login">Вход</div>
+
+                        <div class="profile__signup js-signup">Регистрация</div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div><!--header-->
+
+        <div class="content">
+
+            <div class="achievement__wrapper">
+
+                {% include "block/achievement_block.html" %}
+
+            </div>
+
+            {% block header %}
+            {% endblock header %}
+
+            {% block content %}
+                <div class="step__block">
+                    <div class="step__title">Шаги на пути к&nbsp;результату:</div>
+                    <div class="step__list">
+                        <div class="step__step">
+                            <div class="step__step-number">1</div>
+                            <div class="step__step-desc">Выберите интересующий вас&nbsp;критерий</div>
+                        </div>
+                        <div class="step__step">
+                            <div class="step__step-number">2</div>
+                            <div class="step__step-desc">Внесите данные испытуемых</div>
+                        </div>
+                        <div class="step__step">
+                            <div class="step__step-number">3</div>
+                            <div class="step__step-desc">Получите готовые предварительные расчеты</div>
+                        </div>
+                        <div class="step__step">
+                            <div class="step__step-number">₽</div>
+                            <div class="step__step-desc"><a href="/all/accounts/profile/" class="step__step-desc-mark">Оплатите сервис</a> и получите полный отчет о результатах</div>
+                        </div>
+                    </div>
+                </div><!--step__block-->
+
+                <div class="h1">Сравнение групп</div>
+
+                <div class="calc-card__block js-calc-card-block">
+
+                    {% for calc_name, calc_item in calcs.items %}
+                        <div class="calc-card">
+                            <div class="calc-card__body">
+                                <div class="calc-card__body-inner">
+                                    <h2 class="h2 calc-card__title">{{ calc_item.translate }}</h2>
+
+                                    {% if calc_item.prolog_description %}
+
+                                        <div class="calc-card__text">
+                                            {{ calc_item.prolog_description|safe }}
+                                        </div>
+
+                                    {% endif %}
+
+                                    {% if calc_item.video %}
+                                        <span class="calc-card__link m--video js-popup-with-content" data-url="/all/ajax/get_video/" data-calc-name="{{ calc_name }}"><span>Видеоинструкция</span></span>
+                                    {% endif %}
+
+                                    {% if calc_item.sample_short or calc_item.sample_full %}
+                                        <span class="calc-card__link m--sample js-popup-with-content" data-url="/all/ajax/get_sample/" data-calc-name="{{ calc_name }}"><span>Посмотреть пример результатов расчётов</span></span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            {% if user.is_authenticated %}
+                                <a class="calc-card__start" href="{{ calc_item.url }}">Получить расчеты</a>
+                            {% else %}
+                                <span class="calc-card__start js-signup">Пройти бесплатную регистрацию и получить расчеты</span>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                </div><!--calc__block-->
+            {% endblock %}
+
+            {% include "block/goal_block.html" %}
+
+            {# {% block footer %} #}
+            {# {% endblock %} #}
+            <div class="footer" itemscope itemtype="http://schema.org/Organization">
+                <p>© 2013-2021 Математическая статистика для психологов</p>
+                <p>ИП Иноземцев Дмитрий Вячеславович</p>
+                <p>ИНН 741709392234</p>
+                <p>ОГРНИП 321745600068003</p>
+                <p><a class="link" href="/dogovor">Договор-офера</a></p>
+            </div>
+        </div><!--content-->
+    </div><!--main-->
+
+{% endblock %}
+
+<script type="text/javascript" src="{% static 'dist.js' %}{% get_static_version %}"></script>
+
+<!-- VK Widget -->
+<div id="vk_community_messages"></div>
+
+<script type="text/javascript">
+    typeof VK !== 'undefined' && VK.Widgets.CommunityMessages("vk_community_messages", 79014052, {expandTimeout: "60000",tooltipButtonText: "Есть вопрос? Напишите нам! "});
+</script>
+
+{% include "block/preloader.html" %}
+
+</body>
+</html>

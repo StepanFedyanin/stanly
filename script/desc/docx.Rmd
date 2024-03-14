@@ -1,0 +1,43 @@
+---
+title: "Описательные статистики"
+output:
+  word_document:
+    reference_docx: 'r-lang-template-2.dotx'
+params:
+  json_file:
+    value: x
+  html_format:
+    value: x
+  desc_file:
+    value: x
+---
+
+```{r, setup, include=FALSE, warning=FALSE, error=FALSE, echo=FALSE, cashe=TRUE}
+```
+
+```{r all, results='hide', warning=FALSE, error=FALSE, echo=FALSE, cashe=TRUE}
+
+  if(!exists("include_libraries", mode="function")) source("../functions.R")
+  if(!exists("calc_prepare_data", mode="function")) source("calc_functions.R")
+
+  include_libraries()
+
+  data <- rjson::fromJSON(file = params$json_file)
+  HTML_FORMAT <- params$html_format
+  desc_file <- ifelse(params$desc_file == 'None', F, params$desc_file)
+
+  GROUP_VAR <- 'Группа'
+  MAIN_DF <- calc_prepare_data(data, GROUP_VAR)
+
+  descriptive <- get_descriptive(MAIN_DF)
+
+  ```
+    В выборке были рассчитаны основные описательные статистики: среднее арифметическое, стандартное отклонение, медиана, асимметрия, эксцесс, максимум и минимум. Данные представлены в таблице.
+    `r cat("\n", sep = "\n")`
+    Таблица. Основные описательные статистики.
+  ```{r table, echo=FALSE, results='asis'}
+
+  knitr::kable(descriptive)
+  calc_desc(names(MAIN_DF), descriptive)
+
+```

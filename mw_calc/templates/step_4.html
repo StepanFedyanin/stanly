@@ -1,0 +1,76 @@
+{% extends 'layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block step %}prepare{% endblock step %}
+{% block calc_name %}{{ calc_name }}{% endblock calc_name %}
+
+{% block content %}
+    <form class="js-form" action="/all/{{ calc_name }}/set_json/" method="post">
+        <div class="step-page__content">
+            <fieldset class="fieldset js-fieldset">
+
+                {% csrf_token %}
+        
+                <input type="hidden" name="next_step" value="/all/{{ calc_name }}/steps/{{ next_step }}/">
+                <input type="hidden" name="group_count" value="{{ group_count }}">
+                <input type="hidden" name="json" value="">
+                <input type="hidden" name="calc_name" value="{{ calc_name }}">
+        
+                <div class="step-page__title">Проверка данных</div>
+                {% if calc_name == 'kruskal' or calc_name == 'anova' %}
+                    {% for i in group_count_range %}
+                        <a class="step-page__change-link" href="/all/{{ calc_name }}/steps/2/{{ i }}/">
+                            <span class="scale__subtitle scale__check-group">
+                                    Группа {{ i }}:
+                                <span class="js-group-name"></span>
+                                (<span class="js-group-count"></span> чел.)
+                            </span>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    {% for i in group_count_range %}
+                        <a class="step-page__change-link js-group-change-link" href="#">
+                            <span class="scale__subtitle scale__check-group">
+                                    Группа {{ i }}:
+                                <span class="js-group-name"></span>
+                                (<span class="js-group-count"></span> чел.)
+                            </span>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="step-page__table">
+                    <table class="table table--prepare js-table">
+                      <thead class="table__thead">
+                        <tr class="table__thead-tr">
+                            <th class="table__thead-th" scope="col">Группа / Номер испытуемого</th>
+                            {% for scale in scales %}
+                                <th class="table__thead-th" scope="col">{{ scale }}</th>
+                            {% endfor %}
+                        </tr>
+                      </thead>
+                      <tbody class="table__tbody"></tbody>
+                    </table>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <div class="step-page__footer step-page__footer--both">
+
+            {% include "block/prev_and_next_page.html" with submit=True %}
+
+        </div>
+
+    </form>
+
+</div><!-- step-page -->
+
+{% endblock %}

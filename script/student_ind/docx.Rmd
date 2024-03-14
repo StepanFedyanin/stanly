@@ -1,0 +1,66 @@
+---
+title: "Сравнение групп между собой"
+output:
+  word_document:
+    reference_docx: 'r-lang-template-2.dotx'
+params:
+  json_file:
+    value: x
+  html_format:
+    value: x
+  desc_file:
+    value: x
+---
+
+```{r, setup, include=FALSE, warning=FALSE, error=FALSE, echo=FALSE, cashe=TRUE}
+```
+
+```{r all, results='hide', warning=FALSE, error=FALSE, echo=FALSE, cashe=TRUE}
+  #######################ЗАГРУЖАЮ БИБЛИОТЕКИ И ОБОЗНАЧИВАЮ НАСТРОЙКИ#######################
+  # загружаю пакет для импорта данных и устанавливаю рабочую директорию
+
+  if(!exists("include_libraries", mode="function")) source("../functions.R")
+  if(!exists("st", mode="function")) source("../st.R")
+  include_libraries()
+
+  data <- rjson::fromJSON(file = params$json_file)
+
+  ### for test 
+  # data <- rjson::fromJSON('{"group_name_1":"com1","group_name_2":"com2","group_count_1":4,"group_count_2":6,"group_data_1":{"com1":{"1":5,"2":6,"3":876,"4":0},"com2":{"1":6,"2":6,"3":87,"4":0},"com3":{"1":6,"2":86,"3":7676,"4":0}},"group_data_2":{"com1":{"1":567,"2":8,"3":87,"4":78,"5":87,"6":87},"com2":{"1":76,"2":8,"3":87,"4":87,"5":7887,"6":77},"com3":{"1":87,"2":8787,"3":8778,"4":7887,"5":87,"6":7}}}')
+
+  group_var <- get_group_var('Группа', data$group_name_1, data$group_name_2)
+  GROUP_VAR <- group_var["name"]
+  GROUP_1_NAME <- group_var["g_name_1"]
+  GROUP_2_NAME <- group_var["g_name_2"]
+
+  #зависимые выборки?
+  #если FALSE / F то считает НЕЗАВИСИМЫЕ ВЫБОРКИ, иначе зависимые
+  pair <- F
+  stat_name <- ifelse(pair == TRUE, "Т-Стьюдента для зависимых выборок", "Т-Стьюдента для независимых выборок")
+
+  # file психологическое описание
+  desc_file <- ifelse(params$desc_file == 'None', F, params$desc_file)
+
+  # импортирую данные в дата фрейм и основной дата фрейм "MAIN_DF"
+  MAIN_DF = prepare_data_of_two(data, GROUP_VAR)
+
+  all_table = st(MAIN_DF, GROUP_VAR, GROUP_1_NAME, GROUP_2_NAME, pair, desc_file)
+```
+
+Для сравнения группы «`r GROUP_1_NAME`» и группы «`r GROUP_2_NAME`» между собой был использован критерий `r stat_name`. Данные представлены в таблице.
+`r cat("\n", sep = "\n")`
+
+##Таблица. Эмпирические значения критерия `r stat_name`.
+
+```{r table, echo=FALSE, results='asis'}
+  knitr::kable(all_table[,c(1:4,6)])
+```
+
+### * - p<0,05
+### ** - p<0,01
+### *** - p<0,001
+
+```{r condition, echo=FALSE, comment="", fig.keep='all', fig.show='all', fig.align='center', results='asis', warning=FALSE, error=FALSE}
+  ## Текстовые вводы с графиками
+  st_graph(all_table, MAIN_DF, GROUP_VAR, GROUP_1_NAME, GROUP_2_NAME)
+```

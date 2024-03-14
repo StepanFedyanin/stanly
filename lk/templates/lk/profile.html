@@ -1,0 +1,21 @@
+{% extends "layout/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load calc_tags %}
+
+{% block title %}Профиль пользователя{% endblock %}
+{% block breadcrumbs %}
+    {{ block.super }}
+
+    {% include "block/breadcrumbs.html" with item='Профиль пользователя' %}
+{% endblock breadcrumbs %}
+{% block step %}profile{% endblock step %}
+
+{% block content %}
+
+<a class="button button-red profile__change-email profile-page__button" href="{% url 'account_email' %}">Изменить E-mail</a>
+<a class="button button-red profile__reset-pass profile-page__button" href="{% url 'account_reset_password' %}">Сброс пароля</a>
+<a class="button button-black profile__logout profile-page__button" href="{% url 'account_logout' %}">Выйти</a>
+
+{% endblock %}

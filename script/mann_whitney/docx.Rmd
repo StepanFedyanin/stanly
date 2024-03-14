@@ -1,0 +1,65 @@
+---
+title: "Сравнение групп между собой"
+output:
+  word_document:
+    reference_docx: 'r-lang-template-2.dotx'
+params:
+  json_file:
+    value: x
+  html_format:
+    value: x
+  desc_file:
+    value: x
+---
+
+```{r all, results='hide', warning=FALSE, error=FALSE, echo=FALSE, cashe=TRUE}
+  #######################ЗАГРУЖАЮ БИБЛИОТЕКИ И ОБОЗНАЧИВАЮ НАСТРОЙКИ#######################
+  # загружаю пакет для импорта данных и устанавливаю рабочую директорию
+
+  if(!exists("include_libraries", mode="function")) source("../functions.R")
+  if(!exists("mww", mode="function")) source("../mww.R")
+
+  include_libraries()
+  
+  # data <- rjson::fromJSON('{"group_name_1":"1","group_name_2":"2","group_count_1":"1","group_count_2":"2","group_data_1":{"шкала":{"1":1},"Шкала 2":{"1":1},"Шкала 3":{"1":1}},"group_data_2":{"шкала":{"1":1,"2":1},"Шкала 2":{"1":1,"2":1},"Шкала 3":{"1":1,"2":1}}}')
+
+  data <- rjson::fromJSON(file = params$json_file)
+
+  group_var <- get_group_var('Группа', data$group_name_1, data$group_name_2)
+  GROUP_VAR <- group_var["name"]
+  GROUP_1_NAME <- group_var["g_name_1"]
+  GROUP_2_NAME <- group_var["g_name_2"]
+
+  #нужнопсихологическое описание
+  desc_file <- ifelse(params$desc_file == 'None', F, params$desc_file)
+
+  MAIN_DF <- prepare_data_of_two(data, GROUP_VAR)
+
+  #зависимые выборки?
+  #если FALSE то считает Манна-Уитни, иначе Т-Вилкосона
+  pair <- F
+  stat_name <- ifelse(pair == TRUE, "Т-Вилкоксона", "U-Манна-Уитни")
+
+  all_table <- mww(MAIN_DF, GROUP_VAR, GROUP_1_NAME, GROUP_2_NAME, pair, desc_file)
+
+```
+Для сравнения группы «`r GROUP_1_NAME`» и группы «`r GROUP_2_NAME`» между собой был использован критерий `r stat_name`. Данные представлены в таблице.
+`r cat("\n", sep = "\n")`
+##Таблица. Эмпирические значения критерия `r stat_name`.
+```{r table, echo=FALSE, results='asis'}
+  knitr::kable(all_table[,c(1:4,6)])
+```
+
+### * - p<0,05
+### ** - p<0,01
+### *** - p<0,001
+
+```{r condition, echo=FALSE, comment="", fig.keep='all', fig.show='all', fig.align='center', results='asis', warning=FALSE, error=FALSE}
+
+  ## Текстовые вводы с графиками
+
+  # read_chunk('example.R')
+
+  mww_graph(all_table, MAIN_DF, GROUP_VAR, GROUP_1_NAME, GROUP_2_NAME)
+
+```

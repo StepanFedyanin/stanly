@@ -1,0 +1,201 @@
+```{r main, echo=FALSE, cashe=TRUE, results='hide', warning=FALSE, error=FALSE}
+
+psy_table_names <- FALSE
+
+if(desc_file){
+  psy_table_names <- read_excel(paste("../../tmp/desc/", desc_file, sep=''))
+}
+
+MAIN_DF_NAMES <- names(MAIN_DF)
+
+# устанавливаю значение критерия кайзера, по умолчанию рано 1
+KAISER_CRITERIA <- 1
+
+# определяю количество факторов в анализе
+# считаю факторный анализ и считаю количество факторов больше критерия кайзера
+prefit <- principal(MAIN_DF, rotate="varimax")
+NUMBER_OF_FACTOR <- length(prefit$values[prefit$values > KAISER_CRITERIA])
+
+#######################БЛОК С ОСНОВНЫМИ РАСЧЕТАМи#######################
+# считаю нужную модель
+fit <- principal(MAIN_DF, nfactors=NUMBER_OF_FACTOR, rotate="varimax")
+
+# считаю значения КМО
+KMO <- KMO(MAIN_DF)
+if(is.nan(KMO$MSA) == T){
+  fit_KMO <- 0
+} else {
+  fit_KMO <- KMO$MSA
+}
+
+table_fit_KMO <- data.frame(round(fit_KMO,3))
+row.names(table_fit_KMO) <- "Показатель КМО"
+colnames(table_fit_KMO) <- NULL
+
+
+# считаю собственные значения, процент объясненной дисперсии и процент накопленной дисперсии
+fit_values <- as.vector(round(fit$values[fit$values > KAISER_CRITERIA],3))
+fit_prop_var <- as.vector(round(fit$Vaccounted[2:2, 1:NUMBER_OF_FACTOR],5) * 100)
+fit_cum_var <- as.vector(round(fit$Vaccounted[3:3, 1:NUMBER_OF_FACTOR],5) * 100)
+fit_factor_num <- c(1:NUMBER_OF_FACTOR)
+fit_total_variance <- t(rbind(fit_factor_num, fit_values, fit_prop_var, fit_cum_var))
+
+fit_total_variance <- data.frame(fit_total_variance)
+row.names(fit_total_variance) <- NULL
+colnames(fit_total_variance) <- c("Фактор", "Начальные собственные значения", "% дисперсии", "Кумулятивный %")
+
+
+# считаю матрицу с факторными нагрузками
+fit_loadings <- data.frame(round(fit$loadings[1:length(MAIN_DF_NAMES), 1:NUMBER_OF_FACTOR],3))
+fit_loadings_colnames <- NULL
+
+
+# звездочкой отражаю принадлежность значения к фактору 
+fit_loadings_star <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = NUMBER_OF_FACTOR)
+fit_loadings_scale_name <- matrix(NA, nrow = length(MAIN_DF_NAMES), ncol = NUMBER_OF_FACTOR)
+for(m in 1:length(MAIN_DF_NAMES)){
+  for(n in 1:NUMBER_OF_FACTOR){
+    if(abs(fit_loadings[[m,n]]) == max(abs(fit_loadings[m,]))){
+      result_abs <- paste(fit_loadings[[m,n]],"*", 
+                          sep = "")
+      fit_loadings_star[[m,n]] <- result_abs
+      result_scale_name <- paste("«",MAIN_DF_NAMES[[m]],"»(",fit_loadings[[m,n]],")", 
+                          sep = "")
+      fit_loadings_scale_name[[m,n]] <- result_scale_name
+    } else {
+      result_abs <- paste(fit_loadings[[m,n]], 
+                          sep = "")
+      fit_loadings_star[[m,n]] <- result_abs
+      result_scale_name <- paste(NA, 
+                          sep = "")
+      fit_loadings_scale_name[[m,n]] <- result_scale_name
+    }
+  }
+}
+fit_loadings_star <- data.frame(fit_loadings_star)
+fit_loadings_scale_name <- data.frame(fit_loadings_scale_name)
+
+# определяю названия факторов
+for(i in 1:NUMBER_OF_FACTOR){
+  column_name <- as.character(paste("Фактор ",i))
+  fit_loadings_colnames <- rbind(fit_loadings_colnames, column_name)
+}
+names(fit_loadings_star) <- fit_loadings_colnames
+row.names(fit_loadings_star) <- row.names(fit_loadings)
+
+factor_list <- c("Первый фактор состоит из следующих шкал: ", 
+                 "Второй фактор состоит из следующих шкал: ", 
+                 "Третий фактор состоит из следующих шкал: ", 
+                 "Четвертый фактор состоит из следующих шкал: ", 
+                 "Пятый фактор состоит из следующих шкал: ",
+                 "Шестой фактор состоит из следующих шкал: ",
+                 "Седьмой фактор состоит из следующих шкал: ",
+                 "Восьмой фактор состоит из следующих шкал: ",
+                 "Девятый фактор состоит из следующих шкал: ",
+                 "Десятый фактор состоит из следующих шкал: ",
+                 "Одинадцатый фактор состоит из следующих шкал: ",
+                 "Двенадцатый фактор состоит из следующих шкал: ",
+                 "Тринадцатый фактор состоит из следующих шкал: ",
+                 "Четырнадцатый фактор состоит из следующих шкал: ",
+                 "Пятнадцатый фактор состоит из следующих шкал: ",
+                 "Шестнадцатый фактор состоит из следующих шкал: ",
+                 "Семнадцатый фактор состоит из следующих шкал: ",
+                 "Восемнадцатый фактор состоит из следующих шкал: ",
+                 "Десятнадцатый фактор состоит из следующих шкал: ",
+                 "Двадцатый фактор состоит из следующих шкал: ",
+                 "Двадцать первый фактор состоит из следующих шкал: ",
+                 "Двадцать второй фактор состоит из следующих шкал: ",
+                 "Двадцать третий фактор состоит из следующих шкал: ",
+                 "Двадцать четвертый фактор состоит из следующих шкал: ",
+                 "Двадцать пятый фактор состоит из следующих шкал: ",
+                 "Двадцать шестой фактор состоит из следующих шкал: ",
+                 "Двадцать седьмой фактор состоит из следующих шкал: ",
+                 "Двадцать восьмой фактор состоит из следующих шкал: ",
+                 "Двадцать девятый фактор состоит из следующих шкал: ",
+                 "Тридцатый фактор состоит из следующих шкал: ")
+
+factor_text <- NULL
+for(z in 1:NUMBER_OF_FACTOR){
+  factor_text_one <- gsub("NA, |, NA","", paste(fit_loadings_scale_name[[z]], collapse = ", "))
+  factor_text_one <- paste(factor_list[[z]],factor_text_one,".", sep="")
+  factor_text <- rbind(factor_text, factor_text_one)
+}
+```
+
+
+Для снижения размерности нами был выбран эксплораторный факторный анализ методом главных компонент, варимакс вращение факторов с выделением количества факторов, больше `r KAISER_CRITERIA` (по критерию Кайзера). 
+Предварительно проведем анализ методом КМО и тест Бартлета на сферичность матрицы. Данные представлены в таблице.
+
+`r cat("\n", sep = "\n")`
+
+##Таблица. Показатели КМО
+```{r table_KMO, echo=FALSE, results='asis', warning=FALSE, error=FALSE}
+knitr::kable(table_fit_KMO)
+cat("\n", sep = "\n")
+cat(ifelse(fit_KMO >= 0.6,
+       "Показатель КМО выше 0,6, что говорит о согласованности переменных, а значит, применение факторного анализа будет корректным.",
+       "Показатель КМО ниже 0,6, что говорит о несогласованности переменных, а значит, применение факторного анализа будет не корректным.")
+    , sep = "\n")
+```
+
+Далее перейдем к анализу доли объяснимой дисперсии. Данные представлены в таблице.
+
+`r cat("\n", sep = "\n")`
+
+##Таблица. Полная объясненная дисперсия
+```{r table_variable, echo=FALSE, results='asis', warning=FALSE, error=FALSE}
+knitr::kable(fit_total_variance)
+```
+
+`r cat("\n", sep = "\n")`
+
+В результате факторная структура была сформирована для `r NUMBER_OF_FACTOR` факторов. Данная факторная структура объясняет `r round(fit_total_variance[[NUMBER_OF_FACTOR,4]],1)`% общей дисперсии данных.
+
+`r cat("\n", sep = "\n")`
+
+График распределения факторов отражен на рисунке «каменистая осыпь».
+
+```{r scree_plot, echo=FALSE, fig.keep='all', fig.show='all', fig.align='center', results='asis', warning=FALSE, error=FALSE}
+if (HTML_FORMAT == 'full' || HTML_FORMAT == 'docx' ) {
+  # строю график каменистая осыпь
+  plot(fit$values,
+       main="График собственных значений",
+       xlab="Собственные значения",
+       ylab="Номер компонента",
+       type="o",
+       pch=21,
+       col="black")
+  cat("\n", sep = "\n")
+}
+```
+
+`r cat("\n", sep = "\n")`
+
+Факторные нагрузки приведены в таблице ниже.
+
+`r cat("\n", sep = "\n")`
+
+##Таблица. Факторные нагрузки
+```{r table_loadings, echo=FALSE, results='asis', warning=FALSE, error=FALSE}
+  if (HTML_FORMAT == 'short') {
+    knitr::kable(fit_loadings_star)
+  } else if (HTML_FORMAT == 'middle') {
+    knitr::kable(fit_loadings_star)
+  } else if (HTML_FORMAT == 'full') {
+      knitr::kable(fit_loadings_star)
+  } else {
+    knitr::kable(fit_loadings_star)
+  }
+```
+
+`r cat("\n", sep = "\n")`
+
+### * - принадлежность шкалы к фактору
+```{r factor_desc, echo=FALSE, results='asis', warning=FALSE, error=FALSE}
+for(y in 1:NUMBER_OF_FACTOR){
+  cat(factor_text[y], sep = "\n")
+  cat("\n", sep = "\n")
+}
+```
+
+# `r if(HTML_FORMAT == 'middle' || HTML_FORMAT == 'full'){"\n### * - p<0,05\n### ** - p<0,01\n### *** - p<0,001\n"}`

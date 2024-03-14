@@ -1,0 +1,54 @@
+<div class="js-robokassa-form">
+    <script>
+    // var {{ form.form_id }} = `
+    //     <div class="popup__fancybox js-popup">
+    //         {{ form.payment_methods }}
+    //         <input type="submit" class="btn btn-primary form-control mt-4 js-submit-button" onclick="submitForm('{{ form.form_id }}')" value="Оплатить">
+    //     </div>
+    // `;
+
+    </script>
+    <form class="" action="{{ form.target }}" method="POST" id="{{ form.form_id }}">
+         <fieldset class="js-fieldset">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.name == 'shppromo' %}
+                    <div class="input-group mb-2">
+                        <input
+                            size="{{ field.field.max_length }}"
+                            type="text"
+                            name="{{ field.name }}"
+                            {% if field.value %}
+                                value="{{ field.value }}"
+                                readonly="readonly"
+                            {% endif %}
+                            class="form-control{% if not field.value %} mr-5{% endif %}"
+                            placeholder="Промокод"
+                        >
+                        {% if not field.value %}
+                            <button type="button" onclick="promoApply(this)" class="btn btn-primary">Применить промокод</button>
+                        {% endif %}
+                    </div>
+    
+                {% elif field.name == 'payment_methods' %}
+                    {# <button type="button" class="py-2 my-2 btn btn-light">Выбрать способ оплаты</button> #}
+
+                {% elif field.name == 'shpfull_price' %}
+
+                    {{ field }}
+
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control mr-5" value="{{ field.value }} руб." placeholder="Цена" disabled="disabled">
+                        <input type="button" class="btn btn-primary js-get-payment-methods" value="Выбрать вариант оплаты">
+                        {# <input type="button" class="btn btn-primary" onclick="open_payment_methods(this, {{ form.form_id }})" value="Выбрать вариант оплаты"> #}
+                    </div>
+
+                {% else %}
+    
+                    <input type="hidden" name="{{ field.name }}" value="{{ field.value }}">
+
+                {% endif %}
+            {% endfor %}
+        </fieldset>
+    </form>
+</div>

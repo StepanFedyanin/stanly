@@ -1,0 +1,115 @@
+.calc-menu__wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 16px;
+    background-image: url('../i/bg/sidebar.png');
+    background-size: cover;
+    flex-grow: 1;
+}
+
+.calc-menu__title {
+    font-weight: bold;
+    text-align: center;
+    padding: 0 0 24px;
+}
+.calc-menu__title span {
+    font-family: 'Proxima Nova Bl';
+    font-weight: 900;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: rgba(131, 0, 30, 0.87);
+}
+
+.calc-menu__navbar {
+    margin: 0 0 40px;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+.calc-menu__item {
+}
+
+.calc-menu__item.m--children .calc-menu__link::after {
+    content: '';
+    width: 13px;
+    height: 8px;
+    transition: transform .5s ease;
+    background-image: url('../i/icons/arrow_down.svg');
+}
+
+.calc-menu__item.m--children.is-active .calc-menu__link::after {
+    transform: rotate(180deg);
+}
+
+.calc-menu__item.m--current-item {
+}
+
+.calc-menu__item.m--current-item .calc-menu__link{
+    background-color: #9A0024;
+    border-left: 5px solid #fff;
+}
+
+.calc-menu__link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 12px 16px 12px 24px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    border-left: 5px solid transparent;
+    transition: all .5s ease;
+}
+
+.calc-menu__link:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #9A0024;
+    border-left: 5px solid #fff;
+}
+
+
+.calc-menu-child__navbar {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+.calc-menu-child__item {
+}
+
+.calc-menu-child__link {
+    display: inline-block;
+    font-size: 16px;
+    padding: 12px 16px 12px 48px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    border-left: 5px solid transparent;
+}
+
+.calc-menu-child__link:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #9A0024;
+    border-left: 5px solid #fff;
+}
+
+.calc-menu-child__item.m--current-item .calc-menu-child__link{
+    background-color: #9A0024;
+    border-left: 5px solid #fff;
+}
+
+
+
+.calc-menu__navbar .calc-menu-child__navbar {
+    display: none;
+}
+
+.calc-menu__item.is-active .calc-menu-child__navbar {
+    display: block;
+}

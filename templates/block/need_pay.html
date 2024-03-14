@@ -1,0 +1,100 @@
+{% load calc_tags %}
+
+<div class="pay">
+
+    <div class="pay__header">
+        <div class="pay__title">Оплатите, чтобы увидеть подробный статистический отчет</div>
+
+        <div class="pay__desc">
+            <div class="pay__desc-title">
+                Полный отчет включает:
+            </div>
+            
+            <div class="pay__desc-wrap">
+                <div class="pay__desc-list">
+                    <div class="pay__desc-column">
+                        <div class="pay__desc-item"><span class="pay__desc-item-text">названия шкал,</span></div>
+                        <div class="pay__desc-item"><span class="pay__desc-item-text">средние значения по каждой шкале,</span></div>
+                        <div class="pay__desc-item"><span class="pay__desc-item-text">эмпирические значения критерия,</span></div>
+                    </div>
+                    <div class="pay__desc-column">
+                        <div class="pay__desc-item"><span class="pay__desc-item-text">описание выраженности значений в каждой группе</span></div>
+                        <div class="pay__desc-item"><span class="pay__desc-item-text">графики «ящики-усы»</span></div>
+                        <div class="pay__desc-item"><span class="pay__desc-item-text">описание различий</span></div>
+                    </div>
+                    <div class="pay__desc-column">
+                        <div class="pay__desc-item"><span class="pay__desc-item-text">уровень значимости с отметкой о наличии различий,</span></div>
+                        <div class="pay__desc-item"><span class="pay__desc-item-text">возможность скачать результаты одним файлом Word c указанием всех таблиц, графиков и описаний</span></div>
+                    </div>
+                    {% if result_link %}
+                        <div class="pay__desc-column">
+                        {% get_chunk name='result_link' calc_name=calc_name as result_link %}
+                            <div class="button button-red pay__desc-button js-popup-with-content" data-url="/all/ajax/get_full_example/" data-calc-name="{{ calc_name }}">Посмотреть пример полного отчета</div>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        {# {% autoescape off %} #}
+            {# {% get_chunk name='result_description' calc_name=calc_name %} #}
+        {# {% endautoescape %} #}
+
+    </div>
+
+    <div class="pay__content">
+
+        <div class="pay__tariff-wrapper">
+
+            {% if pay_once %}
+                {% include "block/pay_tariff.html" with pay=pay_once pay_type='once' %}
+            {% endif %}
+
+            {% include "block/pay_tariff.html" with pay=pay pay_type='pay' %}
+
+            {% if pay_all %}
+                {% include "block/pay_tariff.html" with pay=pay_all pay_type='all' %}
+            {% endif %}
+            
+        </div>
+
+        <div class="pay__content-subtitle">✓ eсли результаты вас не устроят - мы сделаем нужные вам рассчеты <strong>бесплатно</strong></div>
+
+        {# {% autoescape off %} #}
+            {# {% get_chunk name='result_promo' calc_name=calc_name %} #}
+        {# {% endautoescape %} #}
+
+    
+        {# {% autoescape off %} #}
+            {# {% get_chunk name='result_media' calc_name=calc_name %} #}
+        {# {% endautoescape %} #}
+
+    </div>
+
+    <div class="pay__footer">
+        <div class="pay__promo">
+            <div class="pay__promo-title">
+                Возможно, друзья поделились <strong>промокодом</strong>, введите его и получите <strong>скидку</strong> на расчеты!
+            </div>
+
+            <form class="js-form-send-promo" action="/all/accounts/apply_promo/" method="post">
+
+                {% csrf_token %}
+
+                <fieldset class="pay__promo-letter-list fieldset js-fieldset">
+                    <input type="text" minlength="1" maxlength="1" tabindex="1" class="pay__promo-letter-item">
+                    <input type="text" minlength="1" maxlength="1" tabindex="2" class="pay__promo-letter-item">
+                    <input type="text" minlength="1" maxlength="1" tabindex="3" class="pay__promo-letter-item">
+                    <input type="text" minlength="1" maxlength="1" tabindex="4" class="pay__promo-letter-item">
+                    <input type="text" minlength="1" maxlength="1" tabindex="5" class="pay__promo-letter-item">
+                    <input type="text" minlength="1" maxlength="1" tabindex="6" class="pay__promo-letter-item">
+                    <input type="text" minlength="1" maxlength="1" tabindex="7" class="pay__promo-letter-item">
+                    <input type="text" minlength="1" maxlength="1" tabindex="8" class="pay__promo-letter-item">
+                    <button type="submit" tabindex="9" class="button button-red pay__promo-send">Ввести промомкод</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>

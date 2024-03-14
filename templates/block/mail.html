@@ -1,0 +1,23 @@
+<form class="send-form js-form" action="/all/{{ calc_name }}/{{ action }}/" method="post">
+
+    {% csrf_token %}
+
+    {% if next_step %}
+        <input type="hidden" name="next_step" value="/all/{{ calc_name }}/steps/{{ next_step }}/">
+    {% endif %}
+
+    <input type="hidden" name="calc_name" value="{{ calc_name }}">
+    <input type="hidden" name="action" value="{{ action }}">
+
+    <div class="send-form__cover js-form-cover">
+        <span class="send-form__cover-text">Мы формируем файл с данными и отправляем сообщение, подождите...</span>
+    </div>
+
+    <fieldset class="js-fieldset">
+        <div class="input-group mb-5">
+            <input type="email" class="form-control mr-5" name="email" placeholder="E-mail">
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </div>
+    </fieldset>
+
+</form>

@@ -1,0 +1,13 @@
+<div class="step-page__progress-step{% if step == i %} m--current-step{% endif %}">
+    {% if step > i %}
+        <a class="step-page__progress-link" href="/all/{{ calc_name }}/steps/{{ i }}/">
+            <div class="step-page__progress-link--step">Шаг {{ i }}</div>
+            <div class="step-page__progress-link--name">{{ title }}</div>
+        </a>
+    {% else %}
+        <div class="step-page__progress-nolink">
+            <div class="step-page__progress-nolink--step">Шаг {{ i }}</div>
+            <div class="step-page__progress-nolink--name">{{ title }}</div>
+        </div>
+    {% endif %}
+</div>

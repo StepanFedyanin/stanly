@@ -1,0 +1,52 @@
+{% extends 'layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block step %}full-result{% endblock step %}
+{% block calc_name %}{{ calc_name }}{% endblock calc_name %}
+
+{% block content %}
+    <div class="step-page__content">
+
+        {% if html_file %}
+
+            <div class="step-page__result-block">
+                <div class="step-page__result-block-left">
+                    <div class="step-page__title">Результаты</div>
+                </div>
+
+                {% if get_file %}
+                    <div class="step-page__result-block-right">
+                        <a class="button button-red step-page__download m--doc" href="/all/{{ calc_name }}/get_file/?calc_name={{ calc_name }}&style=docx">Скачать результаты в Word</a>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <div class="r-doc__wrapper">
+                <div class="r-doc short-doc">
+                    {% include html_file %}
+                </div>
+            </div>
+
+        {% else %}
+
+            <p>Что-то пошло не так... Попробуйте <a href="/all/{{ calc_name }}/steps/1/" class="link">повторить</a> расчёт</p>
+
+        {% endif %}
+
+    </div>
+
+    <div class="step-page__footer step-page__footer--both">
+        {% include "block/prev_and_next_page.html" with need_pay=True %}
+    </div>
+
+</div><!-- step-page -->
+
+{% endblock %}

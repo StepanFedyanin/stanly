@@ -1,0 +1,22 @@
+.sidebar {
+    display: flex;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    flex-direction: column;
+    flex: 0 0 280px;
+    width: 280px;
+    overflow: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    display: none;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    display: none;
+}

@@ -1,0 +1,70 @@
+.goal__block {
+    margin: 140px 80px;
+}
+
+.goal__title {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 37px;
+    text-align: center;
+    margin: 32px 0;
+    color: #232323;
+}
+
+.goal__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.goal {
+    margin: 5px;
+    flex: 0 0 24%;
+}
+
+.goal::before {
+    content: '';
+    display: block;
+    text-align: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 12px auto;
+
+}
+
+.goal.m--lovetalk::before {
+    background-image: url('../i/icons/lovetalk.svg');
+}
+
+.goal.m--law_contract::before {
+    background-image: url('../i/icons/law_contract.svg');
+}
+
+.goal.m--magic::before {
+    background-image: url('../i/icons/magic.svg');
+}
+
+.goal__text {
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #000;
+    margin: 0 40px;
+}
+
+.goal__text-title {
+    font-family: 'Proxima Nova Bl';
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #2D2E34;
+    margin-bottom: 12px;
+}
+
+.goal__text-mark {
+    color: #d83e33;
+    font-weight: bold;
+    text-decoration: underline;
+}

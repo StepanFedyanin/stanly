@@ -1,0 +1,81 @@
+<form class="js-form-values js-form-empty-confirm" action="/all/{{ calc_name }}/set_group_data/" method="post">
+    <div class="step-page__content">
+        <fieldset class="js-fieldset" style="position: relative;">
+
+            {% csrf_token %}
+
+            {% if redirect_to %}
+                <input type="hidden" name="next_step" value="{{ redirect_to }}">
+            {% else %}
+                <input type="hidden" name="next_step" value="/all/{{ calc_name }}/steps/{{ next_step }}/">
+            {% endif %}
+
+            <input type="hidden" name="group_number" value="{{ group_number }}">
+            <input type="hidden" name="group_name" value="{{ group_name }}">
+            <input type="hidden" name="group_count" value="{{ group_count }}">
+
+            <table class="table__copy js-table-copy">
+                <thead class="table__thead">
+                    <tr class="table__thead-tr">
+                        <th class="table__thead-th js-thead-copy" scope="col">{{ group_name }}</th>
+                    </tr>
+                </thead>
+              <tbody class="table__tbody">
+                {% for i in group_count_range %}
+                    <tr class="table__tbody-tr">
+                        <th class="table__tbody-th js-tcell-copy" scope="row">Испытуемый {{ i }}</th>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <div class="table__wrap step-page__table">
+                <table class="table js-table">
+                    <thead class="table__thead">
+                        <tr class="table__thead-tr js-table-head">
+
+                            <th class="table__thead-th" scope="col">{{ group_name }}</th>
+
+                            {% for scale in scales %}
+                                <th class="table__thead-th" title="{{ scale }}" scope="col">{{ scale }}</th>
+                            {% endfor %}
+
+                        </tr>
+                    </thead>
+                  <tbody class="table__tbody">
+                    {% for i in group_count_range %}
+                        <tr class="table__tbody-tr">
+                            <th class="table__tbody-th" scope="row">Испытуемый {{ i }}</th>
+                            {% for scale in scales %}
+                                <td class="table__tbody-td">
+                                    <input type="text" class="table__input input" data-person="{{ i }}" data-scale="{{ scale }}" placeholder="Значение" value="">
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+
+        </fieldset>
+    </div>
+
+    <div class="step-page__footer step-page__footer--both">
+        {% include "block/prev_and_next_page.html" with submit=True %}
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>В данных есть пропущенные значения! При переходе на следующий этап они будут равны "0"</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="button button-gray modal__button js-fancybox-close" onclick="$.fancybox.close();">Вернуться к вводу данных</button>
+            <button type="button" class="button button-red modal__button js-zeroed">Перейти на следующий шаг</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</form>

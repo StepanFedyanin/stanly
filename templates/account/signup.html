@@ -1,0 +1,85 @@
+{% extends "layout/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block step %}signup{% endblock step %}
+
+{% block base %}
+
+<div class="popup__fancybox js-popup">
+    <div class="popup__content">
+
+        <div class="popup__title">Stanly</div>
+        <div class="popup__desc">сервис для автоматизированного расчета и описания статистики в социальных науках</div>
+        <div class="popup__about"><a href="/" class="popup__about-link">о сервисе</a></div>
+
+          <div class="popup-form">
+
+				{% get_providers as socialaccount_providers %}
+
+				<div class="popup-form__header">
+				  <a href="/all/accounts/login/" class="popup-form__header-button">Вход</a>
+				  <div class="popup-form__header-button is-active">Регистрация</div>
+				</div>
+
+				<div class="popup-form__content">
+
+					<form class="signup-form js-signup-form js-ym-registration" id="signup_form" method="post" onsubmit="typeof ga !== 'undefined' && ga('send', 'event', 'account', 'registration');typeof ym !== 'undefined' && ym(YM_ID, 'reachGoal', 'registration');" action="/all/accounts/signup_ajax/">
+
+					    {% csrf_token %}
+					
+					    <div class="js-error"></div>
+					
+					    <fieldset class="signup-form__fieldset js-fieldset">
+
+					      {% for field in form %}
+
+				        	{% if field.name == 'password1' or field.name == 'password2' %}
+
+					              {{ field }}
+
+					              <span class="js-show-password"></span>
+
+					        {% else %}
+
+					              {{ field }}
+
+					        {% endif %}
+
+					      {% endfor %}
+
+					    </fieldset>
+
+				      <input class="button button-red popup-form__submit" type="submit" value="Зарегистрироваться">
+							{# <input class="popup-form__submit" type="submit" value="{% trans "Sign Up" %}"> #}
+
+					</form>
+
+				</div><!--popup-form__content-->
+
+				{% if socialaccount_providers %}
+
+				  <div class="popup-form__footer">
+
+				    <div class="popup-form__or">или</div>
+
+				    {% include "socialaccount/snippets/login_extra.html" %}
+
+				    {% include "socialaccount/snippets/provider_list_block.html" with process="login" title="Регистрация через Вконтакте"%}
+
+				  </div><!--popup-form__footer-->
+
+				{% endif %}
+				</div><!--popup-form-->
+
+				<div class="popup__achievements">
+			        <div class="achievement__wrapper m--red">
+			            {% include "block/achievement_block.html" %}
+			        </div>
+				</div>
+    </div><!--popup__content-->
+</div><!--popup__fancybox-->
+
+{% endblock %}

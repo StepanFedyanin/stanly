@@ -1,0 +1,36 @@
+---
+title: "Сравнение нескольких групп между собой (H-Курскалла-Уоллеса)"
+output:
+  word_document:
+    reference_docx: 'r-lang-template-2.dotx'
+params:
+  json_file:
+    value: x
+  html_format:
+    value: x
+  desc_file:
+    value: x
+---
+
+```{r, setup, include=FALSE, warning=FALSE, error=FALSE, echo=FALSE, cashe=TRUE}
+```
+
+```{r all, results='hide', warning=FALSE, error=FALSE, echo=FALSE, cashe=TRUE}
+  # for test 
+  # HTML_FORMAT <- 'short'
+  # data <- rjson::fromJSON('{"group_name_1":"g1","group_count_1":3,"group_data_1":{"Шкала 1":{"1":76,"2":87,"3":786},"Шкала 2":{"1":76,"2":6,"3":876}}}')
+
+  if(!exists("include_libraries", mode="function")) source("../functions.R")
+  if(!exists("calc_prepare_data", mode="function")) source("calc_functions.R")
+
+  include_libraries()
+
+  data <- rjson::fromJSON(file = params$json_file)
+  HTML_FORMAT <- params$html_format
+  desc_file <- ifelse(params$desc_file == 'None', F, params$desc_file)
+
+  MAIN_DF <- calc_prepare_data(data)
+```
+
+```{r child='chunk_main.Rmd'}
+```

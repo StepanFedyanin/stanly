@@ -1,0 +1,49 @@
+{% extends 'factor_analytic/layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block step %}full-result{% endblock step %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="result">
+                <div class="h1 col-12 mb-3">Результаты</div>
+            </div>
+        </div>
+
+        {% if get_file %}
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <a class="btn btn-primary btn-lg" href="/all/{{ calc_name }}/get_file/?style=docx&calc_name={{ calc_name }}">Скачать результаты в Word</a>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-12 mb-2">
+                {% if html_file %}
+                    <div class="r-doc short-doc">
+                        {% with template_name=html_file %}
+                            {% include template_name %}
+                        {% endwith %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {% include "block/prev_and_next_page.html" with back_only=True %}
+
+    </div>
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+{#    <script type="text/javascript" src="{% static 'js/step_docx.js' %}{% get_static_version %}"></script>#}
+{% endblock %}

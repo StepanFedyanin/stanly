@@ -1,0 +1,78 @@
+{% extends 'factor_analytic/layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block step %}scales{% endblock step %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-6">
+                <p class="scale__title my-3 js-scale-error">
+                    <span>Введите названия шкал методик, участвующих в исследовании (без указания названия методики).</span>
+                    <br>
+                    <span>
+                        Для расчёта нужно указать хотя бы 3 шкалы методики.
+                    </span>
+                </p>
+            </div>
+            <div class="col-4 offset-2 text-right">
+                <button class="btn btn-primary btn-lg my-3 js-clear-storage">Очистить все данные</button>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-12">
+                <form class="js-form-scales" action="/all/{{ calc_name }}/set_scales/" method="post">
+                    <fieldset class="js-fieldset">
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="next_step" value="/all/{{ calc_name }}/steps/{{ next_step }}/">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="js-scale-group">
+                                    <div class="row js-added-row">
+                                        <div class="mb-2 col-5">
+                                            <input type="text" class="form-control js-scale-error" name="input_1" placeholder="Название 1">
+                                        </div>
+                                    </div>
+                                    <div class="row js-added-row">
+                                        <div class="mb-2 col-5">
+                                            <input type="text" class="form-control js-scale-error" name="input_2" placeholder="Название 2">
+                                        </div>
+                                    </div>
+                                    <div class="row js-added-row">
+                                        <div class="mb-2 col-5">
+                                            <input type="text" class="form-control js-scale-error" name="input_3" placeholder="Название 3">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <button type="button" class="btn btn-secondary mb-3 js-add-new-input">Добавить новую шкалу</button>
+                            </div>
+                            <div class="col-4 offset-8 text-right">
+                                <button type="submit" class="btn btn-primary btn-lg">Далее</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+{#    <script type="text/javascript" src="{% static 'js/step_scales.js' %}{% get_static_version %}"></script>#}
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+
+<div class="popup__fancybox js-popup">
+    <div class="popup__content">
+
+        <div class="popup__title">Stanly</div>
+        <div class="popup__desc">сервис для автоматизированного расчета и описания статистики в социальных науках</div>
+        <div class="popup__about"><a href="/" class="popup__about-link">о сервисе</a></div>
+
+          <div class="popup-form">
+          {% block form %}
+          {% endblock form %}
+          </div><!--popup-form-->
+          <div class="popup__achievements">
+            <div class="achievement__wrapper m--red">
+                {% include "block/achievement_block.html" %}
+            </div>
+          </div>
+    </div><!--popup__content-->
+</div><!--popup__fancybox-->

@@ -1,0 +1,23 @@
+{% load calc_tags %}
+
+{% autoescape off %}
+    {% get_chunk name='prolog_description' calc_name=calc_name %}
+{% endautoescape %}
+
+{% get_chunk name='prolog_link' calc_name=calc_name as prolog_link %}
+
+{% autoescape off %}
+    {% get_chunk name='prolog_promo' calc_name=calc_name %}
+{% endautoescape %}
+
+{% autoescape off %}
+    {% get_chunk name='prolog_media' calc_name=calc_name %}
+{% endautoescape %}
+
+{% if prolog_link %}
+    <a class="" target="_blank" href="{{ prolog_link }}"><span class="result-link">Посмотреть пример описания расчётов</span></a>
+{% endif %}
+
+<a class="calc-btn calc-btn--start" href="/all/{{ calc_name }}/steps/1/">
+    Провести автоматические расчеты и получить описание
+</a>

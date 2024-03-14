@@ -1,0 +1,123 @@
+.calc-card__block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 80px;
+}
+
+.calc-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 32%;
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    margin-bottom: 34px;
+    flex: 0 0 100%;
+}
+
+.calc-card__title {
+    font-weight: bold;
+    font-size: 24px;
+    color: #2D2E34;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.calc-card__body {
+    padding: 32px;
+    flex-grow: 1;
+}
+.calc-card__body-inner {
+}
+
+.calc-card__text {
+    font-size: 16px;
+    line-height: 19px;
+    color: #2D2E34;
+    margin-bottom: 20px;
+    /*flex-grow: 1;*/
+}
+
+.calc-card__link {
+    display: table;
+    width: 100%;
+    text-decoration: none;
+    margin-left: -15px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 17px;
+    transition: all .3s ease;
+}
+
+.calc-card__link:hover {
+    color: $red-darker;
+    /*text-decoration: underline;*/
+}
+/*
+.calc-card__link:hover .calc-card__link-text {
+    color: #333;
+}*/
+
+.calc-card__link:active {
+    color: #ED2344;
+}
+
+.calc-card__link::before {
+    content: '';
+    display: table-cell;
+    vertical-align: middle;
+    width: 62px;
+    height: 62px;
+    /*margin-right: 11px;*/
+    /*filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.15));*/
+}
+
+.calc-card__link.m--video::before {
+    background-image: url('../i/icons/play.svg');
+}
+
+.calc-card__link.m--sample::before {
+    background-image: url('../i/icons/calculator.svg');
+}
+
+.calc-card__link span {
+    display: table-cell;
+    vertical-align: middle;
+    padding-bottom: 8px;
+}
+
+.calc-card__start {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #ED2344;
+    text-decoration: none;
+    padding: 22px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    flex-grow: 0;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.calc-card__start:hover {
+    color: #D70025;
+}
+
+.calc-card__start:active {
+    color: #B2002B;
+}
+
+.calc-card__link-text {
+    display: table-cell;
+    vertical-align: middle;
+    padding-bottom: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all .2s ease;
+}

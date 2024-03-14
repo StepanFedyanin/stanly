@@ -1,0 +1,104 @@
+{% extends "layout/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load calc_tags %}
+
+{% block title %}Промокоды{% endblock %}
+{% block breadcrumbs %}
+    {{ block.super }}
+
+    {% include "block/breadcrumbs.html" with item='Промокоды' %}
+{% endblock breadcrumbs %}
+{% block step %}profile{% endblock step %}
+
+{% block content %}
+
+	{# <h1 class="">Промокоды</h1> #}
+
+<div class="profile-promo__wrapper">
+  
+	<div class="profile-promo__block">
+    <div class="profile-promo__block-desc">
+      <div class="profile-promo__block-title">Создай промокод</div>
+      <div class="profile-promo__block-discount">10<span class="profile-promo__block-discount-percent">%</span></div>
+      <div class="profile-promo__block-title">подари скидку другу</div>
+    </div>
+    <form class="js-form-create-promo profile-promo__form" action="/all/accounts/create_promo/" method="post">
+
+      {% csrf_token %}
+
+      <div class="profile-promo__form-desc js-promo-error">Длина промокода - 8 цифр и знаков латинского алфавита!</div>
+
+      <fieldset class="profile-promo__form-fieldset js-fieldset">
+
+        <div class="profile-promo__letter-list js-promo-letters">
+            <input type="text" minlength="1" maxlength="1" tabindex="1" class="profile-promo__letter-item input">
+            <input type="text" minlength="1" maxlength="1" tabindex="2" class="profile-promo__letter-item input">
+            <input type="text" minlength="1" maxlength="1" tabindex="3" class="profile-promo__letter-item input">
+            <input type="text" minlength="1" maxlength="1" tabindex="4" class="profile-promo__letter-item input">
+            <input type="text" minlength="1" maxlength="1" tabindex="5" class="profile-promo__letter-item input">
+            <input type="text" minlength="1" maxlength="1" tabindex="6" class="profile-promo__letter-item input">
+            <input type="text" minlength="1" maxlength="1" tabindex="7" class="profile-promo__letter-item input">
+            <input type="text" minlength="1" maxlength="1" tabindex="8" class="profile-promo__letter-item input">
+        </div>
+    
+        {# <input type="text" class="js-promo-error" placeholder="Новый промокод" name="promo" required id="promo"> #}
+    
+        <input type="submit" class="button button-red profile-promo__form-submit" value="Создать промокод" />
+      </fieldset>
+    
+    </form>
+  </div>
+
+  <div class="profile-promo__list">
+    <div class="profile-promo__header">
+      <div class="profile-promo__title">Созданные промокоды</div>
+    </div>
+
+    <div class="profile-promo__content">
+    	{# <div class="profile-promo"> #}
+    		<table class="profile-promo__table">
+    			<thead class="profile-promo__table-thead">
+    				<tr class="">
+    					<th class="profile-promo__table-th">Название</th>
+    					<th class="profile-promo__table-th">Можно использовать?</th>
+    					<th class="profile-promo__table-th">Для кого?</th>
+    					<th class="profile-promo__table-th">Процент</th>
+    					<th class="profile-promo__table-th"></th>
+    				</tr>
+    			</thead>
+    			<tbody class="profile-promo__table-tbody">
+      			{% for promo_item in promo %}
+      				<tr class="profile-promo__table-tr">
+      					<td class="profile-promo__table-td">{{ promo_item.name }}</td>
+      					<td class="profile-promo__table-td">
+      						{% if promo_item.active %}
+      							Да
+      						{% else %}
+      							Нет
+      						{% endif %}
+      					</td>
+      					<td class="profile-promo__table-td">
+      						{% if promo_item.private %}
+      							Для меня
+      						{% else %}
+      							Для друзей
+      						{% endif %}
+      					</td>
+      					<td class="profile-promo__table-td">{{ promo_item.discount }} %</td>
+      					<td class="profile-promo__table-td">
+      						<button data-promo="{{ promo_item.name }}" class="profile-promo__remove js-delete-promo">Удалить</button>
+      					</td>
+      				</tr>
+      			{% endfor %}
+    			</tbody>
+    		</table>
+    	{# </div> #}
+      
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

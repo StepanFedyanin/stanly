@@ -1,0 +1,37 @@
+---
+title: "Сравнение нескольких групп между собой (H-Курскалла-Уоллеса)"
+output:
+  html_fragment
+params:
+  json_file:
+    value: x
+  html_format:
+    value: x
+  desc_file:
+    value: x
+---
+
+
+```{r all, echo=FALSE, cashe=TRUE, results='hide', warning=FALSE, error=FALSE}
+
+  # JSON_FILE <- params$json_file
+  # HTML_FORMAT <- 'short'
+
+  ### for test 
+  # data <- rjson::fromJSON('{"group_name_1":"1","group_name_2":"2","group_count_1":"1","group_count_2":"2","group_data_1":{"шкала":{"1":1},"Шкала 2":{"1":1},"Шкала 3":{"1":1}},"group_data_2":{"шкала":{"1":1,"2":1},"Шкала 2":{"1":1,"2":1},"Шкала 3":{"1":1,"2":1}}}')
+
+  # file психологическое описание
+
+  if(!exists("include_libraries", mode="function")) source("../functions.R")
+  if(!exists("calc_prepare_data", mode="function")) source("calc_functions.R")
+
+  include_libraries()
+  desc_file <- ifelse(params$desc_file == 'None', F, params$desc_file)
+  HTML_FORMAT <- params$html_format
+  data <- rjson::fromJSON(file = params$json_file)
+
+  MAIN_DF <- calc_prepare_data(data)
+```
+
+```{r child='chunk_main.Rmd'}
+```

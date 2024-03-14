@@ -1,0 +1,24 @@
+{% load i18n %}
+{% load account socialaccount %}
+{% load static %}
+
+<style>
+  .fancybox-inner {
+    background: rgba(255, 255, 255, 0.97);
+  }
+
+  .fancybox-bg {
+      background: none;
+  }
+
+  .fancybox-is-open .fancybox-bg {
+      opacity: 1;
+  }
+</style>
+
+<div class="popup__fancybox js-popup popup__fancybox--blur">
+    <div class="popup__content">
+      {% block content %}
+      {% endblock content %}
+    </div><!--popup__content-->
+</div><!--popup__fancybox-->

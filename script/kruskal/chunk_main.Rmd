@@ -1,0 +1,78 @@
+```{r main, echo=FALSE, cashe=TRUE, results='hide', warning=FALSE, error=FALSE}
+  GROUP_VAR <- names(MAIN_DF[,1])
+  GROUP_VAR_LEVELS <- levels(MAIN_DF[[GROUP_VAR]])
+
+  #формирую правильные названия для итоговой таблицы с учетом подстановки текст "Среднее значение в группе ..."
+  names_mean_group_df <- NULL
+  for(sn in GROUP_VAR_LEVELS){
+    names_mean_group_df[sn] <- paste("Среднее значение в группе «",sn,"»", 
+                                     sep = "")
+  }
+
+  psy_table_names <- FALSE
+  if(desc_file){
+    psy_table_names <- read_excel(paste("../../tmp/desc/", desc_file, sep=''))
+  }
+
+  all_table <- calc_kruskal(MAIN_DF, psy_table_names)
+  names(all_table) <- c("Названия шкал", 
+                         names_mean_group_df,
+                         "Эмпирическое значение критерия",
+                         "Уровень значимости критерия",
+                         "Уровень значимости",
+                         "Вывод про уровень значимости",
+                         "Вывод про больше-меньше",
+                         "Психологический вывод")
+```
+
+
+Для сравнения групп `r GROUP_VAR_LEVELS` между собой был использован критерий H-Крускалла-Уоллеса. Данные представлены в таблице.
+`r cat("\n", sep = "\n")`
+
+
+##Таблица. Эмпирические значения критерия H-Крускалла-Уоллеса.
+```{r table, echo=FALSE, results='asis', warning=FALSE, error=FALSE}
+exclude_scale <- c(ncol(all_table), ncol(all_table)-1, ncol(all_table)-2, ncol(all_table)-4)
+knitr::kable(all_table[,-exclude_scale])
+```
+
+### * - p<0,05
+### ** - p<0,01
+### *** - p<0,001
+
+```{r condition, echo=FALSE, comment="", fig.keep='all', fig.show='all', fig.align='center', results='asis', warning=FALSE, error=FALSE}
+## Текстовые вводы с графиками
+condition_itog <- for (vr in 1:length(all_table[["Названия шкал"]]))
+  if(all_table[["Уровень значимости критерия"]][vr] <= 0.05){
+    cat(paste(all_table[["Вывод про уровень значимости"]][vr]," ",
+              all_table[["Вывод про больше-меньше"]][vr]," ",
+              all_table[["Психологический вывод"]][vr]))
+    cat("\n", sep="\n")
+    scale_name <- as.character(all_table[["Названия шкал"]][vr])
+    #boxplot(MAIN_DF[[scale_name]] ~ MAIN_DF[[GROUP_VAR]], 
+    #        xlab=GROUP_VAR, 
+    #        ylab=scale_name, 
+    #        sep = "")
+    # cat("\n", sep="\n")
+    #    print(ggplot(MAIN_DF, aes(x = MAIN_DF[[GROUP_VAR]], y = MAIN_DF[[scale_name]])) + 
+    #      geom_boxplot() + 
+    #      labs(title = paste("Средние значение по шкале «",scale_name,"»", sep = ""),
+    #           x = GROUP_VAR, 
+    #           y = scale_name)
+    #    )
+    #    cat("\n", sep="\n")
+    
+    #  means_graph <- tapply(MAIN_DF[[scale_name]], MAIN_DF[[GROUP_VAR]], mean, na.rm=TRUE)
+    #  barplot(means_graph,
+    #        xlab=GROUP_VAR, 
+    #        ylab=scale_name,
+    #        cex.names=0.6,
+    #        cex.lab = 0.7,
+    #        cex.axis = 0.7,
+    #        srt = 45)
+            #axes=TRUE,
+            #axisnames=TRUE)
+  } else {
+    NULL
+  }
+```

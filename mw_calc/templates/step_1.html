@@ -1,0 +1,105 @@
+{% extends 'layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block step %}scales{% endblock step %}
+{% block calc_name %}{{ calc_name }}{% endblock calc_name %}
+
+{% block content %}
+    {% comment %}
+        <form class="js-form-upload" method="POST" action="/all/{{ calc_name }}/upload_scales/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="redirect_to" value="/all/{{ calc_name }}/steps/{{ step }}/">
+            <input type="hidden" name="calc_name" value="{{ calc_name }}">
+            <fieldset class="js-fieldset">
+                <label for="file">Загрузить Excel</label>
+                <input id="file" type="file" name="file" multiple accept=".xls, .xlsx">
+                <input class="btn btn-primary btn-md" type="submit" value="Отправить">
+            </fieldset>
+         </form>
+    {% endcomment %}
+
+    <form class="js-form-scales" action="/all/{{ calc_name }}/set_scales/" method="post">
+        <div class="step-page__content">
+
+            <div class="step-page__title">Названия шкал</div>
+
+            <div class="step-page__restart js-clear-storage">
+                <div class="step-page__restart-inner">
+                    <div class="step-page__restart-name">
+                        <div class="step-page__restart-title">
+                            Начать расчет заново
+                            <span class="step-page__restart-desc">Выможете начать расчет заного, при этом все шаги обнуляться.</span>
+                        </div>
+                    </div>
+                    <div class="step-page__restart-button">Начать расчет заново</div>
+                </div>
+            </div>
+
+
+            <div class="step-page__left">
+
+                {% if calc_name == 'kruskal' or calc_name == 'anova' %}
+                    <div class="step-page__desc js-quantity-error">
+                        <div style="margin-bottom: 15px;">Введите количество групп не менее 3.</div>
+                        <input type="text" class="step-page__scale-input input" name="group_quantity" required="required" placeholder="Количество групп">
+                    </div>
+
+                {% endif %}
+
+                <div class="step-page__desc js-scale-error">
+                    Введите названия шкал методик, участвующих в исследовании (без указания названия методики)
+                    {% if calc_name in 'w, z, correlation_spearman, correlation_pearson, correlation_kendall, desc' %}
+                        Критерий служит для <strong>ОДНОЙ</strong> группы
+                    {% endif %}
+
+                    {% if calc_name in 'correlation_spearman, correlation_pearson, correlation_kendall' %}
+                        <br>
+                        <br>
+                        Для расчёта корреляции нужно указать хотя бы 2 шкалы методики.
+                    {% elif calc_name not in 'w, z, kruskal, anova. desc' %}
+                        <br>
+                        <br>
+                        Критерий служит для сравнения <strong>ДВУХ</strong> независимых групп между собой с ненормальным распределением
+                    {% else %}
+                    {% endif %}
+                </div>
+                
+                <fieldset class="js-fieldset">
+
+                    {% csrf_token %}
+
+                    {% if calc_name in 'kruskal, anova' %}
+                        <input type="hidden" name="next_step" value="/all/{{ calc_name }}/steps/2/1/">
+                    {% else %}
+                        <input type="hidden" name="next_step" value="/all/{{ calc_name }}/steps/{{ next_step }}/">
+                    {% endif %}
+                    
+                    <div class="step-page__scale-list js-scale-group">
+
+                        {% include "block/scale_input.html" %}
+
+                    </div>
+                    
+                    <button type="button" class="step-page__scale-add js-add-new-input">Добавить шкалу</button>
+
+                </fieldset>
+            </div>
+
+        </div>
+
+        <div class="step-page__footer step-page__footer--right">
+            {% include "block/prev_and_next_page.html" with submit=True %}
+        </div>
+
+    </form>
+
+
+</div> <!-- step-page -->
+{% endblock %}

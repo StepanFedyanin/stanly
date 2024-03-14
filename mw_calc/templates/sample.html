@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="h1">Пример расчетов критерия {{ translate }}</h1>
+
+<div id="accordion">
+
+    <div class="sample-list">
+        <div class="card js-collapse-toggle" data-target="#collapseOne">
+            <div class="card-header">
+                <span>Полное описание</span>
+            </div>
+        </div>
+        
+
+        <div class="card js-collapse-toggle" data-target="#collapseTwo">
+            <div class="card-header">
+                <span>Краткое описание</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sample__item js-collapse-target active" id="collapseOne">
+        {% autoescape off %}
+            {{ sample_full }}
+        {% endautoescape %}
+    </div>
+
+    <div class="sample__item js-collapse-target " id="collapseTwo">
+        {% autoescape off %}
+            {{ sample_short }}
+        {% endautoescape %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="result">
+                <div class="h1 col-12 mb-3">Психологическое описание</div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="scale__title mb-3 js-error">Загрузите Excel файл для получения психологического описания</div>
+            </div>
+            <div class="col-12">
+                <form class="js-form-upload" method="POST" action="/all/{{ calc_name }}/steps/{{ next_step }}/" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <input type="hidden" name="redirect_to" value="/all/{{ calc_name }}/steps/{{ next_step }}/">
+                    <input type="hidden" name="desc" value="desc">
+
+                    <fieldset class="js-fieldset">
+                        <label for="file">Загрузить Excel</label>
+                        <input id="file" type="file" name="file" multiple accept=".xls, .xlsx">
+                        {# <span>или перетащите его сюда</span> #}
+                        {# <input class="btn btn-primary btn-md" type="submit" value="Отправить"> #}
+                    </fieldset>
+
+                    {% include "block/prev_and_next_page.html" with submit=True %}
+
+                 </form>
+            </div>
+        </div>
+
+
+
+    </div>
+{% endblock %}

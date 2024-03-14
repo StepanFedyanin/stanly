@@ -1,0 +1,24 @@
+{% load sitetree %}
+
+<ul class="calc-menu-child__navbar"  style="display: {% if item.is_current or item.in_current_branch %}block{% else %}none{% endif %};">
+  {% for item in sitetree_items %}
+
+    <li class="calc-menu-child__item{% if item.is_current or item.in_current_branch %}{{ item.is_current|yesno:" m--current-item," }}{{ item.in_current_branch|yesno:" m--current-branch," }}{% endif %}">
+
+        <a
+          class="calc-menu-child__link"
+          href="{% sitetree_url for item %}"
+          {% if item.hint %}title="{{ item.hint }}"{% endif %}
+          >
+            {{ item.title_resolved }}
+        </a>
+
+      {% if item.has_children %}
+
+        {% sitetree_children of item for menu template "sitetree/calc_menu_child.html" %}
+
+      {% endif %}
+    </li>
+
+  {% endfor %}
+</ul>

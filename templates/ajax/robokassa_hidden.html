@@ -1,0 +1,12 @@
+<form style="display:none;" class="" action="{{ form.target }}" method="POST" id="hidden_payment_form">
+     <fieldset class="">
+        {% csrf_token %}
+
+        {{ form }}
+
+    </fieldset>
+</form>
+
+<script>
+console.log(document.forms['hidden_payment_form'].submit());
+</script>

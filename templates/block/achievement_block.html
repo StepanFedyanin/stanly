@@ -1,0 +1,24 @@
+{% if not request.session.achievement_close %}
+<div class="achievement__block">
+
+    {# {% csrf_token %} #}
+
+    <div class="achievement__block-close js-achievement-close"></div>
+    <div class="achievement m--adventure_line">
+        <div class="achievement__title">Простота:</div>
+        <div class="achievement__text">данные заносятся последовательно,&nbsp;по&nbsp;шагам</div>
+    </div>
+    <div class="achievement m--rocket">
+        <div class="achievement__title">Cкорость:</div>
+        <div class="achievement__text">расчёт критерия занимает не&nbsp;более&nbsp;3&nbsp;минут</div>
+    </div>
+    <div class="achievement m--data_analysis">
+        <div class="achievement__title">Достоверность:</div>
+        <div class="achievement__text">расчеты проводятся с использованием стат.пакета&nbsp;R</div>
+    </div>
+    <div class="achievement m--24hours_7days">
+        <div class="achievement__title">Доступность:</div>
+        <div class="achievement__text">сервис работает в автоматическом режиме&nbsp;24/7</div>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,40 @@
+<div class="pay__tariff">
+
+  <div class="pay__tariff-price">
+    <div class="pay__tariff-price-new">{{ pay.price }}<span class="pay__tariff-rouble">₽</span></div>
+    {% if pay.price_old %}
+      <div class="pay__tariff-price-old">{{ pay.price_old }}<span class="pay__tariff-rouble">₽</span></div>
+    {% endif %}
+  </div>
+
+  <div class="pay__tariff-title">
+    {% if pay_type == 'once' %}
+      1 использование
+    {% elif pay_type == 'pay' %}
+      Один критерий / сутки
+    {% elif pay_type == 'all' %}
+      Все критерии / сутки
+    {% endif %}
+  </div>
+
+  <fieldset class="fieldset js-fieldset">
+
+    {% csrf_token %}
+
+    <input type="hidden" value="{{ pay.price_type }}" name="price_type">
+
+    <input type="button" class="button button-{% if pay_type == 'once' %}gray{% elif pay_type == 'pay' %}black{% elif pay_type == 'all' %}red{% endif %} pay__tariff-button js-get-payment-methods" value="Выбрать вариант оплаты" data-calc-name="{{ pay.calc_name }}">
+
+  </fieldset>
+
+  <div class="pay__tariff-desc">
+    {% if pay_type == 'once' %}
+      Вы сможете запустить скрипт 1 раз
+    {% elif pay_type == 'pay' %}
+      вы сможете запустить скрипт неограничеснное количество раз в течении 24 часов
+    {% elif pay_type == 'all' %}
+      безлимитный доступ ко всем критериям сервиса на 24 часа
+    {% endif %}
+  </div>
+
+</div>

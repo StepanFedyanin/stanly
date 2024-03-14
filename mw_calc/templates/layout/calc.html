@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% load calc_tags %}
+
+
+{% block breadcrumbs %}
+    {{ block.super }}
+
+    {% include "block/breadcrumbs.html" with item=calc_name%}
+{% endblock breadcrumbs %}
+
+
+{% block header %}
+
+    <div class="step-page step-page--scales">
+
+        {% get_session_step as session_step %}
+
+        <div class="step-page__header">
+            <div class="step-page__progress">
+
+                {% if calc_name in 'correlation_spearman, correlation_pearson, correlation_kendall, w, z, kruskal, anova, desc' %}
+
+                    {% include "block/step_page_heeader_page.html" with i=1 title='Названия шкал' %}
+                    {% include "block/step_page_heeader_page.html" with i=2 title='Данные группы' %}
+                    {% include "block/step_page_heeader_page.html" with i=3 title='Проверка данных' %}
+                    {% include "block/step_page_heeader_page.html" with i=4 title='Результаты' %}
+                    {% include "block/step_page_heeader_page.html" with i=5 title='Полный результат' %}
+
+                {% else %}
+
+                    {% include "block/step_page_heeader_page.html" with i=1 title='Названия шкал' %}
+                    {% include "block/step_page_heeader_page.html" with i=2 title='Данные первой группы' %}
+                    {% include "block/step_page_heeader_page.html" with i=3 title='Данные второй группы' %}
+                    {% include "block/step_page_heeader_page.html" with i=4 title='Проверка данных' %}
+                    {% include "block/step_page_heeader_page.html" with i=5 title='Результаты' %}
+                    {% include "block/step_page_heeader_page.html" with i=6 title='Полный результат' %}
+
+                {% endif %}
+
+
+            </div>
+        </div>
+
+        {# step-page во внутреннем шаблоне #}
+
+{% endblock %}

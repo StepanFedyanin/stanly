@@ -1,0 +1,29 @@
+{% if prev_step %}
+    {% if calc_name == 'kruskal' or calc_name == 'anova' %}
+        {% if step == 2 or step == 3 %}
+            <a href="{{ back_url }}" class="button step-page__back">Назад</a>
+        {% else %}
+            <a href="/all/{{ calc_name }}/steps/{{ prev_step }}/" class="button step-page__back">Назад</a>
+        {% endif %}
+    {% else %}
+        <a href="/all/{{ calc_name }}/steps/{{ prev_step }}/" class="button step-page__back">Назад</a>
+    {% endif %}
+{% endif %}
+
+{% if need_pay %}
+
+    {% if is_paid or user.is_superuser or no_pay %}
+        <a href="/all/{{ calc_name }}/steps/{{ next_step }}/" class="button button-red step-page__next" onclick="window.preloader();">Далее</a>
+    {% endif %}
+
+{% elif back_only %}
+
+{% elif submit %}
+
+    <button type="submit" class="button button-red step-page__next">Далее</button>
+
+{% else%}
+
+    <a class="button button-red step-page__next" href="/all/{{ calc_name }}/steps/{{ next_step }}/" onclick="window.preloader();">Далее</a>
+
+{% endif %}

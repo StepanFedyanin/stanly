@@ -1,0 +1,78 @@
+{% extends "layout/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load calc_tags %}
+
+{% block title %}История расчетов{% endblock %}
+{% block breadcrumbs %}
+    {{ block.super }}
+
+    {% include "block/breadcrumbs.html" with item='История расчетов' %}
+{% endblock breadcrumbs %}
+{% block step %}profile{% endblock step %}
+
+{% block content %}
+<div class="profile-wrapper">
+
+  <div class="profile-left">
+    <div class="profile-history">
+      <div class="profile-history__header">
+        <h1 class="profile-history__title">История расчетов</h1>
+      </div>
+
+      <div class="profile-history__content">
+
+        <div class="profile-history__calculation">
+
+          <div class="profile-history__calculation-list">
+
+            {% for calc in calcs %}
+
+              <div class="profile-history__calculation-item">
+                
+                {% for calc_name, calc_item in calc.items %}
+                  <div class="profile-history__calculation-title">{{ calc_item.translate }}</div>
+
+                  <div class="profile-history__calculation-status">
+                    
+                    {% if calc_item.paid_order %}                  
+                      <div class="calculation__status m--full">Full</div>
+                    {% else %}
+                      <div class="calculation__status m--free">Free</div>
+                    {% endif %}
+
+                  </div>
+
+                  <div class="profile-history__calculation-total">
+                    {% if calc_item.calculation_total %}
+                      <div class="profile-history__calculation-total-is">Всего отчётов: {{ calc_item.calculation_total }}</div>
+                    {% else %}
+                      <div class="profile-history__calculation-total-zero">Нет вычислений</div>
+                    {% endif %}
+                  </div>
+                  {# <span class="profile-history__calculation-link">Подробнее</span> #}
+                  <a class="profile-history__calculation-link" href="{{ calc_item.url }}">Подробнее</a>
+                {% endfor %}
+
+              </div>
+
+            {% endfor %}
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="profile-right">
+
+    {% include "block/pay_tariff_all.html" with pay=pay %}
+    {% include "block/promo_block_banner.html" %}
+
+  </div>
+
+</div>
+
+{% endblock %}

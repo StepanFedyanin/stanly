@@ -1,0 +1,13 @@
+{% extends 'layout/popup_blur.html' %}
+
+{% block content %}
+    <div class="popup__blur">
+        <div class="popup__blur-title">Инструкция: расчёт критерия {{ translate }}</div>
+        {# <iframe width="100%" height="100%" class="popup__blur-frame" src="{{ video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> #}
+        <div class="popup__blur-frame">
+            {% autoescape off %}
+              {{ video }}
+            {% endautoescape %}
+        </div>
+    </div>
+{% endblock content %}

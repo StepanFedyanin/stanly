@@ -1,0 +1,49 @@
+<div class="popup-payment">
+
+  <div class="popup-payment__header">
+    Выбрать вариант оплаты
+    <div class="popup-payment__close js-fancybox-close" onclick="$.fancybox.close();"></div>
+  </div>
+
+  <div class="popup-payment__content js-payment-methods" data-calc_name="{{ calc_name }}" data-price_type="{{ price_type }}">
+
+    {% csrf_token %}
+
+    <div class="popup-payment__filter">
+      <div class="popup-payment__filter-item js-filter-item is-active" onclick="paymentFilter(this);" data-filter="all">Все</div>
+
+        {% for method in payment_methods %}
+
+        <div class="popup-payment__filter-item js-filter-item" onclick="paymentFilter(this);" data-filter="{{ method.0 }}">
+          {% if method.0 == 'EMoney' %}
+            Электронным кошельком
+          {% elif method.0 == 'Bank' %}
+            Через интернет-банк
+          {% elif method.0 == 'BankCard' %}
+            Банковской картой
+          {% elif method.0 == 'Terminals' %}
+            В терминале
+          {% elif method.0 == 'Other' %}
+            Другие способы
+          {% else %}
+            {{ method.0 }}
+          {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="popup-payment__list js-payment-list">
+      {% for method in payment_methods %}
+        {% for value, name in method.1 %}
+          <div class="popup-payment__item popup-payment__item--{{ value }}" onclick="selectPaymentMethod(this);" data-filter-target="{{ method.0 }}" data-value="{{ value }}" data-name="{{ name }}"></div>
+        {% endfor %}
+
+      {% endfor %}
+    </div>
+
+    <div class="js-hidden-form-place"></div>
+
+  </div><!--popup-payment__content-->
+
+
+</div>

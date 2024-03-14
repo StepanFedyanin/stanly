@@ -1,0 +1,83 @@
+{% extends "layout/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load calc_tags %}
+
+{% block title %}История расчетов {{ calc.translate }}{% endblock %}
+{% block breadcrumbs %}
+    {{ block.super }}
+
+    {% include "block/breadcrumbs.html" with item='<a href="/all/accounts/history/" class="breadcrumbs__link">История расчетов</a>' link=1 %}
+    {% include "block/breadcrumbs.html" with item=pay.calc_name %}
+{% endblock breadcrumbs %}
+{% block step %}profile{% endblock step %}
+
+{% block content %}
+
+<div class="profile-calculation">
+	<div class="profile-calculation__header">
+		<h1 class="profile-calculation__title">Калькулятор {{ calc.translate }}</h1>
+		<a href="/all/accounts/history/" class="profile-calculation__back">Назад к списку</a>
+	</div>
+
+	<div class="profile-calculation__content">
+		{% comment %}
+			
+		{% if not calc.no_pay %}
+
+			{% if calc.paid_orders %}
+
+				{% for order in calc.paid_orders %}
+					<div class=""><b>Оплачен</b> {{ order.date }} <b>до</b>: {{ order.expire }}</div>
+				{% endfor %}
+
+			{% endif %}
+
+		{% endif %}
+		{% endcomment %}
+
+		{% if calc.calculation %}
+
+			<table class="profile-calculation__table">
+				<thead class="profile-calculation__table-thead">
+					<tr class="">
+		          <th class="profile-calculation__table-th" scope="col">Время вычисления</th>
+		          <th class="profile-calculation__table-th" scope="col">Excell файл</th>
+		          <th class="profile-calculation__table-th" scope="col">Docx файл</th>
+		          <th></th>
+		      </tr>
+				</thead>
+				<tbody class="profile-calculation__table-tbody">
+					{% for calculation in calc.calculation %}
+					<tr class="profile-calculation__table-tr">
+						<td class="profile-calculation__table-td profile-calculation__time-created">{{ calculation.date }}</td>
+						<td class="profile-calculation__table-td"><a href="/all/{{ calculation.calc_name }}/get_file/?order_id={{ calculation.order_id }}&calc_name={{ calculation.calc_name }}&style=full" class="profile-calculation__download m--xls">Скачать</a></td>
+						<td class="profile-calculation__table-td">
+							{% if calc.paid_order or calc.no_pay %}
+								<a class="profile-calculation__download m--doc" href="/all/{{ calculation.calc_name }}/get_file/?order_id={{ calculation.order_id }}&calc_name={{ calculation.calc_name }}&style=docx">Скачать</a>
+							{% else %}
+								Оплатите, чтобы получить результат
+							{% endif %}
+						</td>
+						<td class="profile-calculation__table-td">
+							{% if not calc.paid_order and not calc.no_pay %}
+								{% csrf_token %}
+    						<input type="hidden" value="{{ pay.price_type }}" name="price_type">
+								<span class="profile-calculation__pay js-get-payment-methods" data-calc-name="{{ pay.calc_name }}">Оплатить</span>
+							{% endif %}
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<div class="">Нет вычислений по калькулятору</div>
+		{% endif %}
+	</div>
+
+		
+	</div>
+</div>
+
+{% endblock %}

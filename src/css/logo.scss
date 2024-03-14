@@ -1,0 +1,72 @@
+
+.logo {
+    text-align: center;
+    color: #fff;
+}
+
+.logo__title {
+    font-size: 44px;
+    padding: 12px 10px 12px;
+    background-color: #d70032;
+}
+
+.logo__title a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo__title a:hover {
+    text-decoration: none;
+}
+
+.logo__desc {
+    padding: 10px 22px;
+    background-color: #9A0024;
+}
+
+.logo__desc h1 {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    line-height: 17px;
+    color: #fff;
+}
+
+.logo__desc-about {
+    text-align: left;
+}
+
+.logo__desc-link {
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    text-transform: uppercase;
+    vertical-align: middle;
+    text-decoration: underline;
+}
+
+.logo__desc-link::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 10px;
+    background-image: url('../i/icons/arrow_right.svg');
+    margin-left: 5px;
+}
+
+.logo__desc-link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo__desc-link-text {
+}
+
+.logo__desc-arrow {
+    display: inline-block;
+    margin-left: 6px;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+}

@@ -1,0 +1,96 @@
+{% extends "layout/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Account" %}{% endblock %}
+{% block step %}profile{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+
+  <div class="profile-page__header">
+    <div class="profile-page__header-title">Настройки</div>
+  </div>
+
+  <div class="profile-page__content">
+    
+    <div class="profile-page__email">
+      <h1 class="profile-page__title">{% trans "E-mail Addresses" %}</h1>
+      
+      {% if user.emailaddress_set.all %}
+        {# <p class="">{% trans 'The following e-mail addresses are associated with your account:' %}</p> #}
+      
+        <form action="{% url 'account_email' %}" class="profile-page__email-form email_list" method="post">
+      
+          {% csrf_token %}
+        
+          <fieldset class="fieldset">
+        
+            <div class="profile-page__email-list">
+        
+              {% for emailaddress in user.emailaddress_set.all %}
+        
+                <label for="email_radio_{{forloop.counter}}" class="profile-page__email-item {% if emailaddress.primary %}primary_email{%endif%}">
+              
+                  <div class="profile-page__email-left">
+                    <div class="profile-page__email-name">
+                      {{ emailaddress.email }}
+                    </div>
+                  </div>
+        
+                  {% if emailaddress.verified %}
+                    <span class="profile-page__email-verified">- {% trans "Verified" %}</span>
+                  {% else %}
+                    <span class="profile-page__email-unverified">{% trans "Unverified" %}</span>
+                  {% endif %}
+        
+                  {% if emailaddress.primary %}
+                    <span class="profile-page__email-primary">{% trans "Primary" %}</span>
+                  {% endif %}
+        
+                  <span class="profile-page__email-choise"><input class="profile-page__email-checkbox" id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>Выбрать</span>
+                </label>
+        
+              {% endfor %}
+              
+            </div>
+        
+        
+            <button class="button button-gray profile-page__button" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+            <button class="button button-gray profile-page__button" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
+            <button class="button button-red profile-page__button" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+            
+        
+          </fieldset>
+        </form>
+      
+      {% else %}
+        <p class=""><strong>{% trans 'Warning:'%}</strong> {% trans "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc." %}</p>
+      {% endif %}
+      
+      <div class="button profile-page__add-email-button js-show-add-email">{% trans "Add E-mail Address" %}</div>
+      
+      <form method="post" action="{% url 'account_email' %}" class="profile-page__add-email-form js-add-email-form add_email">
+          {% csrf_token %}
+          {{ form }}
+          <button class="button button-red profile-page__button" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+      </form>
+    </div>
+
+  </div>
+  
+</div><!--profile-page-->
+<script type="text/javascript">
+(function() {
+  var message = "{% trans 'Do you really want to remove the selected e-mail address?' %}";
+  var actions = document.getElementsByName('action_remove');
+  if (actions.length) {
+    actions[0].addEventListener("click", function(e) {
+      if (! confirm(message)) {
+        e.preventDefault();
+      }
+    });
+  }
+})();
+</script>
+{% endblock %}

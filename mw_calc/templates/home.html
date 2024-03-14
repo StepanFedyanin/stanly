@@ -1,0 +1,22 @@
+{% extends 'layout/calc.html' %}
+{% load static %}
+
+{% load calc_tags %}
+
+{% block step %}home{% endblock step %}
+{% block calc_name %}{{ calc_name }}{% endblock calc_name %}
+
+{% block content %}
+
+<div class="step-page__content">
+
+  <h1 class="h1">
+      Пример расчета критерия 
+
+      {% include "block/calc_translate.html" with item=calc_name %}
+  </h1>
+
+  {% include "block/step_0_description.html" %}  
+</div>
+
+{% endblock %}

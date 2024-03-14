@@ -1,0 +1,10 @@
+{% load account %}{% user_display user as user_display %}{% load i18n %}
+{% autoescape off %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Вас приветствует {{ site_name }}!
+<br>
+Вы получили это письмо, потому что пользователь {{ user_display }} указал Ваш e-mail.
+<br>
+Чтобы подтвердить, пройдите по ссылке <a href="{{ activate_url }}">{{ activate_url }}</a>
+{% endblocktrans %}
+
+{% endautoescape %}

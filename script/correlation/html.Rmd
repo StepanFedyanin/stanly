@@ -1,0 +1,66 @@
+---
+title: "Корреляционный анализ"
+output:
+  html_fragment
+params:
+  json_file:
+    value: x
+  html_format:
+    value: x
+  desc_file:
+    value: x
+  calc_name:
+    value: x
+---
+
+
+```{r all, echo=FALSE, cashe=TRUE, results='hide', warning=FALSE, error=FALSE}
+######################
+  #ВАЖНО!!!! Косяки текущей версии скрипта
+  #1. Если нет значимых различий получается отсутсвие таблицы - это неверно!
+  #2. Есть только 1 значимая корреляция то таблица строится не хочет, что тоже неверно!
+  #3. Сделать возможность перелючения показывать только значимые различия или все 
+  ######################
+
+  if(!exists("include_libraries", mode="function")) source("../functions.R")
+  if(!exists("calc_prepare_data", mode="function")) source("calc_functions.R")
+  include_libraries()
+
+  data <- rjson::fromJSON(file = params$json_file)
+  HTML_FORMAT <- params$html_format
+  desc_file <- ifelse(params$desc_file == 'None', F, params$desc_file)
+  calc_name <- params$calc_name
+
+  # for test 
+  # HTML_FORMAT <- 'short'
+  # data <- rjson::fromJSON('{"group_name_1":"g1","group_count_1":3,"group_data_1":{"Шкала 1":{"1":76,"2":87,"3":786},"Шкала 2":{"1":76,"2":6,"3":876}}}')
+  # data <- rjson::fromJSON('{"group_name_1":"g1","group_count_1":4,"group_data_1":{"Шкала 1":{"1":0,"2":0,"3":0,"4":0},"Шкала 2":{"1":0,"2":0,"3":0,"4":0}}}')
+  # desc_file <- F
+  # /for test 
+
+  GROUP_VAR <- 'Группа'
+  # GROUP_1_NAME <- data$group_name_1
+
+  METHOD_NAME <- if (calc_name == 'correlation_spearman'){
+    'spearman'
+  } else if (calc_name == 'correlation_pearson') {
+    'pearson'
+  } else {
+    'kendall'
+  }
+
+  #выбор нужно метода корреляции
+  stat_name <- if(METHOD_NAME == "spearman"){
+    "Спирмена"
+  } else if (METHOD_NAME == "pearson"){
+    "Пирсона"
+  } else {
+    "Кендалла"
+  }
+
+  MAIN_DF <- calc_prepare_data(data, GROUP_VAR)
+
+```
+
+```{r child='chunk_main.Rmd'}
+```

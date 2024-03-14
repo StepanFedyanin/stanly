@@ -1,0 +1,52 @@
+{% extends 'factor_analytic/layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block step %}set-groups{% endblock step %}
+
+{% block content %}
+    <div class="container">
+        <form class="js-input-data" action="/all/{{ calc_name }}/get_group_inputs/">
+            {% csrf_token %}
+            <input name="group_number" type="hidden" value="{{ group_number }}">
+            <input name="step" type="hidden" value="{{ step }}">
+            <input name="calc_name" type="hidden" value="{{ calc_name }}">
+
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label for="group_name" class="scale__label">Введите название группы:</label>
+                    <input type="text" class="form-control" name="group_name" id="group_name" placeholder="Название группы">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 mb-2">
+                    <label for="group_count" class="scale__label">Введите количество человек в группе:</label>
+                    <input type="text" class="form-control" name="group_count" id="group_count" placeholder="Количество">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary mb-3">Ввести данные</button>
+                </div>
+            </div>
+
+            <div class="js-hide-on-click">
+                {% include "block/prev_and_next_page.html" with back_only=True %}
+            </div>
+
+        </form>
+        <div class="js-input-data-group"></div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+{#    <script type="text/javascript" src="{% static 'js/step_groups.js' %}{% get_static_version %}"></script>#}
+{% endblock %}

@@ -1,0 +1,758 @@
+.profile {
+    padding: 10px 15px;
+    background-color: #f2f2f2;
+}
+
+.profile__icon {
+    width: 20px;
+    display: inline-block;
+}
+
+.profile__title {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2D2E34;
+}
+
+.profile__signin {
+    display: inline-block;
+    padding: 23px 18px 23px 18px;
+    transition: all .5s ease;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+}
+
+.profile__signin:hover {
+    background-color: #DBE7EE;
+}
+
+.profile__signup {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 15px;
+    transition: all .5s ease;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+}
+
+.profile__signup:hover {
+    background-color: #DBE7EE;
+}
+
+.profile-menu {
+    position: absolute;
+    right: 25px;
+    top: 60px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    padding: 12px 0;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+    transition: all .5s ease;
+}
+
+.profile-menu:hover {
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+}
+
+.profile-menu__item {
+}
+
+.profile-menu__link {
+    display: block;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 13px 21px;
+    color: #2D2E34;
+    text-decoration: none;
+    transition: all .5s ease;
+}
+
+.profile-menu__link:hover {
+    color: #2D2E34;
+    text-decoration: none;
+    background-color: #E3E9EC;
+}
+
+.profile-menu__icon {
+    width: 40px;
+    height: 40px;
+}
+.profile-menu .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.profile-menu .nav-link::after {
+    display: none;
+}
+
+.profile-page {
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+}
+
+.profile-page__button {
+    padding: 15px;
+    margin: 0 20px 20px 0;
+}
+
+.profile-page__header {
+    padding: 26px 28px 19px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.profile-page__header-title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2D2E34;
+}
+
+.profile-page__content {
+    padding: 21px 28px 100px;
+}
+
+.profile-page__title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2D2E34;
+    margin-bottom: 27px;
+}
+
+.profile-page__email {
+    max-width: 827px;
+}
+
+.profile-page__email-list {
+    margin-bottom: 10px;
+
+}
+
+.profile-page__email-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin-bottom: 14px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.profile-page__email-left {
+    padding: 16px 24px 14px;
+    align-self: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.profile-page__email-name {
+    width: 262px;
+    font-size: 16px;
+    display: inline-block;
+    margin-right: 20px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    padding: 10px 15px 10px 13px;
+}
+
+.profile-page__email-verified {
+    padding: 28px 24px 18px;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    vertical-align: middle;
+}
+
+.profile-page__email-unverified {
+    padding: 28px 24px 18px;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    vertical-align: middle;
+}
+
+.profile-page__email-primary {
+    padding: 28px 24px 18px;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    vertical-align: middle;
+}
+
+.profile-page__email-verified::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    margin-top: -2px;
+    background-image: url('../i/icons/check.svg');
+    vertical-align: middle;
+}
+
+.profile-page__email-form {
+    margin-bottom: 22px;
+}
+
+.profile-page__add-email-form {
+    display: none;
+}
+
+.profile-page__add-email-input {
+    display: inline-block;
+    margin-right: 20px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    padding: 10px 15px 10px 13px;
+    border: 0;
+    font-size: 18px;
+}
+
+.profile-page__add-email-button {
+    width: 100%;
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #333333;
+    background-color: #F5F5F5;
+}
+
+.profile-page__email-choise {
+    display: block;
+    margin: 0 auto;
+    padding: 28px 24px 18px;
+}
+
+.profile-page__email-checkbox {
+    margin-right: 4px;
+}
+
+.profile-page__email-label .profile-page__email-checkbox{
+
+}
+
+.profile-page__email-label .profile-page__email-checkbox:checked{
+
+}
+
+/*
+.profile-page__email-label .profile-page__email-checkbox:checked::before{
+    content: '';
+}*/
+
+.profile-promo__block {
+    width: 526px;
+    padding: 58px 24px 24px;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.12));
+    border-radius: 10px;
+    background-image: url('../i/bg/create_promo.png');
+    background-size: 100% 100%;
+}
+
+.profile-promo__block-desc {
+    padding-bottom: 12px;
+}
+
+.profile-promo__block-title {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 37px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 22px;
+}
+
+.profile-promo__block-discount {
+    font-family: 'Proxima Nova Lt';
+    font-weight: 200;
+    font-size: 168px;
+    line-height: 125px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.profile-promo__block-discount-percent {
+    font-family: 'Proxima Nova Bl';
+    font-weight: bold;
+    font-size: 80px;
+    line-height: 60px;
+}
+
+.profile-promo__form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px 36px 32px;
+    font-size: 0;
+}
+
+.profile-promo__form-desc {
+    max-width: 250px;
+    padding-bottom: 23px;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #2D2E34;
+}
+
+.profile-promo__letter-list {
+    margin-bottom: 23px;
+    white-space: nowrap;
+}
+
+.profile-promo__letter-item {
+    display: inline-block;
+    width: 44px;
+    margin-right: 9px;
+    border-radius: 4px;
+    border: 0;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #333;
+    background-color: #eee;
+}
+
+.profile-promo__form-fieldset {
+    text-align: center;
+}
+
+.profile-promo__form-submit {
+    width: 302px;
+    padding: 23px 20px 17px;
+    text-transform: uppercase;
+}
+
+.profile-promo__wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.profile-promo__header {
+    padding: 27px 32px 19px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.profile-promo__content {
+    padding: 20px 32px;
+}
+
+.profile-promo__title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2D2E34;
+}
+
+.profile-promo__list {
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    margin-left: 30px;
+    flex-grow: 1;
+}
+
+.profile-promo__table {
+    width: 100%;
+}
+
+.profile-promo__table-tr:nth-child(2n-1) {
+    background-color: #F2F7FA;
+}
+
+.profile-promo__table-th {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(0, 0, 0, 0.34);
+    padding: 12px;
+}
+
+.profile-promo__table-td {
+    font-size: 16px;
+    line-height: 19px;
+    color: #2D2E34;
+    padding: 14px;
+}
+
+.profile-promo__remove {
+    /*font-family: 'Proxima Nova Rg';*/
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: #D70032;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.profile__change-email {
+    padding: 16px 20px 12px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.profile__reset-pass {
+    padding: 16px 20px 12px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.profile__logout {
+    padding: 16px 20px 12px;
+    margin-bottom: 20px;
+}
+
+.calculation__status {
+    display: inline-block;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    padding: 2px 8px;
+    border-radius: 52px;
+    height: 24px;
+    width: 69px;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.calculation__status::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+.calculation__status.m--full {
+    background-color: rgba(81, 154, 38, 0.26);
+    color: #519A26;
+}
+
+.calculation__status.m--free {
+    background-color: rgba(234, 134, 0, 0.34);
+    color: #EA8600;
+}
+
+.calculation__status.m--full::before {
+    background-image: url('../i/icons/coins.svg');
+}
+
+.calculation__status.m--free::before {
+    background-image: url('../i/icons/balloons.svg');
+}
+
+.profile-history__calculation {
+
+}
+
+.profile-history__calculation-list {
+
+}
+
+.profile-history__calculation-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F2F7FA;
+    border-radius: 4px;
+    padding: 29px 32px 24px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+.profile-history__calculation-title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #2D2E34;
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.profile-history__calculation-status {
+    margin-right: 32px;
+    flex-grow: 0;
+}
+
+.profile-history__calculation-total {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    flex-grow: 0;
+    margin-right: 32px;
+}
+
+.profile-history__calculation-total-is {
+    color: #2D2E34;
+    text-decoration-line: underline;
+}
+
+.profile-history__calculation-total-zero {
+    color: rgba(45, 46, 52, 0.34);
+}
+
+.profile-history__calculation-link {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #F31D42;
+    flex-grow: 0;
+    text-decoration: none;
+}
+
+.profile-history__calculation-link:hover {
+    color: $red-normal;
+}
+
+.profile-history__calculation-link:active {
+    color: $red-darker;
+}
+
+.profile-history {
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+}
+
+.profile-history__header {
+    padding: 29px 32px 17px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.profile-history__content {
+    padding: 20px 32px;
+}
+
+.profile-history__title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2D2E34;
+    margin: 0;
+}
+
+
+.profile-calculation {
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+}
+
+.profile-calculation__header {
+    padding: 27px 32px 19px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.profile-calculation__content {
+    padding: 20px 32px;
+}
+
+.profile-calculation__title {
+}
+
+.profile-calculation__back {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #ED2344;
+    transition: all .2s ease;
+    text-decoration: none;
+}
+
+.profile-calculation__back:hover {
+    color: $red-darker;
+}
+
+.profile-calculation__back::before {
+    content: '';
+    display: inline-block;
+    background-image: url('../i/icons/previous.svg');
+    width: 9px;
+    height: 14px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+.profile-calculation__table {
+    width: 100%;
+}
+
+.profile-calculation__table-th {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(0, 0, 0, .34);
+    padding: 12px;
+}
+
+.profile-calculation__table-td {
+    padding: 12px;
+}
+
+.profile-calculation__table-tr:nth-child(2n-1) {
+    background-color: #F2F7FA;
+}
+
+.profile-calculation__pay {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: uppercase;
+    color: #D70032;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.profile-calculation__pay:hover {
+    color: $red-darker;
+}
+
+.profile-calculation__time-created {
+    font-size: 16px;
+    line-height: 19px;
+    color: #2D2E34;
+}
+
+.profile-calculation__download {
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration-line: underline;
+}
+
+.profile-calculation__download::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.profile-calculation__download.m--xls::before {
+    background-image: url('../i/icons/xls_green_light.svg');
+}
+
+.profile-calculation__download.m--doc::before {
+    background-image: url('../i/icons/doc_blue_light.svg');
+}
+
+.profile-calculation__download.m--xls {
+    color: #519A26;
+}
+
+.profile-calculation__download.m--doc {
+    color: #0A5997;
+}
+
+.profile-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: top;
+}
+
+.profile-left {
+    flex-grow: 1;
+}
+
+.profile-right {
+    margin-left: 32px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.promo-block-banner {
+    max-height: 455px;
+    max-width: 416px;
+    text-align: center;
+    background-image: url('../i/bg/create_promo.png');
+    background-size: 100% 100%;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.12));
+    border-radius: 10px;
+    padding: 66px 46px;
+}
+
+.promo-block-banner__inner {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 49px 19px 44px;
+}
+
+.promo-block-banner__title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #2D2E34;
+    margin-bottom: 4px;
+}
+.promo-block-banner__number {
+    font-family: 'Proxima Nova Lt';
+    font-weight: 300;
+    display: inline-block;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 78px;
+    text-align: center;
+    color: #263238;
+}
+
+.promo-block-banner__percent {
+    display: inline-block;
+    font-size: 30px;
+}
+
+.promo-block-banner__desc {
+    font-size: 30px;
+    margin-bottom: 36px;
+    line-height: 24px;
+}
+
+.promo-block-banner__button {
+    width: 254px;
+}

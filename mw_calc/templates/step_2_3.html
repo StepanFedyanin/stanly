@@ -1,0 +1,79 @@
+{% extends 'layout/calc.html' %}
+{% load static %}
+{% load calc_tags %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Шаг {{ step }}{% endblock %}
+{% block css-step %}{{ step }}{% endblock %}
+
+{% block step %}set-groups{% endblock step %}
+{% block calc_name %}{{ calc_name }}{% endblock calc_name %}
+
+{% block content %}
+
+    <form class="js-form-group" action="/all/{{ calc_name }}/get_group_inputs/">
+        <div class="step-page__content">
+            {% if calc_name == 'kruskal' or calc_name == 'anova' %}
+
+                <input name="group_quantity" type="hidden" value="{{ group_quantity }}">
+                <div class="step-page__title">Группа {{ group_number }} из {{ group_quantity }}</div>
+
+            {% else %}
+
+                <div class="step-page__title">Данные
+
+                    {% if calc_name not in 'correlation_spearman, correlation_pearson, correlation_kendall, w, z, desc' %}
+
+                        {% if step == 2 %} первой{% elif step == 3 %} второй{% endif %}
+
+                    {% endif %}
+
+                    группы
+                </div>
+
+            {% endif %}
+
+            {% csrf_token %}
+
+            <input name="group_number" type="hidden" value="{{ group_number }}">
+            <input name="step" type="hidden" value="{{ step }}">
+            <input name="calc_name" type="hidden" value="{{ calc_name }}">
+
+            <div class="step-page__group">
+                <div class="step-page__group-field">
+                    <label for="group_name" class="step-page__group-label">Введите название
+
+                        {% if calc_name not in 'correlation_spearman, correlation_pearson, correlation_kendall, w, z, desc' %}
+                            {% if step == 2 %} первой{% elif step == 3 %} второй{% endif %}
+                        {% endif %}
+
+                        группы:
+                    </label>
+                    <input type="text" class="step-page__group-input input" name="group_name" id="group_name" placeholder="--">
+                </div>
+                <div class="step-page__group-field">
+                    <label for="group_count" class="step-page__group-label">Введите количество человек в группе:</label>
+                    <input type="text" class="step-page__group-input input" name="group_count" id="group_count" placeholder="--">
+                </div>
+                <div class="step-page__group-group-field">
+                    <button type="submit" class="button button-red step-page__group-send-button">Ввести данные</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="step-page__footer step-page__footer--left js-hide-on-click">
+
+            {% include "block/prev_and_next_page.html" with back_only=True %}
+
+        </div>
+
+    </form>
+
+    <div class="js-group-data"></div>
+
+</div><!-- step-page -->
+
+{% endblock %}
