@@ -91,22 +91,22 @@ def get_chunk_value_by_name(calc_name, name):
         Вернёт значение параметра калькулятора по названию калькулятора и параметра.
         Если значение не установлено - попытка взять значение у базовой модели mw_calc.
     """
-    Chunk = get_chunk_by_calc_name(calc_name)
-    obj = Chunk.objects.filter(name=name).first()
-    res = None
+    # Chunk = get_chunk_by_calc_name(calc_name)
+    # obj = Chunk.objects.filter(name=name).first()
+    # res = None
+    #
+    # if obj is None or (len(obj.value) == 0 and len(obj.html) == 0):
+    #     mw_chunk = apps.get_model(app_label='mw_calc', model_name='Chunk')
+    #     obj = mw_chunk.objects.filter(name=name).first()
+    #     if obj is None:
+    #         return res
+    #
+    # if len(obj.value) > 0:
+    #     res = obj.value
+    # else:
+    #     res = obj.html
 
-    if obj is None or (len(obj.value) == 0 and len(obj.html) == 0):
-        mw_chunk = apps.get_model(app_label='mw_calc', model_name='Chunk')
-        obj = mw_chunk.objects.filter(name=name).first()
-        if obj is None:
-            return res
-
-    if len(obj.value) > 0:
-        res = obj.value
-    else:
-        res = obj.html
-
-    return res
+    return name
 
 
 def getRobokassaPaymentMethods(MerchantLogin, Language='ru'):

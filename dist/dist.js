@@ -1,1 +1,2376 @@
-!function(e){var t={};function n(a){if(t[a])return t[a].exports;var r=t[a]={i:a,l:!1,exports:{}};return e[a].call(r.exports,r,r.exports,n),r.l=!0,r.exports}n.m=e,n.c=t,n.d=function(e,t,a){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:a})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var a=Object.create(null);if(n.r(a),Object.defineProperty(a,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)n.d(a,r,function(t){return e[t]}.bind(null,r));return a},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t,n){n(1),e.exports=n(5)},function(e,t,n){var a=n(2);"string"==typeof a&&(a=[[e.i,a,""]]);var r={hmr:!0,transform:void 0,insertInto:void 0};n(3)(a,r);a.locals&&(e.exports=a.locals)},function(e,t,n){},function(e,t,n){var a,r,o={},i=(a=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===r&&(r=a.apply(this,arguments)),r}),s=function(e,t){return t?t.querySelector(e):document.querySelector(e)},l=function(e){var t={};return function(e,n){if("function"==typeof e)return e();if(void 0===t[e]){var a=s.call(this,e,n);if(window.HTMLIFrameElement&&a instanceof window.HTMLIFrameElement)try{a=a.contentDocument.head}catch(e){a=null}t[e]=a}return t[e]}}(),c=null,d=0,u=[],p=n(4);function f(e,t){for(var n=0;n<e.length;n++){var a=e[n],r=o[a.id];if(r){r.refs++;for(var i=0;i<r.parts.length;i++)r.parts[i](a.parts[i]);for(;i<a.parts.length;i++)r.parts.push(_(a.parts[i],t))}else{var s=[];for(i=0;i<a.parts.length;i++)s.push(_(a.parts[i],t));o[a.id]={id:a.id,refs:1,parts:s}}}}function m(e,t){for(var n=[],a={},r=0;r<e.length;r++){var o=e[r],i=t.base?o[0]+t.base:o[0],s={css:o[1],media:o[2],sourceMap:o[3]};a[i]?a[i].parts.push(s):n.push(a[i]={id:i,parts:[s]})}return n}function h(e,t){var n=l(e.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var a=u[u.length-1];if("top"===e.insertAt)a?a.nextSibling?n.insertBefore(t,a.nextSibling):n.appendChild(t):n.insertBefore(t,n.firstChild),u.push(t);else if("bottom"===e.insertAt)n.appendChild(t);else{if("object"!=typeof e.insertAt||!e.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var r=l(e.insertAt.before,n);n.insertBefore(t,r)}}function g(e){if(null===e.parentNode)return!1;e.parentNode.removeChild(e);var t=u.indexOf(e);t>=0&&u.splice(t,1)}function v(e){var t=document.createElement("style");if(void 0===e.attrs.type&&(e.attrs.type="text/css"),void 0===e.attrs.nonce){var a=function(){0;return n.nc}();a&&(e.attrs.nonce=a)}return $(t,e.attrs),h(e,t),t}function $(e,t){Object.keys(t).forEach((function(n){e.setAttribute(n,t[n])}))}function _(e,t){var n,a,r,o;if(t.transform&&e.css){if(!(o="function"==typeof t.transform?t.transform(e.css):t.transform.default(e.css)))return function(){};e.css=o}if(t.singleton){var i=d++;n=c||(c=v(t)),a=j.bind(null,n,i,!1),r=j.bind(null,n,i,!0)}else e.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(e){var t=document.createElement("link");return void 0===e.attrs.type&&(e.attrs.type="text/css"),e.attrs.rel="stylesheet",$(t,e.attrs),h(e,t),t}(t),a=T.bind(null,n,t),r=function(){g(n),n.href&&URL.revokeObjectURL(n.href)}):(n=v(t),a=w.bind(null,n),r=function(){g(n)});return a(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;a(e=t)}else r()}}e.exports=function(e,t){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(t=t||{}).attrs="object"==typeof t.attrs?t.attrs:{},t.singleton||"boolean"==typeof t.singleton||(t.singleton=i()),t.insertInto||(t.insertInto="head"),t.insertAt||(t.insertAt="bottom");var n=m(e,t);return f(n,t),function(e){for(var a=[],r=0;r<n.length;r++){var i=n[r];(s=o[i.id]).refs--,a.push(s)}e&&f(m(e,t),t);for(r=0;r<a.length;r++){var s;if(0===(s=a[r]).refs){for(var l=0;l<s.parts.length;l++)s.parts[l]();delete o[s.id]}}}};var b,y=(b=[],function(e,t){return b[e]=t,b.filter(Boolean).join("\n")});function j(e,t,n,a){var r=n?"":a.css;if(e.styleSheet)e.styleSheet.cssText=y(t,r);else{var o=document.createTextNode(r),i=e.childNodes;i[t]&&e.removeChild(i[t]),i.length?e.insertBefore(o,i[t]):e.appendChild(o)}}function w(e,t){var n=t.css,a=t.media;if(a&&e.setAttribute("media",a),e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}function T(e,t,n){var a=n.css,r=n.sourceMap,o=void 0===t.convertToAbsoluteUrls&&r;(t.convertToAbsoluteUrls||o)&&(a=p(a)),r&&(a+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var i=new Blob([a],{type:"text/css"}),s=e.href;e.href=URL.createObjectURL(i),s&&URL.revokeObjectURL(s)}},function(e,t){e.exports=function(e){var t="undefined"!=typeof window&&window.location;if(!t)throw new Error("fixUrls requires window.location");if(!e||"string"!=typeof e)return e;var n=t.protocol+"//"+t.host,a=n+t.pathname.replace(/\/[^\/]*$/,"/");return e.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,(function(e,t){var r,o=t.trim().replace(/^"(.*)"$/,(function(e,t){return t})).replace(/^'(.*)'$/,(function(e,t){return t}));return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(o)?e:(r=0===o.indexOf("//")?o:0===o.indexOf("/")?n+o:a+o.replace(/^\.\//,""),"url("+JSON.stringify(r)+")")}))}},function(e,t,n){"use strict";n.r(t);var a=2;function r(){var e="Unknown";return-1!=navigator.appVersion.indexOf("Win")?e="Windows":-1!=navigator.appVersion.indexOf("Mac")?e="MacOS":-1!=navigator.appVersion.indexOf("X11")?e="UNIX":-1!=navigator.appVersion.indexOf("Linux")&&(e="Linux"),e}function o(e){var t="\n";return"Windows"==e?t="\r\n":("MacOS"==e||"UNIX"==e||"Linux"==e)&&(t="\n"),t}function i(e,t){let n=$(t),r=`<div class="step-page__scale">\n                    <input type="text" class="step-page__scale-input input" name="scale-${a}" placeholder="Введите название" value="${e=e||""}">\n                    <button onclick="removeScale(this)" type="button" class="step-page__scale-remove">Удалить шкалу</button>\n                </div>`;n.append(r),a++}function s(e,t){let n=function(e){var t=null;if(document.cookie&&""!=document.cookie)for(var n=document.cookie.split(";"),a=0;a<n.length;a++){var r=$.trim(n[a]);if(r.substring(0,e.length+1)==e+"="){t=decodeURIComponent(r.substring(e.length+1));break}}return t}("csrftoken");$.ajax({type:"GET",headers:{"X-CSRFToken":n},url:e,dataType:"json",success:function(e){if(void 0===e.html)throw Error("no success data");t(JSON.parse(e.html).html)}})}function l(e){let t,n,a,r=$(this);if(!e||void 0===e.data)return void alert("Ошибка! Попробуйте позже!");t=e.data.calc_name,n=e.data.IncCurrLabel,a=e.data.price_type;let o=!1,i=r.parent();if(!o){let e=r.parent().find('[name="csrfmiddlewaretoken"]').val(),s={calc_name:t,IncCurrLabel:n,price_type:a};i.prop("disabled","disabled"),o=!0,$.ajax({url:"/all/ajax/get_payment_methods/",data:s,method:"POST",dataType:"html",headers:{"X-CSRFToken":e},success:function(e){$.fancybox.open({src:e,type:"html",opts:{buttons:[],padding:0,smallBtn:!1}}),i.prop("disabled",""),o=!1},error:function(e){alert("Ошибка! Попробуйте позже!"),i.prop("disabled",""),o=!1}})}}function c(){document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",(function(e){let t=this.getAttribute("href");return""!==t&&"#"!==t&&document.querySelector(this.getAttribute("href")).scrollIntoView({behavior:"smooth"}),!0}))})}function d(e){$.fancybox.destroy(),$.fancybox.open({src:e,type:"html",opts:{buttons:[],padding:0,smallBtn:!1}})}function u(e){if("undefined"!=typeof ym){let t={};e&&e.find('input[name="shpfull_price"]').length&&(t.order_price=e.find('input[name="shpfull_price"]').val()),ym(YM_ID,"reachGoal","pay",t)}}function p(){"undefined"!=typeof ga&&ga("send","event","robokassa_form","pay")}function f(){let e=$(".js-show-password");e.length&&e.click((function(){let e=$(this).prev();return"password"==e.attr("type")?e.attr("type","text"):e.attr("type","password"),!1}))}function m(){let e=document.getElementById("preloader");e?setTimeout(()=>{e.style.display="block"},400):console.log("No preloader")}function h(){let e=$(".js-login-form"),t=$(".js-popup"),n=$(".js-password-reset"),a=e.find(".js-fieldset"),r=e.find(".js-error"),o=a.find("input"),i=e.attr("action"),l={},c=!1,u=e.find('[name="csrfmiddlewaretoken"]').val(),p=e.find('[name="next"]'),m="",h=t.find(".js-signup");p.length&&(m=p.val()),e.length&&e.submit((function(e){return c||($.each(o,(function(){let e=$(this);l[e.attr("name")]=e.val()})),r.html(""),a.prop("disabled","disabled"),c=!0,$.ajax({url:i,data:l,method:"POST",dataType:"json",headers:{"X-CSRFToken":u},success:function(e){if(a.prop("disabled",""),$.isEmptyObject(e.errors))window.location.href=m;else{let t=e.errors;for(let e in t)r.append(`<p class="error">${t[e]}</p>`);c=!1}},error:function(e){alert("Ошибка! Попробуйте позже!"),a.prop("disabled",""),c=!1}})),!1})),n.length&&n.click((function(e){let t=$(this).attr("href");return $.ajax({url:t,method:"GET",dataType:"json",headers:{"X-CSRFToken":u},success:function(e){d(JSON.parse(e.html).html),function(){let e=$(".js-reset-form"),t=($(".js-popup"),e.find(".js-fieldset")),n=e.find(".js-error"),a=t.find("input"),r=e.attr("action"),o={},i=!1,s=e.find('[name="csrfmiddlewaretoken"]').val();e.length&&e.submit((function(l){return i||($.each(a,(function(){let e=$(this);o[e.attr("name")]=e.val()})),n.html(""),t.prop("disabled","disabled"),i=!0,$.ajax({url:r,data:o,method:"POST",dataType:"json",headers:{"X-CSRFToken":s},success:function(a){if(t.prop("disabled",""),$.isEmptyObject(a.errors)){let t="/all/accounts/reset_password_done_ajax/";$.ajax({url:t,method:"GET",dataType:"html",headers:{},success:function(t){e.parent().parent().html(t)},error:function(e){alert("Ошибка! Попробуйте позже!")}}),$.fancybox}else{let e=a.errors;for(let t in e)n.append(`<p class="error">${e[t]}</p>`)}i=!1,t.prop("disabled","")},error:function(e){alert("Ошибка! Попробуйте позже!"),t.prop("disabled",""),i=!1}})),!1})),f()}()},error:function(e){alert("Ошибка! Попробуйте позже!")}}),!1})),h.length&&h.click((function(e){s("/all/accounts/signup_ajax/",(function(e){d(e),g()}))})),f()}function g(){let e=$(".js-signup-form"),t=$(".js-popup"),n=e.find(".js-fieldset"),a=e.find(".js-error"),r=n.find("input"),o=e.attr("action"),i={},l=!1,c=e.find('[name="csrfmiddlewaretoken"]').val(),u=e.find('[name="next"]'),p="",m=t.find(".js-login");u.length&&(p=u.val()),e.length&&e.submit((function(t){if(!l){let t;$.each(r,(function(){let e=$(this);i[e.attr("name")]=e.val(),"email"==e.attr("name")&&(t=e.val())})),a.html(""),n.prop("disabled","disabled"),l=!0,$.ajax({url:o,data:i,method:"POST",dataType:"json",headers:{"X-CSRFToken":c},success:function(r){if(n.prop("disabled",""),$.isEmptyObject(r.errors)){let n="/all/accounts/verification_sent_ajax/";$.ajax({url:n,data:{email:t},method:"GET",dataType:"html",headers:{},success:function(t){e.parent().parent().html(t)},error:function(e){alert("Ошибка! Попробуйте позже!")}})}else{let e=r.errors;for(let t in e)a.append(`<p class="error">${e[t]}</p>`);l=!1}},error:function(e){alert("Ошибка! Попробуйте позже!"),n.prop("disabled",""),l=!1}})}return!1})),m.length&&m.click((function(e){s("/all/accounts/login_ajax/",(function(e){d(e),h()}))})),f()}function v(){if("undefined"!=typeof ym){let e={};$(document).on("submit",".js-ym-registration",(function(t){ym(YM_ID,"reachGoal","registration",e)})),$(document).on("submit",".js-ym-autorization",(function(t){ym(YM_ID,"reachGoal","autorization",e)})),$(document).on("submit",".js-ym-pay",(function(t){$('input[name="OutSum"]').length&&(e.order_price=$('input[name="OutSum"]').val()),ym(YM_ID,"reachGoal","pay",e)}))}"undefined"!=typeof ga&&($(document).on("submit",".js-ym-registration",(function(e){ga("send","event","account","registration")})),$(document).on("submit",".js-ym-autorization",(function(e){ga("send","event","account","autorization")})),$(document).on("submit",".js-ym-pay",(function(e){ga("send","event","robokassa_form","pay")})))}window.STEP=$("body").data("step"),window.CALC_NAME=$("body").data("calc-name"),document.addEventListener("DOMContentLoaded",()=>{window&&window.innerWidth,function(){let e=$(".js-signup"),t=$(".js-login"),n=$(".js-menu-parent .calc-menu__link"),a=($(".js-robokassa-form").find("form"),$(".js-get-payment-methods")),r=$(".js-achievement-close"),o=$(".js-popup-with-content");e.length&&e.click((function(e){s("/all/accounts/signup_ajax/",(function(e){d(e),g()}))})),t.length&&t.click((function(e){s("/all/accounts/login_ajax/",(function(e){d(e),h()}))})),n.length&&n.click((function(e){let t=$(this).parent();t.children("ul").slideToggle(),t.toggleClass("is-active")})),r.length&&r.click((function(e){let t=$(this);$.ajax({url:"/all/ajax/achievement_close/",method:"POST",dataType:"html",headers:{},success:function(e){t.parent().slideToggle()},error:function(e){alert("Ошибка! Попробуйте позже!")}})})),$.each(a,(function(e,t){$(t).click({calc_name:$(t).data("calc-name"),price_type:$(t).parent().find("[name=price_type]").val()},l)})),o.length&&o.click((function(e){let t=$(this),n=t.data("url"),a={calc_name:t.data("calc-name")};$.ajax({url:n,data:a,method:"POST",dataType:"html",success:function(e){$.fancybox.open({src:e,type:"html",opts:{buttons:["close"],padding:0,smallBtn:!1,btnTpl:{close:'<button data-fancybox-close class="popup__close""></button>"'}}})},error:function(e){alert("Ошибка! Попробуйте позже!")}})}))}(),"index"==STEP||("scales"==STEP?function(){let e=$(".js-add-new-input"),t=$(".js-scale-group"),n=$(".js-form-scales"),a=$(".js-form-upload"),s=$('[name="group_quantity"]'),l=($(".js-quantity"),$(".js-quantity-error")),c=[],d=$('[name="next_step"]').val(),u=!1,p=$(".js-clear-storage");void 0===sessionStorage[CALC_NAME]&&(sessionStorage[CALC_NAME]="{}"),"{}"==sessionStorage[CALC_NAME]&&p.hide();var f=JSON.parse(sessionStorage[CALC_NAME]);if(f.scales&&(c=f.scales),f.group_quantity&&s.val(f.group_quantity),c.length){t.html("");for(let e in c)i(c[e],".js-scale-group")}e.click((function(){i(!1,".js-scale-group")})),n.length&&n.submit((function(e){let t=$(this),n=t.find('[name="csrfmiddlewaretoken"]').val(),a=t.find(".js-fieldset"),r=t.attr("action"),o={},i=[];if(!u){let e=$(".js-scale-group").find("input"),t=$(".js-scale-error");u=!0,t.removeClass("error"),l.length&&l.removeClass("error"),a.prop("disabled","disabled"),$.each(e,(function(e){let t=$(this);i.push(t.val()),o[e]=t.val()})),o.calc_name=CALC_NAME,$('[name="group_quantity"]').length&&(o.group_quantity=parseInt($('[name="group_quantity"]').val()),f.group_quantity=o.group_quantity),$.ajax({url:r,data:o,method:"POST",dataType:"html",headers:{"X-CSRFToken":n},success:function(e){"OK"==e&&(f.scales=i,sessionStorage[CALC_NAME]=JSON.stringify(f),window.location.href=d)},error:function(e){"ERROR"==e.responseText?t.addClass("error"):"QUANTITY"==e.responseText?l.addClass("error"):alert("Ошибка! Попробуйте позже!"),u=!1,a.prop("disabled","")}})}return!1})),t.on("paste","input",(function(e){let n=$(this);return $.each(e.originalEvent.clipboardData.items,(function(e,a){"text/plain"===a.type&&a.getAsString((function(e){let a=o(r()),s=n.closest(".js-scale-input").index(),l=0,c=(e=e.trim(a)).split(new RegExp("["+a+"|\t]"));$.each(c,(function(e,n){if(""==n)return l++,!0;n=n.trim(" ");let a=s+e-l,r=t.find(`.js-scale-input:eq(${a}) input`);r.length?r.val(n):i(n,".js-scale-group")}))}))})),!1})),a.length&&a.submit((function(e){let t=$(this);if(!u){let e=t.find('[name="csrfmiddlewaretoken"]').val(),n=t.find(".js-scale-error"),a=t.find(".js-fieldset"),r=t.attr("action"),o=new FormData(t[0]);u=!0,n.removeClass("error"),a.prop("disabled","disabled"),$.ajax({url:r,data:o,cache:!1,contentType:!1,processData:!1,enctype:"multipart/form-data",method:"POST",dataType:"json",headers:{"X-CSRFToken":e},success:function(e){f.scales=e,sessionStorage[CALC_NAME]=JSON.stringify(f),window.location.href=""},error:function(e){u=!1,alert("Ошибка! Попробуйте позже!"),a.prop("disabled","")}})}return!1})),p&&p.click((function(){!function(){let e=$('[name="csrfmiddlewaretoken"]').val();delete sessionStorage[CALC_NAME],$.ajax({url:"/all/ajax/session_clear/",method:"POST",headers:{"X-CSRFToken":e},success:function(e){window.location.href=""}})}()}))}():"set-groups"==STEP?function(){let e=$('[name="group_number"]').val(),t=$('[name="step"]').val(),n=$(".js-form-group"),a=$(".js-group-data"),i=$("#group_name"),s=$("#group_count"),l=$(".js-hide-on-click"),c=!1,d=!1,u=$('[name="csrfmiddlewaretoken"]').val();var p=JSON.parse(sessionStorage[CALC_NAME]);function f(e){var t=$(this);return $.each(e.originalEvent.clipboardData.items,(function(e,n){"text/plain"===n.type&&n.getAsString((function(e){var n=o(r()),a=(new RegExp("[(s*)]"),0),i=t.closest("td").index()-1,s=t.closest("tr").index();e=e.trim(n),$.each(e.split(new RegExp("["+n+"]")),(function(e,n){if(""==n)return a++,!0;$.each(n.split("\t"),(function(n,r){r=r.trim(" ");var o=s+e,l=i+n,c=t.closest("tbody").find("tr:eq("+(o-a)+") td:eq("+l+") input");c.length&&c.val(r)}))}))}))})),!1}p["group_name_"+e]&&p["group_count_"+e]&&p["group_data_"+e]&&(c=!0),p["group_name_"+e]&&i.val(p["group_name_"+e]),p["group_count_"+e]&&s.val(p["group_count_"+e]),n.length&&n.submit((function(n){let r=$(this),o=!0;if($(".error").removeClass("error"),i.val()||(i.addClass("error"),i.prev().addClass("error"),o=!1),s.val()&&parseInt(s.val())||(s.addClass("error"),s.prev().addClass("error"),o=!1),o&&!d){let n=r.attr("action"),o={};d=!0,p["group_name_"+e]=o.group_name=i.val(),p["group_count_"+e]=o.group_count=parseInt(s.val()),o.step=t,o.group_number=e,o.calc_name=CALC_NAME,sessionStorage[CALC_NAME]=JSON.stringify(p),$.ajax({url:n,data:o,method:"POST",dataType:"html",headers:{"X-CSRFToken":u},success:function(e){a.html(e),l.hide(),a.on("paste","input",f),d=!1,function(){let e=$(".js-form-values"),t=e.find('[name="group_number"]').val(),n=e.find('[name="group_name"]').val(),a=e.find('[name="group_count"]').val(),r=e.find("tbody input"),o=$('[name="next_step"]').val(),i=!1,s=$(".js-form-upload");var l=JSON.parse(sessionStorage[CALC_NAME]);if(void 0!==l["group_data_"+t]){let e=l["group_data_"+t];$.each(r,(function(){let t=$(this);void 0!==e[t.data("scale")]&&void 0!==e[t.data("scale")][t.data("person")]&&t.val(e[t.data("scale")][t.data("person")])}))}e.length&&e.submit((function(s){if(function(e){let t=$("."+e),n=t.find(".js-zeroed"),a=!0,r=t.find("input"),o=$("#confirm");return n.click((function(){$.each(r,(function(){let e=$(this);""==e.val()&&e.val("0")})),t.trigger("submit")})),$.each(r,(function(){if(""==$(this).val())return $.fancybox.open({src:o,type:"html",opts:{buttons:[],padding:0,smallBtn:!1,helpers:{overlay:{css:{"background-color":"rgba(0,0,0,.3)"}}}}}),a=!1,!1})),a}("js-form-values")&&!i){let s=$(this),c=e.find('[name="csrfmiddlewaretoken"]').val(),d={},u=s.find(".js-fieldset"),p=s.attr("action");$.each(r,(function(){let e=$(this);d[e.data("scale")]||(d[e.data("scale")]={});let t=parseFloat(e.val().replace(/,/,"."));d[e.data("scale")][e.data("person")]=t,isNaN(d[e.data("scale")][e.data("person")])&&(d[e.data("scale")][e.data("person")]=0)})),i=!0,u.prop("disabled","disabled"),$.ajax({url:p,data:{group_data:JSON.stringify(d),group_count:a,group_name:n,group_number:t,calc_name:CALC_NAME},method:"POST",dataType:"html",headers:{"X-CSRFToken":c},success:function(e){"OK"==e?(l["group_data_"+t]=d,sessionStorage[CALC_NAME]=JSON.stringify(l),window.preloader(),window.location.href=o):(i=!1,u.prop("disabled",""))},error:function(e){let t=JSON.parse(e.responseText);t.DATA_ERROR?alert(`Стандартное отклонение шкалы ${t.DATA_ERROR} равно 0 - вычисление не возможно. Для того, чтобы была возможность произвести вычисления нужно, чтобы значения шкалы ${t.DATA_ERROR} отличались друг от друга`):alert("Ошибка! Попробуйте позже!"),i=!1,u.prop("disabled","")}})}return!1})),s.length&&s.submit((function(e){let n=$(this);if(!i){let e=n.find('[name="csrfmiddlewaretoken"]').val(),a=n.find(".js-scale-error"),r=n.find(".js-fieldset"),o=n.attr("action"),s=new FormData(n[0]);a.removeClass("error"),$.ajax({url:o,data:s,cache:!1,contentType:!1,processData:!1,enctype:"multipart/form-data",method:"POST",dataType:"json",headers:{"X-CSRFToken":e},success:function(e){l["group_data_"+t]=e,sessionStorage[CALC_NAME]=JSON.stringify(l),window.location.href=""},error:function(e){i=!1,alert("Ошибка! Попробуйте позже!"),r.prop("disabled","")}})}return!1}))}(),function(){let e=$(".js-table"),t=e.parent(),n=$(".js-table-copy");$(".js-thead-copy").innerHeight(e.find(".table__thead-th").innerHeight()),$(".js-tcell-copy").innerHeight(e.find(".table__tbody-th").innerHeight()-2),t.scroll((function(e){t.scrollLeft()>10?n.addClass("active"):n.removeClass("active")}))}()},error:function(t){if("count"==t.responseText){let t=1==e?p.group_name_2:p.group_name_1,n=1==e?p.group_count_2:p.group_count_1;alert("В группе "+t+" "+n+" человек, поэтому в текущей группе должно быть тоже "+n+" человек. Группы должны быть равны по количеству участников.")}else"NO_SCALES"==t.responseText&&alert("Нет шкал для заполнения! Сначала заполните шкалы на предыдущем шаге");d=!1}})}else console.log("Invalid info.");n.preventDefault(),n.stopPropagation()})),c&&n.trigger("submit")}():"prepare"==STEP?function(){var e=JSON.parse(sessionStorage[CALC_NAME]);let t=$(".js-form"),n=$('[name="next_step"]').val(),a=$('[name="calc_name"]').val(),r=$('[name="group_count"]').val(),o=$(".js-fieldset"),i=t.attr("action"),s=$('[name="csrfmiddlewaretoken"]').val(),l=$('[name="json"]'),c=!1,d={};for(let t=1;t<=r;t++)d["group_name_"+t]=e["group_name_"+t],d["group_count_"+t]=e["group_count_"+t],d["group_data_"+t]=e["group_data_"+t];d.group_quantity=e.group_quantity,function(){let t={},n=$(".js-table"),o=$(".js-group-change-link");for(let n=1;n<=r;n++){try{t["group_data_"+n]=e["group_data_"+n]}catch(e){console.error(e)}Object.keys(t["group_data_"+n]).length?i(e["group_count_"+n],t["group_data_"+n],e["group_name_"+n],n):console.error("no data")}function i(e,t,a,r){let o="";for(let n=0;n<e;n++){o+=`<tr class="table__tbody-tr table__group-row--${r}">`,o+=`<th class="table__tbody-th" scope="row">Группа "${a}" / Испытуемый ${n+1}</th>`;for(let e in t)o+=`<td class="table__tbody-td">${t[e][n+1]}</span></td>`;o+="</tr>"}$(n.find("tbody")).append(o)}$.each(o,(function(t,n){let r=$(this),o=r.find(".js-group-name"),i=r.find(".js-group-count");e["group_name_"+(t+1)]&&o.text(e["group_name_"+(t+1)]),e["group_count_"+(t+1)]&&i.text(e["group_count_"+(t+1)]),r.attr("href",`/all/${a}/steps/${t+2}/`)}))}(),d=JSON.stringify(d),l.val(d),t.length&&t.submit((function(){return c||(c=!0,o.prop("disabled","disabled"),$.ajax({url:i,data:{calc_name:a,json:l.val()},method:"POST",dataType:"html",headers:{"X-CSRFToken":s},success:function(e){"OK"==e?(m(),window.location.href=n):(c=!1,o.prop("disabled",""))},error:function(e){c=!1,alert("Ошибка! Попробуйте позже!"),o.prop("disabled","")}})),!1}))}():"short-result"==STEP?function(){let e=$(".js-form-send-promo"),t=e.find(".js-fieldset");if(e.length){let n=t.find("input");n.on("paste",(function(e){let t=e.originalEvent.clipboardData.getData("text/plain");for(let e=0;e<t.length;e++)n[e]&&$(n[e]).val(t[e]);return!1})),n.on("keyup",(function(e){if(!e.ctrlKey){let t=$(this),n=e.originalEvent.key,a=parseInt(t.attr("tabindex"));return e.which<=90&&e.which>=48?(t.val(n),a<9&&$(`input[tabindex=${a+1}]`).focus()):8==e.which&&a>1&&$(`input[tabindex=${a-1}]`).focus(),!1}}));let a=e.find('[name="csrfmiddlewaretoken"]').val(),r=e.attr("action"),o=!1;e.submit((function(e){if(!o){let e="";$.each(t.find("input"),(function(t,n){e+=$(n).val()})),8==e.length?(o=!0,t.prop("disabled","disabled"),$.ajax({url:r,data:{promo:e},method:"POST",dataType:"html",headers:{"X-CSRFToken":a},success:function(e){"OK"==e||(o=!1,t.prop("disabled",""))},error:function(e){"NOT EXIST"==e.responseText?alert("Промокод не существует!"):"USED"==e.responseText?alert("Промокод уже использован!"):alert("Ошибка! Попробуйте позже!"),t.prop("disabled",""),o=!1}})):alert("Введите корректный промокод!")}return!1}))}}():"full-result"==STEP||("profile"==STEP?function(){let e=$(".js-form-create-promo"),t=$(".js-delete-promo"),n=$(".js-show-add-email"),a=$(".js-add-email-form"),r=!1;e.length&&e.submit((function(e){if(!r){let e=$(this),t=e.find(".js-fieldset"),n=e.find(".js-promo-error"),a=e.find('[name="csrfmiddlewaretoken"]').val(),o=e.attr("action"),i=$(".js-promo-letters"),s="";$.each(i.find("input"),(function(e,t){s+=$(t).val()})),console.log(s),r=!0,t.prop("disabled","disabled"),n.removeClass("error"),$.ajax({url:o,data:{promo:s},method:"POST",dataType:"html",headers:{"X-CSRFToken":a},cache:!1,success:function(e){console.log(e),window.location.href=""},error:function(e){console.log(e),"EXIST"==e.responseText?alert("Ошибка! Промокод с таким названием уже существует!"):n.addClass("error"),r=!1,t.prop("disabled","")}})}return!1})),e.length&&(e.find("input").on("keyup",(function(e){let t=$(this),n=e.originalEvent.key,a=parseInt(t.attr("tabindex"));e.which<=90&&e.which>=48?(t.val(n),a<9&&$(`input[tabindex=${a+1}]`).focus()):8==e.which&&a>1&&$(`input[tabindex=${a-1}]`).focus()})),e.submit((function(e){return!1}))),t.length&&t.click((function(e){if(confirm("Вы действительно хотите удалить промокод?")){let e=$(this),t=$('[name="csrfmiddlewaretoken"]').val(),n=e.data("promo"),a="/all/accounts/delete_promo/";$.ajax({url:a,data:{promo:n},method:"POST",dataType:"html",headers:{"X-CSRFToken":t},cache:!1,success:function(t){e.closest("tr").remove()&&alert("Промокод удалён")},error:function(e){"NOT EXIST"==e.responseText?alert("Ошибка! Промокод с таким названием не существует!"):alert("Ошибка! Попробуйте позже!")}})}return!1})),n.length&&a.length&&n.click((function(e){"none"===a.css("display")&&a.slideToggle()}))}():"password"==STEP?function(){let e=$(".js-form-password-reset"),t=!1,n=e.find('[name="csrfmiddlewaretoken"]').val(),a=e.find(".js-fieldset"),r=e.find(".js-error");e.length&&e.submit((function(e){if(!t){let e=$(this),o=e.attr("action"),i=e.find('input[name="password1"]'),s=e.find('input[name="password2"]'),l={password1:i.val(),password2:s.val()};t=!0,a.prop("disabled","disabled"),r.removeClass("error"),e.find("input").removeClass("error"),r.html(""),$.ajax({url:o,data:l,method:"POST",dataType:"json",headers:{"X-CSRFToken":n},cache:!1,success:function(t){e.html("<p>Пароль успешно изменён!</p>")},error:function(n){for(let t in n.responseJSON.form.fields){let a=e.find(`input[name="${t}"]`),r=n.responseJSON.form.fields[t],o="";for(let e in r.errors)o+=r.errors[e]+"<br>";o.length&&(a.addClass("error"),a.next().html(o))}r.addClass("error"),t=!1,a.prop("disabled","")}})}return!1})),f()}():"login"==STEP?h():"signup"==STEP&&g())),v()}),document.addEventListener("DOMContentLoaded",c),window.YM_ID="57165547",window.ya=v,window.removeScale=function(e){$(e).parent().remove()},window.submitForm=function(){let e=$(".js-robokassa-form").find("form");u(e),p(),e.submit()},window.promoApply=function(e){let t=$(e),n=t.closest(".js-robokassa-form"),a=!0;$wrapper=t.closest(".js-payment-place");let r=$wrapper.find(".js-fieldset"),o=n.find('[name="csrfmiddlewaretoken"]').val();if(r.prop("disabled","disabled"),a){let e=$wrapper.find('[name="shppromo"]').val(),t=$wrapper.find('[name="shpcalc_name"]').val(),n="/all/accounts/apply_promo/";$.ajax({url:n,data:{promo:e,calc_name:t},method:"POST",dataType:"html",headers:{"X-CSRFToken":o},cache:!1,success:function(e){$wrapper.html(e),a=!1},error:function(e){"NOT EXIST"==e.responseText?alert("Ошибка! Промокод с таким названием не существует!"):"USED"==e.responseText?alert("Ошибка! Промокод уже использован вами!"):alert("Ошибка! Попробуйте позже!"),r.prop("disabled",""),a=!1}})}return!1},window.getPaymentMethodsAjax=l,window.changePaymentMethodsAjax=function(e){let t=$(e),n=t.parent().find("[name=shpcalc_name]").val(),a=t.parent().find("[name=shpprice_type]").val(),r=t.val(),o=!1,i=t.parent();if(!o){let e=t.parent().find('[name="csrfmiddlewaretoken"]').val(),s={calc_name:n,IncCurrLabel:r,price_type:a};i.prop("disabled","disabled"),o=!0,$.ajax({url:"/all/get_payment_methods_ajax/",data:s,method:"POST",dataType:"html",headers:{"X-CSRFToken":e},success:function(e){$.fancybox.destroy(),$.fancybox.open(e),i.prop("disabled",""),o=!1},error:function(e){alert("Ошибка! Попробуйте позже!"),i.prop("disabled",""),o=!1}})}},window.click_ya_payment_from_form=u,window.click_ga_payment=p,window.paymentFilter=function(e){let t=$(e),n=$(".js-filter-item"),a=$(".js-payment-list"),r=t.data("filter"),o=a.find(`[data-filter-target=${r}]`);n.removeClass("is-active"),t.addClass("is-active"),"all"!==r&&o.length?(a.children().hide(),o.show()):a.children().show()},window.selectPaymentMethod=function(e){let t=$(e),n=t.closest(".js-payment-methods"),a=n.data("calc_name"),r=n.data("price_type"),o=t.data("value"),i=n.find('[name="csrfmiddlewaretoken"]').val(),s=n.find(".js-hidden-form-place");$.ajax({url:"/all/ajax/get_payment_form/",data:{calc_name:a,price_type:r,IncCurrLabel:o},method:"POST",dataType:"html",headers:{"X-CSRFToken":i},success:function(e){s.html(e)},error:function(e){alert("Ошибка! Попробуйте позже!")}})},window.showPassword=f,window.preloader=m}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/extract-svg-sprite-webpack-plugin/lib/css-loader.js!./node_modules/sass-loader/dist/cjs.js?!./src/css/style.scss":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/extract-svg-sprite-webpack-plugin/lib/css-loader.js!./node_modules/sass-loader/dist/cjs.js??ref--7-4!./src/css/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
+/***/ "./src/css/style.scss":
+/*!****************************!*\
+  !*** ./src/css/style.scss ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/mini-css-extract-plugin/dist/loader.js!../../node_modules/css-loader/dist/cjs.js!../../node_modules/extract-svg-sprite-webpack-plugin/lib/css-loader.js!../../node_modules/sass-loader/dist/cjs.js??ref--7-4!./style.scss */ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/dist/cjs.js!./node_modules/extract-svg-sprite-webpack-plugin/lib/css-loader.js!./node_modules/sass-loader/dist/cjs.js?!./src/css/style.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/js/index.js":
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/js/utils.js");
+
+
+/* index.js */
+
+window.STEP = $('body').data('step');
+window.CALC_NAME = $('body').data('calc-name');
+(function Main() {
+  const indexjs = () => {
+    // console.log('index.js working...');
+
+    if (window && window.innerWidth > 600) {}
+    main();
+    if (STEP == 'index') {
+      index();
+    } else if (STEP == 'scales') {
+      stepScales();
+    } else if (STEP == 'set-groups') {
+      stepGroups();
+    } else if (STEP == 'prepare') {
+      stepPrepare();
+    } else if (STEP == 'short-result') {
+      stepShort();
+    } else if (STEP == 'full-result') {
+      stepFull();
+    } else if (STEP == 'profile') {
+      profile();
+    } else if (STEP == 'password') {
+      password();
+    } else if (STEP == 'login') {
+      login();
+    } else if (STEP == 'signup') {
+      signup();
+    }
+
+    // stepDocx();
+
+    ya();
+  };
+  document.addEventListener("DOMContentLoaded", indexjs);
+  document.addEventListener('DOMContentLoaded', _utils__WEBPACK_IMPORTED_MODULE_0__["smoothAnchorSlide"]);
+})();
+function main() {
+  let $signupButton = $('.js-signup');
+  let $loginButton = $('.js-login');
+  let $calcMenuParent = $('.js-menu-parent .calc-menu__link');
+  let $robokassaForm = $('.js-robokassa-form').find('form');
+  let $getPaymentMethodsButton = $('.js-get-payment-methods');
+  let $achievementClose = $('.js-achievement-close');
+  let $popupOpen = $('.js-popup-with-content');
+  $signupButton.length && $signupButton.click(function (e) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getAjaxByUrl"])('/all/accounts/signup_ajax/', success);
+    function success(html) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_0__["openFancybox"])(html);
+      signup();
+    }
+  });
+  $loginButton.length && $loginButton.click(function (e) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getAjaxByUrl"])('/all/accounts/login_ajax/', success);
+    function success(html) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_0__["openFancybox"])(html);
+      login();
+    }
+  });
+  $calcMenuParent.length && $calcMenuParent.click(function (e) {
+    let $this = $(this);
+    let $targetEl = $this.parent();
+    let $child = $targetEl.children('ul');
+    let activeClass = 'is-active';
+    $child.slideToggle();
+    $targetEl.toggleClass(activeClass);
+  });
+  $achievementClose.length && $achievementClose.click(function (e) {
+    let $this = $(this);
+    let url = '/all/ajax/achievement_close/';
+    // let csrfmiddlewaretoken = $this.parent().find('[name="csrfmiddlewaretoken"]').val();
+
+    $.ajax({
+      url,
+      method: 'POST',
+      dataType: 'html',
+      headers: {
+        // 'X-CSRFToken': csrfmiddlewaretoken
+      },
+      success: function (res) {
+        $this.parent().slideToggle();
+      },
+      error: function (res) {
+        alert('Ошибка! Попробуйте позже!');
+      }
+    });
+  });
+  $.each($getPaymentMethodsButton, function (i, item) {
+    $(item).click({
+      'calc_name': $(item).data('calc-name'),
+      'price_type': $(item).parent().find('[name=price_type]').val()
+    }, _utils__WEBPACK_IMPORTED_MODULE_0__["getPaymentMethodsAjax"]);
+  });
+  $popupOpen.length && $popupOpen.click(function (e) {
+    let $this = $(this);
+    let url = $this.data('url');
+    let data = {
+      calc_name: $this.data('calc-name')
+    };
+    $.ajax({
+      url,
+      data,
+      method: 'POST',
+      dataType: 'html',
+      success: function (res) {
+        $.fancybox.open({
+          src: res,
+          type: 'html',
+          opts: {
+            buttons: ['close'],
+            padding: 0,
+            smallBtn: false,
+            btnTpl: {
+              close: '<button data-fancybox-close class="popup__close""></button>"'
+            }
+          }
+        });
+      },
+      error: function (res) {
+        alert('Ошибка! Попробуйте позже!');
+      }
+    });
+  });
+}
+function login() {
+  let $form = $('.js-login-form');
+  let $popup = $('.js-popup');
+  let $reset = $('.js-password-reset');
+  let $fieldset = $form.find('.js-fieldset');
+  let $errors = $form.find('.js-error');
+  let $inputs = $fieldset.find('input');
+  let url = $form.attr('action');
+  let data = {};
+  let isSended = false;
+  let csrfmiddlewaretoken = $form.find('[name="csrfmiddlewaretoken"]').val();
+  let $redirect = $form.find('[name="next"]');
+  let redirect_to = '';
+  let $signupButton = $popup.find('.js-signup');
+  if ($redirect.length) {
+    redirect_to = $redirect.val();
+  }
+  $form.length && $form.submit(function (e) {
+    if (!isSended) {
+      $.each($inputs, function () {
+        let $this = $(this);
+        data[$this.attr('name')] = $this.val();
+      });
+      $errors.html('');
+      $fieldset.prop('disabled', 'disabled');
+      isSended = true;
+      $.ajax({
+        url,
+        data: data,
+        method: 'POST',
+        dataType: 'json',
+        headers: {
+          'X-CSRFToken': csrfmiddlewaretoken
+        },
+        success: function (res) {
+          $fieldset.prop('disabled', '');
+          if ($.isEmptyObject(res["errors"])) {
+            window.location.href = redirect_to;
+          } else {
+            let errors = res["errors"];
+            for (let key in errors) {
+              $errors.append(`<p class="error">${errors[key]}</p>`);
+            }
+            isSended = false;
+          }
+        },
+        error: function (res) {
+          alert('Ошибка! Попробуйте позже!');
+          $fieldset.prop('disabled', '');
+          isSended = false;
+        }
+      });
+    }
+    return false;
+  });
+  $reset.length && $reset.click(function (e) {
+    let $this = $(this);
+    let url = $this.attr('href');
+    $.ajax({
+      url,
+      method: 'GET',
+      dataType: 'json',
+      headers: {
+        'X-CSRFToken': csrfmiddlewaretoken
+      },
+      success: function (res) {
+        let json = JSON.parse(res.html);
+        Object(_utils__WEBPACK_IMPORTED_MODULE_0__["openFancybox"])(json.html);
+        resetPasswordAjax();
+      },
+      error: function (res) {
+        alert('Ошибка! Попробуйте позже!');
+      }
+    });
+    return false;
+  });
+  $signupButton.length && $signupButton.click(function (e) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getAjaxByUrl"])('/all/accounts/signup_ajax/', success);
+    function success(html) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_0__["openFancybox"])(html);
+      signup();
+    }
+  });
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["showPassword"])();
+}
+function resetPasswordAjax() {
+  let $form = $('.js-reset-form');
+  let $popup = $('.js-popup');
+  let $fieldset = $form.find('.js-fieldset');
+  let $errors = $form.find('.js-error');
+  let $inputs = $fieldset.find('input');
+  let url = $form.attr('action');
+  let data = {};
+  let isSended = false;
+  let csrfmiddlewaretoken = $form.find('[name="csrfmiddlewaretoken"]').val();
+  $form.length && $form.submit(function (e) {
+    if (!isSended) {
+      $.each($inputs, function () {
+        let $this = $(this);
+        data[$this.attr('name')] = $this.val();
+      });
+      $errors.html('');
+      $fieldset.prop('disabled', 'disabled');
+      isSended = true;
+      $.ajax({
+        url,
+        data: data,
+        method: 'POST',
+        dataType: 'json',
+        headers: {
+          'X-CSRFToken': csrfmiddlewaretoken
+        },
+        success: function (res) {
+          $fieldset.prop('disabled', '');
+          if ($.isEmptyObject(res["errors"])) {
+            let url = '/all/accounts/reset_password_done_ajax/';
+            $.ajax({
+              url,
+              method: 'GET',
+              dataType: 'html',
+              headers: {
+                // 'X-CSRFToken': csrfmiddlewaretoken
+              },
+              success: function (res) {
+                $form.parent().parent().html(res);
+              },
+              error: function (res) {
+                alert('Ошибка! Попробуйте позже!');
+              }
+            });
+            if ($.fancybox) {
+              // $.fancybox.destroy();
+            }
+          } else {
+            let errors = res["errors"];
+            for (let key in errors) {
+              $errors.append(`<p class="error">${errors[key]}</p>`);
+            }
+          }
+          isSended = false;
+          $fieldset.prop('disabled', '');
+        },
+        error: function (res) {
+          alert('Ошибка! Попробуйте позже!');
+          $fieldset.prop('disabled', '');
+          isSended = false;
+        }
+      });
+    }
+    return false;
+  });
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["showPassword"])();
+}
+function index() {}
+function signup() {
+  let $form = $('.js-signup-form');
+  let $popup = $('.js-popup');
+  let $fieldset = $form.find('.js-fieldset');
+  let $errors = $form.find('.js-error');
+  let $inputs = $fieldset.find('input');
+  let url = $form.attr('action');
+  let data = {};
+  let isSended = false;
+  let csrfmiddlewaretoken = $form.find('[name="csrfmiddlewaretoken"]').val();
+  let $redirect = $form.find('[name="next"]');
+  let redirect_to = '';
+  let $loginButton = $popup.find('.js-login');
+  if ($redirect.length) {
+    redirect_to = $redirect.val();
+  }
+  $form.length && $form.submit(function (e) {
+    if (!isSended) {
+      let email;
+      $.each($inputs, function () {
+        let $this = $(this);
+        data[$this.attr('name')] = $this.val();
+        if ($this.attr('name') == 'email') email = $this.val();
+      });
+      $errors.html('');
+      $fieldset.prop('disabled', 'disabled');
+      isSended = true;
+      $.ajax({
+        url,
+        data,
+        method: 'POST',
+        dataType: 'json',
+        headers: {
+          'X-CSRFToken': csrfmiddlewaretoken
+        },
+        success: function (res) {
+          $fieldset.prop('disabled', '');
+          if ($.isEmptyObject(res["errors"])) {
+            let url = '/all/accounts/verification_sent_ajax/';
+            $.ajax({
+              url,
+              data: {
+                'email': email
+              },
+              method: 'GET',
+              dataType: 'html',
+              headers: {
+                // 'X-CSRFToken': csrfmiddlewaretoken
+              },
+              success: function (res) {
+                $form.parent().parent().html(res);
+              },
+              error: function (res) {
+                alert('Ошибка! Попробуйте позже!');
+              }
+            });
+          } else {
+            let errors = res["errors"];
+            for (let key in errors) {
+              $errors.append(`<p class="error">${errors[key]}</p>`);
+            }
+            isSended = false;
+          }
+        },
+        error: function (res) {
+          alert('Ошибка! Попробуйте позже!');
+          $fieldset.prop('disabled', '');
+          isSended = false;
+        }
+      });
+    }
+    return false;
+  });
+  $loginButton.length && $loginButton.click(function (e) {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getAjaxByUrl"])('/all/accounts/login_ajax/', success);
+    function success(html) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_0__["openFancybox"])(html);
+      login();
+    }
+  });
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["showPassword"])();
+}
+function stepDocx() {
+  let $form = $('.js-form');
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["sendMailForm"])('js-form');
+}
+function stepShort() {
+  let $form = $('.js-form-send-promo');
+  let $fieldset = $form.find('.js-fieldset');
+  if ($form.length) {
+    let $letters = $fieldset.find('input');
+    $letters.on('paste', function (e) {
+      let text = e.originalEvent.clipboardData.getData('text/plain');
+      for (let i = 0; i < text.length; i++) {
+        $letters[i] && $($letters[i]).val(text[i]);
+      }
+      return false;
+    });
+    $letters.on('keyup', function (e) {
+      if (!e.ctrlKey) {
+        let $this = $(this);
+        let letter = e.originalEvent.key;
+        let tabindex = parseInt($this.attr('tabindex'));
+        if (e.which <= 90 && e.which >= 48) {
+          $this.val(letter);
+          if (tabindex < 9) {
+            $(`input[tabindex=${tabindex + 1}]`).focus();
+          }
+        } else if (e.which == 8) {
+          if (tabindex > 1) {
+            $(`input[tabindex=${tabindex - 1}]`).focus();
+          }
+        }
+        return false;
+      }
+    });
+    let csrftoken = $form.find('[name="csrfmiddlewaretoken"]').val();
+    let url = $form.attr('action');
+    let isSended = false;
+    $form.submit(function (e) {
+      if (!isSended) {
+        let promo = '';
+        $.each($fieldset.find('input'), function (i, item) {
+          promo += $(item).val();
+        });
+        if (promo.length == 8) {
+          isSended = true;
+          $fieldset.prop('disabled', 'disabled');
+          $.ajax({
+            url,
+            data: {
+              promo
+            },
+            method: 'POST',
+            dataType: 'html',
+            headers: {
+              'X-CSRFToken': csrftoken
+            },
+            success: function (res) {
+              if (res == 'OK') {
+                // window.location.href = next_step;
+              } else {
+                isSended = false;
+                $fieldset.prop('disabled', '');
+              }
+            },
+            error: function (res) {
+              if (res.responseText == 'NOT EXIST') {
+                alert('Промокод не существует!');
+              } else if (res.responseText == 'USED') {
+                alert('Промокод уже использован!');
+              } else {
+                alert('Ошибка! Попробуйте позже!');
+              }
+              $fieldset.prop('disabled', '');
+              isSended = false;
+            }
+          });
+        } else {
+          alert('Введите корректный промокод!');
+        }
+      }
+      return false;
+    });
+  }
+}
+function stepFull() {}
+function stepGroups() {
+  let group_number = $('[name="group_number"]').val();
+  let step = $('[name="step"]').val();
+  // let calc_name = $('[name="calc_name"]').val();
+
+  let $form = $('.js-form-group');
+  let $groupData = $('.js-group-data');
+  let classError = 'error';
+  let $groupName = $('#group_name');
+  let $groupCount = $('#group_count');
+  let $hideOnClick = $('.js-hide-on-click');
+  let isShowGroup = false;
+  let isSended = false;
+  let csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+  var STORAGE = JSON.parse(sessionStorage[CALC_NAME]);
+  if (STORAGE['group_name_' + group_number] && STORAGE['group_count_' + group_number] && STORAGE['group_data_' + group_number]) {
+    isShowGroup = true;
+  }
+  if (STORAGE['group_name_' + group_number]) $groupName.val(STORAGE['group_name_' + group_number]);
+  if (STORAGE['group_count_' + group_number]) $groupCount.val(STORAGE['group_count_' + group_number]);
+  $form.length && $form.submit(function (e) {
+    let $this = $(this);
+    let isValidForm = true;
+    $('.' + classError).removeClass(classError);
+    if (!$groupName.val()) {
+      $groupName.addClass(classError);
+      $groupName.prev().addClass(classError);
+      isValidForm = false;
+    }
+    if (!$groupCount.val() || !parseInt($groupCount.val())) {
+      $groupCount.addClass(classError);
+      $groupCount.prev().addClass(classError);
+      isValidForm = false;
+    }
+    if (isValidForm && !isSended) {
+      let url = $this.attr('action');
+      let data = {};
+      isSended = true;
+      STORAGE['group_name_' + group_number] = data['group_name'] = $groupName.val();
+      STORAGE['group_count_' + group_number] = data['group_count'] = parseInt($groupCount.val());
+      data['step'] = step;
+      data['group_number'] = group_number;
+      data['calc_name'] = CALC_NAME;
+      sessionStorage[CALC_NAME] = JSON.stringify(STORAGE);
+      $.ajax({
+        url,
+        data,
+        method: 'POST',
+        dataType: 'html',
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        success: function (res) {
+          $groupData.html(res);
+          $hideOnClick.hide();
+          $groupData.on('paste', 'input', pasteFromBufferToTable);
+          isSended = false;
+          getGroupInputs();
+          addTableHScroll();
+        },
+        error: function (res) {
+          if (res.responseText == 'count') {
+            let anotherGroupName = group_number == 1 ? STORAGE['group_name_2'] : STORAGE['group_name_1'];
+            let anotherGroupCount = group_number == 1 ? STORAGE['group_count_2'] : STORAGE['group_count_1'];
+            alert('В группе ' + anotherGroupName + ' ' + anotherGroupCount + ' человек, ' + 'поэтому в текущей группе должно быть тоже ' + anotherGroupCount + ' человек. ' + 'Группы должны быть равны по количеству участников.');
+          } else if (res.responseText == 'NO_SCALES') {
+            alert('Нет шкал для заполнения! Сначала заполните шкалы на предыдущем шаге');
+          }
+          isSended = false;
+        }
+      });
+    } else {
+      console.log('Invalid info.');
+    }
+    e.preventDefault();
+    e.stopPropagation();
+  });
+  if (isShowGroup) $form.trigger('submit');
+  function pasteFromBufferToTable(e) {
+    var $this = $(this);
+    $.each(e.originalEvent.clipboardData.items, function (i, v) {
+      if (v.type === 'text/plain') {
+        v.getAsString(function (text) {
+          var newLine = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getNewLineType"])(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getOSName"])());
+          var spaces = new RegExp('[(\s*)]');
+          var corr = 0;
+          var x = $this.closest('td').index() - 1,
+            // - th
+            y = $this.closest('tr').index();
+          text = text.trim(newLine);
+          $.each(text.split(new RegExp('[' + newLine + ']')), function (i2, v2) {
+            if (v2 == '') {
+              corr++;
+              return true;
+            }
+            $.each(v2.split('\t'), function (i3, v3) {
+              v3 = v3.trim(' ');
+              var row = y + i2,
+                col = x + i3;
+              var $targetInput = $this.closest('tbody').find('tr:eq(' + (row - corr) + ') td:eq(' + col + ') input');
+              $targetInput.length && $targetInput.val(v3);
+            });
+          });
+        });
+      }
+    });
+    return false;
+  }
+}
+function stepPrepare() {
+  var STORAGE = JSON.parse(sessionStorage[CALC_NAME]);
+  let $form = $('.js-form');
+  let next_step = $('[name="next_step"]').val();
+  let calc_name = $('[name="calc_name"]').val();
+  let group_count = $('[name="group_count"]').val();
+  let $fieldset = $('.js-fieldset');
+  let url = $form.attr('action');
+  let csrfmiddlewaretoken = $('[name="csrfmiddlewaretoken"]').val();
+  let $json = $('[name="json"]');
+  let isSended = false;
+  let data = {};
+  for (let i = 1; i <= group_count; i++) {
+    data['group_name_' + i] = STORAGE['group_name_' + i];
+    data['group_count_' + i] = STORAGE['group_count_' + i];
+    data['group_data_' + i] = STORAGE['group_data_' + i];
+  }
+  data['group_quantity'] = STORAGE['group_quantity'];
+  render();
+  data = JSON.stringify(data);
+  $json.val(data);
+  function render() {
+    let groups = {};
+    let $table = $('.js-table');
+    let $change = $('.js-group-change-link');
+    for (let i = 1; i <= group_count; i++) {
+      try {
+        groups['group_data_' + i] = STORAGE['group_data_' + i];
+      } catch (ex) {
+        console.error(ex);
+      }
+      if (Object.keys(groups['group_data_' + i]).length) {
+        addBody(STORAGE['group_count_' + i], groups['group_data_' + i], STORAGE['group_name_' + i], i);
+      } else {
+        console.error('no data');
+      }
+    }
+    $.each($change, function (i, elem) {
+      let $this = $(this);
+      let $name = $this.find('.js-group-name');
+      let $count = $this.find('.js-group-count');
+      if (STORAGE['group_name_' + (i + 1)]) $name.text(STORAGE['group_name_' + (i + 1)]);
+      if (STORAGE['group_count_' + (i + 1)]) $count.text(STORAGE['group_count_' + (i + 1)]);
+      $this.attr('href', `/all/${calc_name}/steps/${i + 2}/`);
+    });
+    function addBody(count, group_data, group_name, group_number) {
+      let template = '';
+      for (let i = 0; i < count; i++) {
+        template += `<tr class="table__tbody-tr table__group-row--${group_number}">`;
+        template += `<th class="table__tbody-th" scope="row">Группа "${group_name}" / Испытуемый ${i + 1}</th>`;
+        for (let scale in group_data) {
+          template += `<td class="table__tbody-td">${group_data[scale][i + 1]}</span></td>`;
+        }
+        template += '</tr>';
+      }
+      $($table.find('tbody')).append(template);
+    }
+  }
+  $form.length && $form.submit(function () {
+    if (!isSended) {
+      isSended = true;
+      $fieldset.prop('disabled', 'disabled');
+      $.ajax({
+        url,
+        data: {
+          calc_name,
+          json: $json.val()
+        },
+        method: 'POST',
+        dataType: 'html',
+        headers: {
+          'X-CSRFToken': csrfmiddlewaretoken
+        },
+        success: function (res) {
+          if (res == 'OK') {
+            Object(_utils__WEBPACK_IMPORTED_MODULE_0__["preloader"])();
+            window.location.href = next_step;
+          } else {
+            isSended = false;
+            $fieldset.prop('disabled', '');
+          }
+        },
+        error: function (res) {
+          isSended = false;
+          alert('Ошибка! Попробуйте позже!');
+          $fieldset.prop('disabled', '');
+        }
+      });
+    }
+    return false;
+  });
+}
+function stepScales() {
+  let $newScaleInput = $('.js-add-new-input');
+  let newInputPlace = '.js-scale-group';
+  let $inputPlace = $('.js-scale-group');
+  let $formScales = $('.js-form-scales');
+  let $formUpload = $('.js-form-upload');
+  let $group_quantity = $('[name="group_quantity"]');
+  let $quantity = $('.js-quantity');
+  let $errorQuantity = $('.js-quantity-error');
+  let classError = 'error';
+  let scales = [];
+  let next_step = $('[name="next_step"]').val();
+  let isSended = false;
+  let $clearSotarage = $('.js-clear-storage');
+  if (typeof sessionStorage[CALC_NAME] == 'undefined') {
+    sessionStorage[CALC_NAME] = '{}';
+  }
+  if (sessionStorage[CALC_NAME] == '{}') {
+    $clearSotarage.hide();
+  }
+  var STORAGE = JSON.parse(sessionStorage[CALC_NAME]);
+  if (STORAGE['scales']) {
+    scales = STORAGE['scales'];
+  }
+  if (STORAGE['group_quantity']) {
+    $group_quantity.val(STORAGE['group_quantity']);
+  }
+  if (scales.length) {
+    $inputPlace.html('');
+    for (let input in scales) {
+      Object(_utils__WEBPACK_IMPORTED_MODULE_0__["addInputWithValue"])(scales[input], newInputPlace);
+    }
+  }
+  $newScaleInput.click(function () {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["addInputWithValue"])(false, newInputPlace);
+  });
+  $formScales.length && $formScales.submit(function (e) {
+    let $this = $(this);
+    let csrftoken = $this.find('[name="csrfmiddlewaretoken"]').val();
+    let $fieldset = $this.find('.js-fieldset');
+    let url = $this.attr('action');
+    let group_quantity;
+    let data = {};
+    let newScales = [];
+    if (!isSended) {
+      let $inputs = $('.js-scale-group').find('input');
+      let $error = $('.js-scale-error');
+      isSended = true;
+      $error.removeClass(classError);
+      $errorQuantity.length && $errorQuantity.removeClass(classError);
+      $fieldset.prop('disabled', 'disabled');
+      $.each($inputs, function (i) {
+        let $this = $(this);
+        newScales.push($this.val());
+        data[i] = $this.val();
+      });
+      data['calc_name'] = CALC_NAME;
+      if ($('[name="group_quantity"]').length) {
+        data['group_quantity'] = parseInt($('[name="group_quantity"]').val());
+        STORAGE['group_quantity'] = data['group_quantity'];
+      }
+      $.ajax({
+        url,
+        data,
+        method: 'POST',
+        dataType: 'html',
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        success: function (res) {
+          if (res == 'OK') {
+            STORAGE['scales'] = newScales;
+            sessionStorage[CALC_NAME] = JSON.stringify(STORAGE);
+            window.location.href = next_step;
+          }
+        },
+        error: function (res) {
+          if (res.responseText == 'ERROR') {
+            $error.addClass(classError);
+          } else if (res.responseText == 'QUANTITY') {
+            $errorQuantity.addClass(classError);
+          } else {
+            alert('Ошибка! Попробуйте позже!');
+          }
+          isSended = false;
+          $fieldset.prop('disabled', '');
+        }
+      });
+    }
+    return false;
+  });
+  $inputPlace.on('paste', 'input', function (e) {
+    let $this = $(this);
+    let scaleInput = '.js-scale-input';
+    $.each(e.originalEvent.clipboardData.items, function (i, val) {
+      if (val.type === 'text/plain') {
+        val.getAsString(function (text) {
+          let newLine = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getNewLineType"])(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getOSName"])());
+          let y = $this.closest(scaleInput).index();
+          let corr = 0;
+          text = text.trim(newLine);
+          let values = text.split(new RegExp('[' + newLine + '|\t]'));
+          $.each(values, function (i_row, val_row) {
+            if (val_row == '') {
+              corr++;
+              return true;
+            }
+            val_row = val_row.trim(' ');
+            let index = y + i_row - corr;
+            let $targetInput = $inputPlace.find(`${scaleInput}:eq(${index}) input`);
+            if (!$targetInput.length) {
+              Object(_utils__WEBPACK_IMPORTED_MODULE_0__["addInputWithValue"])(val_row, newInputPlace);
+            } else {
+              $targetInput.val(val_row);
+            }
+          });
+        });
+      }
+    });
+    return false;
+  });
+  $formUpload.length && $formUpload.submit(function (e) {
+    let $this = $(this);
+    if (!isSended) {
+      let csrftoken = $this.find('[name="csrfmiddlewaretoken"]').val();
+      let $error = $this.find('.js-scale-error');
+      let $fieldset = $this.find('.js-fieldset');
+      let url = $this.attr('action');
+      // let file = document.getElementById('file').files[0];
+      let data = new FormData($this[0]);
+      isSended = true;
+      $error.removeClass(classError);
+      $fieldset.prop('disabled', 'disabled');
+      $.ajax({
+        url,
+        data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        enctype: 'multipart/form-data',
+        method: 'POST',
+        dataType: 'json',
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        success: function (res) {
+          STORAGE['scales'] = res;
+          sessionStorage[CALC_NAME] = JSON.stringify(STORAGE);
+          window.location.href = '';
+        },
+        error: function (res) {
+          isSended = false;
+          alert('Ошибка! Попробуйте позже!');
+          $fieldset.prop('disabled', '');
+        }
+      });
+    }
+    return false;
+  });
+  $clearSotarage && $clearSotarage.click(function () {
+    Object(_utils__WEBPACK_IMPORTED_MODULE_0__["clearStorage"])();
+  });
+}
+function getGroupInputs() {
+  let $form = $('.js-form-values');
+  let group_number = $form.find('[name="group_number"]').val();
+  let group_name = $form.find('[name="group_name"]').val();
+  let group_count = $form.find('[name="group_count"]').val();
+  let $inputs = $form.find('tbody input');
+  let next_step = $('[name="next_step"]').val();
+  let isSended = false;
+  let classError = 'error';
+  let $formUpload = $('.js-form-upload');
+  var STORAGE = JSON.parse(sessionStorage[CALC_NAME]);
+  if (typeof STORAGE['group_data_' + group_number] !== 'undefined') {
+    let group_data = STORAGE['group_data_' + group_number];
+    $.each($inputs, function () {
+      let $this = $(this);
+      if (typeof group_data[$this.data('scale')] !== 'undefined' && typeof group_data[$this.data('scale')][$this.data('person')] !== 'undefined') $this.val(group_data[$this.data('scale')][$this.data('person')]);
+    });
+  }
+  $form.length && $form.submit(function (e) {
+    let isConfirm = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["confirmEmptySubmit"])('js-form-values');
+    if (isConfirm && !isSended) {
+      let $this = $(this);
+      let csrftoken = $form.find('[name="csrfmiddlewaretoken"]').val();
+      let values = {};
+      let $fieldset = $this.find('.js-fieldset');
+      let url = $this.attr('action');
+      $.each($inputs, function () {
+        let $this = $(this);
+        if (!values[$this.data('scale')]) {
+          values[$this.data('scale')] = {};
+        }
+        let prepare_value = parseFloat($this.val().replace(/,/, '.'));
+        values[$this.data('scale')][$this.data('person')] = prepare_value;
+        if (isNaN(values[$this.data('scale')][$this.data('person')])) {
+          values[$this.data('scale')][$this.data('person')] = 0;
+        }
+      });
+      isSended = true;
+      $fieldset.prop('disabled', 'disabled');
+      $.ajax({
+        url,
+        data: {
+          'group_data': JSON.stringify(values),
+          group_count,
+          group_name,
+          group_number,
+          calc_name: CALC_NAME
+        },
+        method: 'POST',
+        dataType: 'html',
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        success: function (res) {
+          if (res == 'OK') {
+            STORAGE['group_data_' + group_number] = values;
+            sessionStorage[CALC_NAME] = JSON.stringify(STORAGE);
+            window.preloader();
+            window.location.href = next_step;
+          } else {
+            isSended = false;
+            $fieldset.prop('disabled', '');
+          }
+        },
+        error: function (res) {
+          let error = JSON.parse(res.responseText);
+          if (error['DATA_ERROR']) {
+            alert(`Стандартное отклонение шкалы ${error['DATA_ERROR']} равно 0 - вычисление не возможно. Для того, чтобы была возможность произвести вычисления нужно, чтобы значения шкалы ${error['DATA_ERROR']} отличались друг от друга`);
+          } else {
+            alert('Ошибка! Попробуйте позже!');
+          }
+          isSended = false;
+          $fieldset.prop('disabled', '');
+        }
+      });
+    }
+    return false;
+  });
+  $formUpload.length && $formUpload.submit(function (e) {
+    let $this = $(this);
+    if (!isSended) {
+      let csrftoken = $this.find('[name="csrfmiddlewaretoken"]').val();
+      let $error = $this.find('.js-scale-error');
+      let $fieldset = $this.find('.js-fieldset');
+      let url = $this.attr('action');
+      // let file = document.getElementById('file').files[0];
+      let data = new FormData($this[0]);
+
+      // isSended = true;
+      $error.removeClass(classError);
+      // $fieldset.prop('disabled', 'disabled');
+
+      $.ajax({
+        url,
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        enctype: 'multipart/form-data',
+        method: 'POST',
+        dataType: 'json',
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        success: function (res) {
+          STORAGE['group_data_' + group_number] = res;
+          sessionStorage[CALC_NAME] = JSON.stringify(STORAGE);
+          window.location.href = '';
+        },
+        error: function (res) {
+          isSended = false;
+          alert('Ошибка! Попробуйте позже!');
+          $fieldset.prop('disabled', '');
+        }
+      });
+    }
+    return false;
+  });
+}
+function ya() {
+  if (typeof ym !== 'undefined') {
+    let ym_params = {};
+    $(document).on('submit', '.js-ym-registration', function (e) {
+      ym(YM_ID, 'reachGoal', 'registration', ym_params);
+    });
+    $(document).on('submit', '.js-ym-autorization', function (e) {
+      ym(YM_ID, 'reachGoal', 'autorization', ym_params);
+    });
+    $(document).on('submit', '.js-ym-pay', function (e) {
+      if ($('input[name="OutSum"]').length) {
+        ym_params['order_price'] = $('input[name="OutSum"]').val();
+      }
+      ym(YM_ID, 'reachGoal', 'pay', ym_params);
+    });
+  }
+  if (typeof ga !== 'undefined') {
+    $(document).on('submit', '.js-ym-registration', function (e) {
+      ga('send', 'event', 'account', 'registration');
+    });
+    $(document).on('submit', '.js-ym-autorization', function (e) {
+      ga('send', 'event', 'account', 'autorization');
+    });
+    $(document).on('submit', '.js-ym-pay', function (e) {
+      ga('send', 'event', 'robokassa_form', 'pay');
+    });
+  }
+}
+function profile() {
+  let $form = $('.js-form-create-promo');
+  let $promoDelete = $('.js-delete-promo');
+  let $addEmailShow = $('.js-show-add-email');
+  let $addEmailForm = $('.js-add-email-form');
+  let isSended = false;
+  let classError = 'error';
+  $form.length && $form.submit(function (e) {
+    if (!isSended) {
+      let $this = $(this);
+      let $fieldset = $this.find('.js-fieldset');
+      let $error = $this.find('.js-promo-error');
+      let csrftoken = $this.find('[name="csrfmiddlewaretoken"]').val();
+      let url = $this.attr('action');
+      let $promoLetters = $('.js-promo-letters');
+      let promo = '';
+      $.each($promoLetters.find('input'), function (i, item) {
+        promo += $(item).val();
+      });
+      console.log(promo);
+      isSended = true;
+      $fieldset.prop('disabled', 'disabled');
+      $error.removeClass(classError);
+      $.ajax({
+        url,
+        data: {
+          promo
+        },
+        method: 'POST',
+        dataType: 'html',
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        cache: false,
+        success: function (res) {
+          console.log(res);
+          window.location.href = '';
+          // if (res == 'OK') {
+          // } else {
+          //     isSended = false;
+          //     $fieldset.prop('disabled', '');
+          // }
+        },
+        error: function (res) {
+          console.log(res);
+          if (res.responseText == 'EXIST') {
+            alert('Ошибка! Промокод с таким названием уже существует!');
+          } else {
+            $error.addClass(classError);
+          }
+          isSended = false;
+          $fieldset.prop('disabled', '');
+
+          // alert('Ошибка! Попробуйте позже!');
+        }
+      });
+    }
+    return false;
+  });
+  if ($form.length) {
+    let $letters = $form.find('input');
+    $letters.on('keyup', function (e) {
+      let $this = $(this);
+      let letter = e.originalEvent.key;
+      let tabindex = parseInt($this.attr('tabindex'));
+      if (e.which <= 90 && e.which >= 48) {
+        $this.val(letter);
+        if (tabindex < 9) {
+          $(`input[tabindex=${tabindex + 1}]`).focus();
+        }
+      } else if (e.which == 8) {
+        if (tabindex > 1) {
+          $(`input[tabindex=${tabindex - 1}]`).focus();
+        }
+      }
+    });
+    $form.submit(function (e) {
+      return false;
+    });
+  }
+  $promoDelete.length && $promoDelete.click(function (e) {
+    if (confirm('Вы действительно хотите удалить промокод?')) {
+      let $this = $(this);
+      let csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+      let promo = $this.data('promo');
+      let url = '/all/accounts/delete_promo/';
+      $.ajax({
+        url,
+        data: {
+          promo
+        },
+        method: 'POST',
+        dataType: 'html',
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        cache: false,
+        success: function (res) {
+          if ($this.closest('tr').remove()) alert('Промокод удалён');
+        },
+        error: function (res) {
+          if (res.responseText == 'NOT EXIST') {
+            alert('Ошибка! Промокод с таким названием не существует!');
+          } else {
+            alert('Ошибка! Попробуйте позже!');
+          }
+        }
+      });
+    }
+    return false;
+  });
+  $addEmailShow.length && $addEmailForm.length && $addEmailShow.click(function (e) {
+    if ($addEmailForm.css('display') === 'none') {
+      $addEmailForm.slideToggle();
+    }
+  });
+}
+function password() {
+  let $form = $('.js-form-password-reset');
+  let isSended = false;
+  let csrftoken = $form.find('[name="csrfmiddlewaretoken"]').val();
+  let $fieldset = $form.find('.js-fieldset');
+  let classError = 'error';
+  let $error = $form.find('.js-error');
+  $form.length && $form.submit(function (e) {
+    if (!isSended) {
+      let $this_form = $(this);
+      let url = $this_form.attr('action');
+      let $password1 = $this_form.find('input[name="password1"]');
+      let $password2 = $this_form.find('input[name="password2"]');
+      let data = {
+        'password1': $password1.val(),
+        'password2': $password2.val()
+      };
+      isSended = true;
+      $fieldset.prop('disabled', 'disabled');
+      $error.removeClass(classError);
+      $this_form.find('input').removeClass(classError);
+      $error.html('');
+      $.ajax({
+        url,
+        data,
+        method: 'POST',
+        dataType: 'json',
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        cache: false,
+        success: function (res) {
+          $this_form.html('<p>Пароль успешно изменён!</p>');
+          // if (res.location) {
+          //   window.location.href = res.location;
+          // } else {
+          //   window.location.href = '/all/';
+          // }
+        },
+        error: function (res) {
+          for (let input in res.responseJSON.form.fields) {
+            let $input = $this_form.find(`input[name="${input}"]`);
+            let field = res.responseJSON.form.fields[input];
+            let errors = '';
+            for (let i in field.errors) {
+              errors += field.errors[i] + "<br>";
+            }
+            if (errors.length) {
+              $input.addClass(classError);
+              $input.next().html(errors);
+            }
+          }
+          $error.addClass(classError);
+          isSended = false;
+          $fieldset.prop('disabled', '');
+        }
+      });
+    }
+    return false;
+  });
+  Object(_utils__WEBPACK_IMPORTED_MODULE_0__["showPassword"])();
+}
+function addTableHScroll() {
+  let $table = $('.js-table');
+  let $tableWrapper = $table.parent();
+  let $tableCopy = $('.js-table-copy');
+  let classActive = 'active';
+  $('.js-thead-copy').innerHeight($table.find('.table__thead-th').innerHeight());
+  $('.js-tcell-copy').innerHeight($table.find('.table__tbody-th').innerHeight() - 2); // border
+
+  $tableWrapper.scroll(function (e) {
+    if ($tableWrapper.scrollLeft() > 10) {
+      $tableCopy.addClass(classActive);
+    } else {
+      $tableCopy.removeClass(classActive);
+    }
+  });
+}
+window.YM_ID = '57165547';
+window.ya = ya;
+window.removeScale = _utils__WEBPACK_IMPORTED_MODULE_0__["removeScale"];
+window.submitForm = _utils__WEBPACK_IMPORTED_MODULE_0__["submitForm"];
+window.promoApply = _utils__WEBPACK_IMPORTED_MODULE_0__["promoApply"];
+window.getPaymentMethodsAjax = _utils__WEBPACK_IMPORTED_MODULE_0__["getPaymentMethodsAjax"];
+window.changePaymentMethodsAjax = _utils__WEBPACK_IMPORTED_MODULE_0__["changePaymentMethodsAjax"];
+window.click_ya_payment_from_form = _utils__WEBPACK_IMPORTED_MODULE_0__["click_ya_payment_from_form"];
+window.click_ga_payment = _utils__WEBPACK_IMPORTED_MODULE_0__["click_ga_payment"];
+window.paymentFilter = _utils__WEBPACK_IMPORTED_MODULE_0__["paymentFilter"];
+window.selectPaymentMethod = _utils__WEBPACK_IMPORTED_MODULE_0__["selectPaymentMethod"];
+window.showPassword = _utils__WEBPACK_IMPORTED_MODULE_0__["showPassword"];
+window.preloader = _utils__WEBPACK_IMPORTED_MODULE_0__["preloader"];
+
+/***/ }),
+
+/***/ "./src/js/utils.js":
+/*!*************************!*\
+  !*** ./src/js/utils.js ***!
+  \*************************/
+/*! exports provided: getOSName, getNewLineType, confirmEmptySubmit, sendMailForm, addInputWithValue, removeScale, getCookie, getCaptcha, clearStorage, getAjaxByUrl, getPaymentFormAjax, getPaymentMethodsAjax, changePaymentMethodsAjax, submitForm, smoothAnchorSlide, openFancybox, promoApply, click_ya_payment_from_form, click_ga_payment, paymentFilter, selectPaymentMethod, showPassword, preloader */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOSName", function() { return getOSName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNewLineType", function() { return getNewLineType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "confirmEmptySubmit", function() { return confirmEmptySubmit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendMailForm", function() { return sendMailForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addInputWithValue", function() { return addInputWithValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeScale", function() { return removeScale; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCookie", function() { return getCookie; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCaptcha", function() { return getCaptcha; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearStorage", function() { return clearStorage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAjaxByUrl", function() { return getAjaxByUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaymentFormAjax", function() { return getPaymentFormAjax; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaymentMethodsAjax", function() { return getPaymentMethodsAjax; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changePaymentMethodsAjax", function() { return changePaymentMethodsAjax; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "submitForm", function() { return submitForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "smoothAnchorSlide", function() { return smoothAnchorSlide; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openFancybox", function() { return openFancybox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "promoApply", function() { return promoApply; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "click_ya_payment_from_form", function() { return click_ya_payment_from_form; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "click_ga_payment", function() { return click_ga_payment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentFilter", function() { return paymentFilter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectPaymentMethod", function() { return selectPaymentMethod; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showPassword", function() { return showPassword; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "preloader", function() { return preloader; });
+
+
+var inputCount = 2;
+var sitekey = '6LfDtY4UAAAAANEBfbIswo6tCV7SjUyrSfci02aQ';
+function getOSName() {
+  var OSName = "Unknown";
+  if (navigator.appVersion.indexOf("Win") != -1) OSName = "Windows";else if (navigator.appVersion.indexOf("Mac") != -1) OSName = "MacOS";else if (navigator.appVersion.indexOf("X11") != -1) OSName = "UNIX";else if (navigator.appVersion.indexOf("Linux") != -1) OSName = "Linux";
+  return OSName;
+}
+function getNewLineType(OSName) {
+  var newLine = '\n';
+  if (OSName == "Windows") newLine = '\r\n';else if (OSName == "MacOS") newLine = '\n';else if (OSName == "UNIX") newLine = '\n';else if (OSName == "Linux") newLine = '\n';
+  return newLine;
+}
+function confirmEmptySubmit(classForm) {
+  let $form = $('.' + classForm);
+  let $zeroed = $form.find('.js-zeroed');
+  // let $close = $form.find('.js-fancybox-close');
+  let isConfirm = true;
+  let $inputs = $form.find('input');
+  let $modal = $('#confirm');
+  $zeroed.click(function () {
+    $.each($inputs, function () {
+      let $this = $(this);
+      if ($this.val() == '') {
+        $this.val('0');
+      }
+    });
+    $form.trigger('submit');
+  });
+
+  // $close.click(function() {
+  //     $.fancybox.close();
+  // });
+
+  $.each($inputs, function () {
+    let $this = $(this);
+    if ($this.val() == '') {
+      $.fancybox.open({
+        src: $modal,
+        type: 'html',
+        opts: {
+          buttons: [],
+          padding: 0,
+          smallBtn: false,
+          helpers: {
+            overlay: {
+              css: {
+                'background-color': 'rgba(0,0,0,.3)'
+              }
+            }
+          }
+        }
+      });
+      isConfirm = false;
+      return false;
+    }
+  });
+  return isConfirm;
+}
+function sendMailForm(classForm) {
+  var $form = $('.' + classForm);
+  let $formCover = $form.find('.js-form-cover');
+  let $fieldset = $form.find('.js-fieldset');
+  let isSended = false;
+  let next_step = $form.find('[name="next_step"]').val();
+  let calc_name = $form.find('[name="calc_name"]').val();
+  let action = $form.find('[name="action"]').val();
+  let url = $form.attr('action');
+  let csrfmiddlewaretoken = $form.find('[name="csrfmiddlewaretoken"]').val();
+  $form.length && $form.on('submit', function (e) {
+    let email = $form.find('[name="email"]').val();
+    if (!isSended) {
+      isSended = true;
+      $formCover.show();
+      $fieldset.prop('disabled', 'disabled');
+      $.ajax({
+        url,
+        data: {
+          calc_name,
+          email,
+          action
+        },
+        method: 'POST',
+        dataType: 'html',
+        headers: {
+          'X-CSRFToken': csrfmiddlewaretoken
+        },
+        success: function (res) {
+          if (res == 'OK') {
+            $form.html('<b>Сообщение успешно отправлено на почту ' + email + '!</b>');
+            if (next_step) window.location.href = next_step;
+          }
+        },
+        error: function (res) {
+          if (res.responseText == 'email') {
+            alert('Введите корректный e-mail!');
+          } else {
+            alert('Ошибка! Попробуйте позже!');
+          }
+          isSended = false;
+          $formCover.hide();
+          $fieldset.prop('disabled', '');
+        }
+      });
+    }
+    return false;
+  });
+}
+;
+function addInputWithValue(value, place) {
+  let $place = $(place);
+  value = value || '';
+  let html = `<div class="step-page__scale">
+                    <input type="text" class="step-page__scale-input input" name="scale-${inputCount}" placeholder="Введите название" value="${value}">
+                    <button onclick="removeScale(this)" type="button" class="step-page__scale-remove">Удалить шкалу</button>
+                </div>`;
+  $place.append(html);
+  inputCount++;
+}
+function removeScale(button) {
+  $(button).parent().remove();
+}
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie != '') {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = $.trim(cookies[i]);
+      if (cookie.substring(0, name.length + 1) == name + '=') {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+function getCaptcha(csrfmiddlewaretoken) {
+  typeof grecaptcha !== 'undefined' && grecaptcha.ready(function () {
+    grecaptcha.execute(sitekey, {
+      action: 'statpsy'
+    }).then(function (token) {
+      $.ajax({
+        url: '/all/g_captcha/',
+        data: {
+          'token': token
+        },
+        // headers: {
+        //     'X-CSRFToken': csrfmiddlewaretoken
+        // },
+        method: 'POST'
+      });
+    });
+  });
+}
+function clearStorage() {
+  let csrftoken = $('[name="csrfmiddlewaretoken"]').val();
+  delete sessionStorage[CALC_NAME];
+  $.ajax({
+    url: '/all/ajax/session_clear/',
+    method: 'POST',
+    headers: {
+      'X-CSRFToken': csrftoken
+    },
+    success: function (res) {
+      window.location.href = '';
+    }
+  });
+}
+function getAjaxByUrl(url, success) {
+  let csrftoken = getCookie('csrftoken');
+  // console.log('getAjaxByUrl');
+  $.ajax({
+    type: 'GET',
+    headers: {
+      'X-CSRFToken': csrftoken
+    },
+    url,
+    dataType: 'json',
+    success: function (data) {
+      // console.log('success');
+      if (typeof data.html == 'undefined') {
+        throw Error('no success data');
+      } else {
+        success(JSON.parse(data.html).html);
+      }
+    }
+  });
+}
+
+// function open_payment_methods(inner, htmlForm) {
+//     let $form = $(inner).closest('.js-robokassa-form');
+//     $(htmlForm).fancybox({
+//         "onClosed": function(){
+//           // fancybox is closed, run myOtherFunct()
+//        }
+//     });
+// }
+
+function getPaymentFormAjax(data) {
+  let url = '/all/ajax/get_payment_form/';
+  // let csrftoken = $this.parent().find('[name="csrfmiddlewaretoken"]').val();
+  // let data = {
+  //     calc_name,
+  //     IncCurrLabel,
+  //     price_type
+  // };
+
+  $fieldset.prop('disabled', 'disabled');
+  isChanged = true;
+  $.ajax({
+    url,
+    data,
+    method: 'POST',
+    dataType: 'html',
+    headers: {
+      // 'X-CSRFToken': csrftoken
+    },
+    success: function (res) {
+      $.fancybox.open({
+        src: res,
+        type: 'html',
+        opts: {
+          buttons: [],
+          padding: 0,
+          smallBtn: false
+          // btnTpl: {
+          //   close:
+          //     '<button data-fancybox-close class="popup-payment__close""></button>"'
+          // }
+        }
+      });
+      $fieldset.prop('disabled', '');
+      isChanged = false;
+    },
+    error: function (res) {
+      // console.log(res);
+      alert('Ошибка! Попробуйте позже!');
+      $fieldset.prop('disabled', '');
+      isChanged = false;
+    }
+  });
+  return;
+}
+;
+function getPaymentMethodsAjax(e) {
+  let $this = $(this);
+  ;
+  let calc_name;
+  let IncCurrLabel;
+  let price_type;
+  if (e && typeof e.data !== 'undefined') {
+    calc_name = e.data.calc_name;
+    IncCurrLabel = e.data.IncCurrLabel;
+    price_type = e.data.price_type;
+  } else {
+    alert('Ошибка! Попробуйте позже!');
+    return;
+  }
+  let url = '/all/ajax/get_payment_methods/';
+  let isChanged = false;
+  let $fieldset = $this.parent();
+  if (!isChanged) {
+    let csrftoken = $this.parent().find('[name="csrfmiddlewaretoken"]').val();
+    let data = {
+      calc_name,
+      IncCurrLabel,
+      price_type
+    };
+    $fieldset.prop('disabled', 'disabled');
+    isChanged = true;
+    $.ajax({
+      url,
+      data,
+      method: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      success: function (res) {
+        $.fancybox.open({
+          src: res,
+          type: 'html',
+          opts: {
+            buttons: [],
+            padding: 0,
+            smallBtn: false
+            // btnTpl: {
+            //   close:
+            //     '<button data-fancybox-close class="popup-payment__close""></button>"'
+            // }
+          }
+        });
+        $fieldset.prop('disabled', '');
+        isChanged = false;
+      },
+      error: function (res) {
+        // console.log(res);
+        alert('Ошибка! Попробуйте позже!');
+        $fieldset.prop('disabled', '');
+        isChanged = false;
+      }
+    });
+  }
+  return;
+}
+;
+function changePaymentMethodsAjax(select) {
+  let $this = $(select);
+  let calc_name = $this.parent().find('[name=shpcalc_name]').val();
+  let price_type = $this.parent().find('[name=shpprice_type]').val();
+  let IncCurrLabel = $this.val();
+  let url = '/all/get_payment_methods_ajax/';
+  let isChanged = false;
+  let $fieldset = $this.parent();
+  if (!isChanged) {
+    let csrftoken = $this.parent().find('[name="csrfmiddlewaretoken"]').val();
+    let data = {
+      calc_name,
+      IncCurrLabel,
+      price_type
+    };
+    $fieldset.prop('disabled', 'disabled');
+    isChanged = true;
+    $.ajax({
+      url,
+      data,
+      method: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      success: function (res) {
+        $.fancybox.destroy();
+        $.fancybox.open(res);
+        $fieldset.prop('disabled', '');
+        isChanged = false;
+      },
+      error: function (res) {
+        // console.log(res);
+        alert('Ошибка! Попробуйте позже!');
+        $fieldset.prop('disabled', '');
+        isChanged = false;
+      }
+    });
+  }
+  return;
+}
+function submitForm() {
+  let formWrapperClass = '.js-robokassa-form';
+  let $form = $(formWrapperClass).find('form');
+  click_ya_payment_from_form($form);
+  click_ga_payment();
+
+  // console.log($form);
+  $form.submit();
+}
+function smoothAnchorSlide() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      let href = this.getAttribute('href');
+      if (href !== '' && href !== '#') document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+      return true;
+    });
+  });
+}
+;
+function openFancybox(html) {
+  $.fancybox.destroy();
+  $.fancybox.open({
+    src: html,
+    type: 'html',
+    opts: {
+      buttons: [],
+      padding: 0,
+      smallBtn: false
+    }
+  });
+}
+function promoApply(button) {
+  let $this = $(button);
+  let $form = $this.closest('.js-robokassa-form');
+  let isApply = true;
+  $wrapper = $this.closest('.js-payment-place');
+  let $fieldset = $wrapper.find('.js-fieldset');
+  let csrftoken = $form.find('[name="csrfmiddlewaretoken"]').val();
+  $fieldset.prop('disabled', 'disabled');
+  if (isApply) {
+    let promo = $wrapper.find('[name="shppromo"]').val();
+    let calc_name = $wrapper.find('[name="shpcalc_name"]').val();
+    let url = '/all/accounts/apply_promo/';
+    $.ajax({
+      url,
+      data: {
+        promo,
+        calc_name
+      },
+      method: 'POST',
+      dataType: 'html',
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      cache: false,
+      success: function (res) {
+        $wrapper.html(res);
+        isApply = false;
+      },
+      error: function (res) {
+        // console.log(res);
+        if (res.responseText == 'NOT EXIST') {
+          alert('Ошибка! Промокод с таким названием не существует!');
+        } else if (res.responseText == 'USED') {
+          alert('Ошибка! Промокод уже использован вами!');
+        } else {
+          alert('Ошибка! Попробуйте позже!');
+        }
+        $fieldset.prop('disabled', '');
+        isApply = false;
+      }
+    });
+  }
+  return false;
+}
+function click_ya_payment_from_form($form) {
+  if (typeof ym !== 'undefined') {
+    let ym_params = {};
+    if ($form && $form.find('input[name="shpfull_price"]').length) {
+      ym_params['order_price'] = $form.find('input[name="shpfull_price"]').val();
+    }
+    ym(YM_ID, 'reachGoal', 'pay', ym_params);
+  }
+}
+function click_ga_payment() {
+  if (typeof ga !== 'undefined') {
+    ga('send', 'event', 'robokassa_form', 'pay');
+  }
+}
+function paymentFilter(el) {
+  let $this = $(el);
+  let $filterItems = $('.js-filter-item');
+  let $paymentList = $('.js-payment-list');
+  let filter = $this.data('filter');
+  let activeClass = 'is-active';
+  let $target = $paymentList.find(`[data-filter-target=${filter}]`);
+  $filterItems.removeClass(activeClass);
+  $this.addClass(activeClass);
+  if (filter !== 'all' && $target.length) {
+    $paymentList.children().hide();
+    $target.show();
+  } else {
+    $paymentList.children().show();
+  }
+}
+function selectPaymentMethod(el) {
+  let $this = $(el);
+  let $paymentMethods = $this.closest('.js-payment-methods');
+  let calc_name = $paymentMethods.data('calc_name');
+  let price_type = $paymentMethods.data('price_type');
+  let IncCurrLabel = $this.data('value');
+  let url = '/all/ajax/get_payment_form/';
+  let csrftoken = $paymentMethods.find('[name="csrfmiddlewaretoken"]').val();
+  let $hiddenFormPlace = $paymentMethods.find('.js-hidden-form-place');
+  $.ajax({
+    url,
+    data: {
+      calc_name,
+      price_type,
+      IncCurrLabel
+    },
+    method: 'POST',
+    dataType: 'html',
+    headers: {
+      'X-CSRFToken': csrftoken
+    },
+    success: function (res) {
+      $hiddenFormPlace.html(res);
+    },
+    error: function (res) {
+      alert('Ошибка! Попробуйте позже!');
+    }
+  });
+}
+function showPassword() {
+  let $showPassword = $('.js-show-password');
+  $showPassword.length && $showPassword.click(function () {
+    let $this = $(this);
+    let $inputPassword = $this.prev();
+    if ($inputPassword.attr("type") == "password") {
+      $inputPassword.attr("type", "text");
+    } else {
+      $inputPassword.attr("type", "password");
+    }
+    return false;
+  });
+}
+function preloader() {
+  let preloader = document.getElementById("preloader");
+  if (preloader) {
+    setTimeout(() => {
+      preloader.style.display = "block";
+    }, 400);
+  } else {
+    console.log('No preloader');
+  }
+}
+;
+
+/***/ }),
+
+/***/ 0:
+/*!****************************************************!*\
+  !*** multi ./src/css/style.scss ./src/js/index.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! ./src/css/style.scss */"./src/css/style.scss");
+module.exports = __webpack_require__(/*! ./src/js/index.js */"./src/js/index.js");
+
+
+/***/ })
+
+/******/ });

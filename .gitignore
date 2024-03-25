@@ -10,6 +10,7 @@
 static/
 tmp/
 docs/
+
 node_modules/
 
 .RData

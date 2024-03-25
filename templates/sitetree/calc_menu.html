@@ -1,7 +1,6 @@
 {% load sitetree %}
 
 <ul class="calc-menu__navbar">
-
 	{% for item in sitetree_items %}
 
   	<li class="calc-menu__item{% if item.has_children %} m--children js-menu-parent{% endif %}{% if item.is_current or item.in_current_branch %} is-active{{ item.is_current|yesno:" m--current-item," }}{{ item.in_current_branch|yesno:" m--current-branch," }}{% endif %}">

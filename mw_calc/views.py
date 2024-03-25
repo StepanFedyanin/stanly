@@ -38,7 +38,7 @@ logger = logging.getLogger('logfile')
 
 
 class index(TemplateView):
-    template_name = "layout/index.html"
+    template_name = "home.html"
 
     def get(self, request, *args, **kwargs):
         calcs = dict()

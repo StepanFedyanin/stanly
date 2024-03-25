@@ -14,7 +14,7 @@ SECRET_KEY = access.SECRET_KEY
 # DEBUG = False
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'stanly.statpsy.ru']
+ALLOWED_HOSTS = ['localhost', 'stanly.statpsy.ru', '127.0.0.1']
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 
@@ -173,12 +173,13 @@ SESSION_SAVE_EVERY_REQUEST = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'src'),
     os.path.join(BASE_DIR, 'dist'),
+    os.path.join(BASE_DIR, 'static'),
 ] 
 # + [os.path.join(BASE_DIR, calc + '/', 'static') for calc in CALC_APPS]
 
@@ -195,39 +196,39 @@ FILE_UPLOAD_HANDLERS = [
     "django.core.files.uploadhandler.TemporaryFileUploadHandler"
 ]
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'tmp') + '/debug.log',
-        },
-        'file_planfix': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'tmp') + '/planfix.log',
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'include_html': True,
-        }
-    },
-    'loggers': {
-        'logfile': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'planfix': {
-            'handlers': ['file_planfix'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'tmp') + '/debug.log',
+#         },
+#         'file_planfix': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'tmp') + '/planfix.log',
+#         },
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'class': 'django.utils.log.AdminEmailHandler',
+#             'include_html': True,
+#         }
+#     },
+#     'loggers': {
+#         'logfile': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#         'planfix': {
+#             'handlers': ['file_planfix'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
 
 # calculators settings
 # DIRS

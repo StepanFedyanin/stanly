@@ -11,9 +11,9 @@ from django.conf import settings as s
 from allauth.account.signals import user_signed_up, user_logged_in
 from allauth.account.models import EmailAddress
 
-from planfix.models import PlanfixModel
-from planfix.classes import PlanfixError
-from planfix.api import PlanFix
+# from planfix.models import PlanfixModel
+# from planfix.classes import PlanfixError
+# from planfix.api import PlanFix
 
 from .helpers import random_promo
 
